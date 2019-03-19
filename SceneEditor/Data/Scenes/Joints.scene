@@ -1,0 +1,414 @@
+{
+	"Files":	[{
+			"Path":	"Data/Materials/Ground.mymaterial"
+		}, {
+			"Path":	"Data/Materials/Megaman.mymaterial"
+		}],
+	"GameObjects":	[{
+			"ID":	1,
+			"Name":	"Main Camera",
+			"Properties":	{
+				"Flags":	["Camera-Main"]
+			}
+		}, {
+			"ID":	2,
+			"Name":	"Hud Camera",
+			"Properties":	{
+				"Flags":	["Camera-HUD"]
+			}
+		}, {
+			"ID":	3,
+			"Name":	"Ball"
+		}, {
+			"ID":	6,
+			"Name":	"Ground"
+		}, {
+			"ID":	4,
+			"Name":	"Slope1"
+		}, {
+			"ID":	5,
+			"Name":	"Slope2"
+		}, {
+			"ID":	7,
+			"Name":	"Ground1"
+		}, {
+			"ID":	8,
+			"Name":	"Pin1"
+		}, {
+			"ID":	9,
+			"Name":	"Pin2"
+		}, {
+			"ID":	10,
+			"Name":	"Pin3"
+		}, {
+			"ID":	14,
+			"Name":	"Spinner"
+		}, {
+			"ID":	15,
+			"Name":	"Blocker"
+		}],
+	"Transforms":	[{
+			"GOID":	1,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[0, 0, -10],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1]
+		}, {
+			"GOID":	2,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[0, 0, 0],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1]
+		}, {
+			"GOID":	3,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[-1.7153682708740234, 1.9045298099517822, -9.5367431640625e-006],
+			"Rot":	[0, 0, 0],
+			"Scale":	[0.5, 0.5, 0.5]
+		}, {
+			"GOID":	6,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[-0.57496166229248047, -3.5811223983764648, -5.7220458984375e-006],
+			"Rot":	[0, -0, 0],
+			"Scale":	[10.541543960571289, 0.26524612307548523, 1]
+		}, {
+			"GOID":	4,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[-2.5450103282928467, 1.5370192527770996, -1.621246337890625e-005],
+			"Rot":	[0, -0, 32.997386932373047],
+			"Scale":	[5, 0.26524612307548523, 1]
+		}, {
+			"GOID":	5,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[0.69902020692825317, -0.89561605453491211, -8.58306884765625e-006],
+			"Rot":	[0, -0, -50.752677917480469],
+			"Scale":	[5, 0.26524612307548523, 1]
+		}, {
+			"GOID":	7,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[-5.741511344909668, -1.2915382385253906, -5.7220458984375e-006],
+			"Rot":	[0, -0, 90],
+			"Scale":	[10.541543960571289, 0.26524612307548523, 1]
+		}, {
+			"GOID":	8,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[-4.2764077186584473, -2.6476826667785645, -5.7220458984375e-006],
+			"Rot":	[0, -0, 0],
+			"Scale":	[0.32699999213218689, 1.4650000333786011, 0.99999052286148071]
+		}, {
+			"GOID":	9,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[-3.4847283363342285, -2.6476826667785645, -5.7220458984375e-006],
+			"Rot":	[0, -0, 0],
+			"Scale":	[0.32699999213218689, 1.4650000333786011, 0.99999052286148071]
+		}, {
+			"GOID":	10,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[-2.653721809387207, -2.6476826667785645, -5.7220458984375e-006],
+			"Rot":	[0, -0, 0],
+			"Scale":	[0.32699999213218689, 1.4650000333786011, 0.99999052286148071]
+		}, {
+			"GOID":	14,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[-1.8563194274902344, -1.2368705272674561, -2.288818359375e-005],
+			"Rot":	[0, -0, 32.997386932373047],
+			"Scale":	[2.3091247081756592, 0.26524612307548523, 1]
+		}, {
+			"GOID":	15,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[-2.107144832611084, -3.4071221351623535, -9.5367431640625e-007],
+			"Rot":	[0, -0, 90],
+			"Scale":	[1.3398964405059814, 0.26524612307548523, 0.9999966025352478]
+		}],
+	"Components":	[{
+			"Type":	"2D Collision Object",
+			"GOID":	3,
+			"ID":	3,
+			"PrefabComponentID":	0,
+			"Offset":	[0, 0],
+			"PrimitiveType":	"Circle",
+			"Static":	0,
+			"FixedRotation":	0,
+			"Density":	1,
+			"IsSensor":	0,
+			"Friction":	0.20000000298023224,
+			"Restitution":	0
+		}, {
+			"Type":	"2D Collision Object",
+			"GOID":	4,
+			"ID":	5,
+			"PrefabComponentID":	0,
+			"Offset":	[0, 0],
+			"PrimitiveType":	"Box",
+			"Static":	1,
+			"FixedRotation":	0,
+			"Density":	1,
+			"IsSensor":	0,
+			"Friction":	0.86000001430511475,
+			"Restitution":	0
+		}, {
+			"Type":	"2D Collision Object",
+			"GOID":	5,
+			"ID":	7,
+			"PrefabComponentID":	0,
+			"Offset":	[0, 0],
+			"PrimitiveType":	"Box",
+			"Static":	1,
+			"FixedRotation":	0,
+			"Density":	1,
+			"IsSensor":	0,
+			"Friction":	0.86000001430511475,
+			"Restitution":	0
+		}, {
+			"Type":	"2D Collision Object",
+			"GOID":	6,
+			"ID":	9,
+			"PrefabComponentID":	0,
+			"Offset":	[0, 0],
+			"PrimitiveType":	"Box",
+			"Static":	1,
+			"FixedRotation":	0,
+			"Density":	1,
+			"IsSensor":	0,
+			"Friction":	0.86000001430511475,
+			"Restitution":	0
+		}, {
+			"Type":	"2D Collision Object",
+			"GOID":	7,
+			"ID":	11,
+			"PrefabComponentID":	0,
+			"Offset":	[0, 0],
+			"PrimitiveType":	"Box",
+			"Static":	1,
+			"FixedRotation":	0,
+			"Density":	1,
+			"IsSensor":	0,
+			"Friction":	0.86000001430511475,
+			"Restitution":	0
+		}, {
+			"Type":	"2D Collision Object",
+			"GOID":	8,
+			"ID":	13,
+			"PrefabComponentID":	0,
+			"Offset":	[0, 0],
+			"PrimitiveType":	"Box",
+			"Static":	0,
+			"FixedRotation":	0,
+			"Density":	1,
+			"IsSensor":	0,
+			"Friction":	0.86000001430511475,
+			"Restitution":	0
+		}, {
+			"Type":	"2D Collision Object",
+			"GOID":	9,
+			"ID":	15,
+			"PrefabComponentID":	0,
+			"Offset":	[0, 0],
+			"PrimitiveType":	"Box",
+			"Static":	0,
+			"FixedRotation":	0,
+			"Density":	1,
+			"IsSensor":	0,
+			"Friction":	0.86000001430511475,
+			"Restitution":	0
+		}, {
+			"Type":	"2D Collision Object",
+			"GOID":	10,
+			"ID":	17,
+			"PrefabComponentID":	0,
+			"Offset":	[0, 0],
+			"PrimitiveType":	"Box",
+			"Static":	0,
+			"FixedRotation":	0,
+			"Density":	1,
+			"IsSensor":	0,
+			"Friction":	0.86000001430511475,
+			"Restitution":	0
+		}, {
+			"Type":	"2D Collision Object",
+			"GOID":	14,
+			"ID":	28,
+			"PrefabComponentID":	0,
+			"Offset":	[0, 0],
+			"PrimitiveType":	"Box",
+			"Static":	0,
+			"FixedRotation":	0,
+			"Density":	3,
+			"IsSensor":	0,
+			"Friction":	0.86000001430511475,
+			"Restitution":	0
+		}, {
+			"Type":	"2D Joint - Revolute",
+			"GOID":	14,
+			"ID":	30,
+			"PrefabComponentID":	0,
+			"AnchorA":	[0, 0],
+			"AnchorB":	[0, 0],
+			"MotorEnabled":	0,
+			"MotorSpeed":	0,
+			"MotorMaxTorque":	0,
+			"LimitEnabled":	0,
+			"LimitMin":	0,
+			"LimitMax":	0,
+			"BreakForce":	0
+		}, {
+			"Type":	"2D Collision Object",
+			"GOID":	15,
+			"ID":	31,
+			"PrefabComponentID":	0,
+			"Offset":	[0, 0],
+			"PrimitiveType":	"Box",
+			"Static":	1,
+			"FixedRotation":	0,
+			"Density":	1,
+			"IsSensor":	0,
+			"Friction":	0.86000001430511475,
+			"Restitution":	0
+		}, {
+			"Type":	"Camera",
+			"GOID":	1,
+			"ID":	1,
+			"PrefabComponentID":	0,
+			"Layers":	["Main view"],
+			"Deferred":	0,
+			"Ortho":	0,
+			"DesiredWidth":	640,
+			"DesiredHeight":	960,
+			"OrthoNearZ":	0,
+			"OrthoFarZ":	1000,
+			"FoV":	45,
+			"PerspectiveNearZ":	1,
+			"PerspectiveFarZ":	10000,
+			"ColorBit":	1,
+			"DepthBit":	1
+		}, {
+			"Type":	"Camera",
+			"GOID":	2,
+			"ID":	2,
+			"PrefabComponentID":	0,
+			"Layers":	["HUD"],
+			"Deferred":	0,
+			"Ortho":	1,
+			"DesiredWidth":	640,
+			"DesiredHeight":	960,
+			"OrthoNearZ":	0,
+			"OrthoFarZ":	1000,
+			"FoV":	45,
+			"PerspectiveNearZ":	1,
+			"PerspectiveFarZ":	10000,
+			"ColorBit":	0,
+			"DepthBit":	0
+		}, {
+			"Type":	"Sprite",
+			"GOID":	3,
+			"ID":	4,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"Tint":	[255, 255, 255, 255],
+			"Size":	[1, 1],
+			"Material":	"Data/Materials/Megaman.mymaterial"
+		}, {
+			"Type":	"Sprite",
+			"GOID":	4,
+			"ID":	6,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"Tint":	[255, 255, 255, 255],
+			"Size":	[1, 1],
+			"Material":	"Data/Materials/Ground.mymaterial"
+		}, {
+			"Type":	"Sprite",
+			"GOID":	5,
+			"ID":	8,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"Tint":	[255, 255, 255, 255],
+			"Size":	[1, 1],
+			"Material":	"Data/Materials/Ground.mymaterial"
+		}, {
+			"Type":	"Sprite",
+			"GOID":	6,
+			"ID":	10,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"Tint":	[255, 255, 255, 255],
+			"Size":	[1, 1],
+			"Material":	"Data/Materials/Ground.mymaterial"
+		}, {
+			"Type":	"Sprite",
+			"GOID":	7,
+			"ID":	12,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"Tint":	[255, 255, 255, 255],
+			"Size":	[1, 1],
+			"Material":	"Data/Materials/Ground.mymaterial"
+		}, {
+			"Type":	"Sprite",
+			"GOID":	8,
+			"ID":	14,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"Tint":	[255, 255, 255, 255],
+			"Size":	[1, 1],
+			"Material":	"Data/Materials/Megaman.mymaterial"
+		}, {
+			"Type":	"Sprite",
+			"GOID":	9,
+			"ID":	16,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"Tint":	[255, 255, 255, 255],
+			"Size":	[1, 1],
+			"Material":	"Data/Materials/Megaman.mymaterial"
+		}, {
+			"Type":	"Sprite",
+			"GOID":	10,
+			"ID":	18,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"Tint":	[255, 255, 255, 255],
+			"Size":	[1, 1],
+			"Material":	"Data/Materials/Megaman.mymaterial"
+		}, {
+			"Type":	"Sprite",
+			"GOID":	14,
+			"ID":	29,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"Tint":	[255, 255, 255, 255],
+			"Size":	[1, 1],
+			"Material":	"Data/Materials/Ground.mymaterial"
+		}, {
+			"Type":	"Sprite",
+			"GOID":	15,
+			"ID":	32,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"Tint":	[255, 255, 255, 255],
+			"Size":	[1, 1],
+			"Material":	"Data/Materials/Ground.mymaterial"
+		}]
+}

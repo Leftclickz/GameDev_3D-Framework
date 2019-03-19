@@ -1,0 +1,128 @@
+{
+	"GameObjects":	[{
+			"Name":	"Main Camera",
+			"Pos":	[0, 0, -10],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["Camera-Main"]
+		}, {
+			"Name":	"Hud Camera",
+			"Pos":	[0, 0, 0],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["Camera-HUD"]
+		}, {
+			"Name":	"Player",
+			"Pos":	[0, 0, 0],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"2D Collision Object",
+					"PrefabComponentID":	0,
+					"Offset":	[0, 0],
+					"PrimitiveType":	"Box",
+					"Static":	0,
+					"FixedRotation":	0,
+					"Density":	1,
+					"IsSensor":	0,
+					"Friction":	0.20000000298023224,
+					"Restitution":	0
+				}, {
+					"Type":	"Sprite",
+					"PrefabComponentID":	0,
+					"Material":	"Megaman",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground",
+			"Pos":	[0, -2.2858641147613525, 0],
+			"Rot":	[0, 0, 0],
+			"Scale":	[10, 1, 1],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"2D Collision Object",
+					"PrefabComponentID":	0,
+					"Offset":	[0, 0],
+					"PrimitiveType":	"Box",
+					"Static":	1,
+					"FixedRotation":	0,
+					"Density":	1,
+					"IsSensor":	0,
+					"Friction":	0.20000000298023224,
+					"Restitution":	0
+				}, {
+					"Type":	"Sprite",
+					"PrefabComponentID":	0,
+					"Material":	"Ground",
+					"Texture":	"Data/Textures/Ground.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Prismatic",
+			"Pos":	[-4.8682851791381836, 0, 0],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"Sprite",
+					"PrefabComponentID":	0,
+					"Material":	"Spike",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}, {
+					"Type":	"2D Collision Object",
+					"PrefabComponentID":	0,
+					"Offset":	[0, 0],
+					"PrimitiveType":	"Box",
+					"Static":	0,
+					"FixedRotation":	0,
+					"Density":	1,
+					"IsSensor":	0,
+					"Friction":	0.20000000298023224,
+					"Restitution":	0
+				}, {
+					"Type":	"2D Joint - Prismatic",
+					"PrefabComponentID":	0,
+					"Up":	[0, 1],
+					"AnchorA":	[0, 0],
+					"AnchorB":	[0, 0],
+					"MotorEnabled":	1,
+					"MotorSpeed":	5,
+					"MotorMaxForce":	0,
+					"LimitEnabled":	1,
+					"LimitMin":	-1,
+					"LimitMax":	1,
+					"OtherGameObject":	"Boshy"
+				}]
+		}, {
+			"Name":	"Boshy",
+			"Pos":	[-4.7310886383056641, 2.7513065338134766, 0],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"2D Collision Object",
+					"PrefabComponentID":	0,
+					"Offset":	[0, 0],
+					"PrimitiveType":	"Box",
+					"Static":	1,
+					"FixedRotation":	0,
+					"Density":	1,
+					"IsSensor":	0,
+					"Friction":	0.20000000298023224,
+					"Restitution":	0
+				}, {
+					"Type":	"Sprite",
+					"PrefabComponentID":	0,
+					"Material":	"Boshy",
+					"Texture":	"Data/Textures/Boshy.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}]
+}
