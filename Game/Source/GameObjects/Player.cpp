@@ -30,12 +30,12 @@ void Player::Update(float deltatime)
     {
         if( m_pPlayerController->IsHeld_Up() )
         {
-            dir.y = 1;
+            dir.z = 1;
         }
 
         if( m_pPlayerController->IsHeld_Down() )
         {
-            dir.y = -1;
+            dir.z = -1;
         }
 
         if( m_pPlayerController->IsHeld_Left() )
@@ -50,25 +50,41 @@ void Player::Update(float deltatime)
 
 		if (m_pPlayerController->IsHeld_In())
 		{
-			dir.z = -1;
+			dir.y = -1;
 		}
 
 		if (m_pPlayerController->IsHeld_Out())
 		{
-			dir.z = 1;
+			dir.y = 1;
 		}
     }
 
-	
-	m_Position += dir * m_Speed * deltatime;
+	//if (m_Body)
+	//{
+	//	//dir.y = -9.8f; //apply gravity
+
+	//	float mass = 1 / m_Body->getInvMass();
+	//	btVector3 currentVel = m_Body->getLinearVelocity();
+
+	//	btVector3 VelDiff = btVector3(dir.x - currentVel.x(), dir.y - currentVel.y(), dir.z - currentVel.z());
+
+	//	float timestep = 1 / 60.0f;
+
+	//	btVector3 force = mass * VelDiff;
+	//	force.setX(force.x() / timestep);
+
+	//	m_Body->applyCentralImpulse(force);
+	//}
+	//else
+		m_Position += dir * m_Speed * deltatime;
 }
 
 void Player::Draw(Camera* cam)
 {
 	GameObject3D::Draw(cam);
 
-	ImGui::Text("RotationX: %.3f", m_Rotation.x);
-	ImGui::Text("RotationY: %.3f", m_Rotation.y);
-	ImGui::Text("RotationZ: %.3f", m_Rotation.z);
+// 	ImGui::Text("RotationX: %.3f", m_Rotation.x);
+// 	ImGui::Text("RotationY: %.3f", m_Rotation.y);
+// 	ImGui::Text("RotationZ: %.3f", m_Rotation.z);
 
 }

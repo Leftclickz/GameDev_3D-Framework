@@ -110,6 +110,7 @@ void Game::LoadContent()
 		m_pResourceManager->AddShader("WaterShader", new ShaderProgram("Data/Shaders/Water.vert", "Data/Shaders/Water.frag"));
 		m_pResourceManager->AddShader("DebugShader", new ShaderProgram("Data/Shaders/Debug.vert", "Data/Shaders/Debug.frag"));
 		m_pResourceManager->AddShader("NormalShader", new ShaderProgram("Data/Shaders/Normal.vert", "Data/Shaders/Normal.frag"));
+		m_pResourceManager->AddShader("LightingShader", new ShaderProgram("Data/Shaders/Lighting.vert", "Data/Shaders/Lighting.frag"));
 	}
 
     // Load some textures.
@@ -126,6 +127,7 @@ void Game::LoadContent()
 		m_pResourceManager->AddTexture("Bullet", new Texture("Data/Textures/Bullet.png"));
 		m_pResourceManager->AddTexture("Door", new Texture("Data/Textures/Door.png"));
 		m_pResourceManager->AddTexture("Elevator", new Texture("Data/Textures/Elevator.png"));
+		m_pResourceManager->AddTexture("White", new Texture("Data/Textures/White.png"));
 	}
 
 	//Spritesheets
@@ -147,6 +149,10 @@ void Game::LoadContent()
 		m_pResourceManager->AddMaterial("Elevator",  new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetTexture("Elevator")));
 
 		m_pResourceManager->AddMaterial("Red",  new Material(m_pResourceManager->GetShader("NormalShader"), m_pResourceManager->GetTexture("Red")));
+		m_pResourceManager->AddMaterial("Sphere",    new Material(m_pResourceManager->GetShader("NormalShader"), m_pResourceManager->GetTexture("Water")));
+
+		m_pResourceManager->AddMaterial("Lighting",    new Material(m_pResourceManager->GetShader("LightingShader"), m_pResourceManager->GetTexture("Water")));
+		m_pResourceManager->AddMaterial("Lighting2",    new Material(m_pResourceManager->GetShader("LightingShader"), m_pResourceManager->GetTexture("White")));
 
 		m_pResourceManager->AddMaterial("Water",   new Material(m_pResourceManager->GetShader("WaterShader"), m_pResourceManager->GetTexture("Water")));
 		m_pResourceManager->AddMaterial("Normal", new Material(m_pResourceManager->GetShader("NormalShader"), m_pResourceManager->GetTexture("Water")));
@@ -177,7 +183,7 @@ void Game::LoadContent()
 	m_pScenes["PlatformerScene"]->LoadContent();
 	m_pScenes["BulletScene"]->LoadContent();
 
-	m_pCurrentScene = m_pScenes["PlatformerScene"];
+	m_pCurrentScene = m_pScenes["BulletScene"];
 
 	m_HUD = new HUD_Scene(this, m_pResourceManager);
 	m_HUD->LoadContent();

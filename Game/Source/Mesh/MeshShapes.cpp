@@ -7,10 +7,10 @@ void Mesh::CreateBox(vec2 size, vec2 offset)
 {
     VertexFormat vertexAttributes[] =
     {
-        VertexFormat( vec2( -size.x/2, -size.y/2 ) + offset, MyColor( 255, 255, 255, 255 ), vec2( 0.0f, 0.0f ) ),
-        VertexFormat( vec2( -size.x/2,  size.y/2 ) + offset, MyColor( 255, 255, 255, 255 ), vec2( 0.0f, 1.0f ) ),
-        VertexFormat( vec2(  size.x/2,  size.y/2 ) + offset, MyColor( 255, 255, 255, 255 ), vec2( 1.0f, 1.0f ) ),
-        VertexFormat( vec2(  size.x/2, -size.y/2 ) + offset, MyColor( 255, 255, 255, 255 ), vec2( 1.0f, 0.0f ) ),
+        VertexFormat( vec2( -size.x/2, -size.y/2 ) + offset, vec3(0,0,-1), MyColor( 255, 255, 255, 255 ), vec2( 0.0f, 0.0f ) ),
+        VertexFormat( vec2( -size.x/2,  size.y/2 ) + offset, vec3(0,0,-1), MyColor( 255, 255, 255, 255 ), vec2( 0.0f, 1.0f ) ),
+        VertexFormat( vec2(  size.x/2,  size.y/2 ) + offset, vec3(0,0,-1), MyColor( 255, 255, 255, 255 ), vec2( 1.0f, 1.0f ) ),
+        VertexFormat( vec2(  size.x/2, -size.y/2 ) + offset, vec3(0,0,-1), MyColor( 255, 255, 255, 255 ), vec2( 1.0f, 0.0f ) ),
     };
 
     unsigned int indices[6] = { 0,2,1, 0,3,2 };
@@ -24,35 +24,35 @@ void Mesh::CreateCube(vec3 size, vec3 offset)
 	{
 		//HARDCODED UVs FOR FUN!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		//front
-		VertexFormat(vec3(size.x / 2, -size.y / 2, size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.1666f, 0.0f)),//3
-		VertexFormat(vec3(size.x / 2,  size.y / 2, size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.1666f, 1.0f)),//2
-		VertexFormat(vec3(-size.x / 2,  size.y / 2, size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.0f, 1.0f)),//1
-		VertexFormat(vec3(-size.x / 2, -size.y / 2, size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.0f, 0.0f)),//0
+		VertexFormat(vec3(size.x / 2, -size.y / 2, size.z / 2) + offset, vec3(0,0,1), MyColor(255, 255, 255, 255), vec2(0.1666f, 0.0f)),//3
+		VertexFormat(vec3(size.x / 2,  size.y / 2, size.z / 2) + offset, vec3(0,0,1), MyColor(255, 255, 255, 255), vec2(0.1666f, 1.0f)),//2
+		VertexFormat(vec3(-size.x / 2,  size.y / 2, size.z / 2) + offset, vec3(0,0,1), MyColor(255, 255, 255, 255), vec2(0.0f, 1.0f)),//1
+		VertexFormat(vec3(-size.x / 2, -size.y / 2, size.z / 2) + offset, vec3(0,0,1), MyColor(255, 255, 255, 255), vec2(0.0f, 0.0f)),//0
 		//top
-		VertexFormat(vec3(size.x / 2, size.y / 2, size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.3333f, 0.0f)),//7
-		VertexFormat(vec3(size.x / 2,  size.y / 2, -size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.3333f, 1.0f)),//6
-		VertexFormat(vec3(-size.x / 2,  size.y / 2, -size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.1666f, 1.0f)),//5
-		VertexFormat(vec3(-size.x / 2, size.y / 2, size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.1666f, 0.0f)),//4
+		VertexFormat(vec3(size.x / 2, size.y / 2, size.z / 2) + offset, vec3(0,1,0), MyColor(255, 255, 255, 255), vec2(0.3333f, 0.0f)),//7
+		VertexFormat(vec3(size.x / 2,  size.y / 2, -size.z / 2) + offset, vec3(0,1,0), MyColor(255, 255, 255, 255), vec2(0.3333f, 1.0f)),//6
+		VertexFormat(vec3(-size.x / 2,  size.y / 2, -size.z / 2) + offset, vec3(0,1,0), MyColor(255, 255, 255, 255), vec2(0.1666f, 1.0f)),//5
+		VertexFormat(vec3(-size.x / 2, size.y / 2, size.z / 2) + offset, vec3(0,1,0), MyColor(255, 255, 255, 255), vec2(0.1666f, 0.0f)),//4
 		//back
-		VertexFormat(vec3(-size.x / 2, -size.y / 2, -size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.3333f, 0.0f)),//8
-		VertexFormat(vec3(-size.x / 2,  size.y / 2, -size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.3333f, 1.0f)),//9
-		VertexFormat(vec3(size.x / 2,  size.y / 2, -size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.5f, 1.0f)),//10
-		VertexFormat(vec3(size.x / 2, -size.y / 2, -size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.5f, 0.0f)),//11
+		VertexFormat(vec3(-size.x / 2, -size.y / 2, -size.z / 2) + offset, vec3(0,0,-1), MyColor(255, 255, 255, 255), vec2(0.3333f, 0.0f)),//8
+		VertexFormat(vec3(-size.x / 2,  size.y / 2, -size.z / 2) + offset, vec3(0,0,-1), MyColor(255, 255, 255, 255), vec2(0.3333f, 1.0f)),//9
+		VertexFormat(vec3(size.x / 2,  size.y / 2, -size.z / 2) + offset, vec3(0,0,-1), MyColor(255, 255, 255, 255), vec2(0.5f, 1.0f)),//10
+		VertexFormat(vec3(size.x / 2, -size.y / 2, -size.z / 2) + offset, vec3(0,0,-1), MyColor(255, 255, 255, 255), vec2(0.5f, 0.0f)),//11
 		//bottom
-		VertexFormat(vec3(-size.x / 2, -size.y / 2, size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.5f, 0.0f)),//12
-		VertexFormat(vec3(-size.x / 2, -size.y / 2, -size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.5f, 1.0f)),//13
-		VertexFormat(vec3(size.x / 2,  -size.y / 2, -size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.6666f, 1.0f)),//14
-		VertexFormat(vec3(size.x / 2, -size.y / 2, size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.6666f, 0.0f)),//15
+		VertexFormat(vec3(-size.x / 2, -size.y / 2, size.z / 2) + offset, vec3(0,-1,0), MyColor(255, 255, 255, 255), vec2(0.5f, 0.0f)),//12
+		VertexFormat(vec3(-size.x / 2, -size.y / 2, -size.z / 2) + offset, vec3(0,-1,0), MyColor(255, 255, 255, 255), vec2(0.5f, 1.0f)),//13
+		VertexFormat(vec3(size.x / 2,  -size.y / 2, -size.z / 2) + offset, vec3(0,-1,0), MyColor(255, 255, 255, 255), vec2(0.6666f, 1.0f)),//14
+		VertexFormat(vec3(size.x / 2, -size.y / 2, size.z / 2) + offset, vec3(0,-1,0), MyColor(255, 255, 255, 255), vec2(0.6666f, 0.0f)),//15
 		//left
-		VertexFormat(vec3(-size.x / 2, -size.y / 2, size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.8333f, 0.0f)),//19
-		VertexFormat(vec3(-size.x / 2,  size.y / 2, size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.8333f, 1.0f)),//18
-		VertexFormat(vec3(-size.x / 2,  size.y / 2, -size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.6666f, 1.0f)),//17
-		VertexFormat(vec3(-size.x / 2, -size.y / 2, -size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.6666f, 0.0f)),//16
+		VertexFormat(vec3(-size.x / 2, -size.y / 2, size.z / 2) + offset, vec3(-1,0,0), MyColor(255, 255, 255, 255), vec2(0.8333f, 0.0f)),//19
+		VertexFormat(vec3(-size.x / 2,  size.y / 2, size.z / 2) + offset, vec3(-1,0,0), MyColor(255, 255, 255, 255), vec2(0.8333f, 1.0f)),//18
+		VertexFormat(vec3(-size.x / 2,  size.y / 2, -size.z / 2) + offset, vec3(-1,0,0), MyColor(255, 255, 255, 255), vec2(0.6666f, 1.0f)),//17
+		VertexFormat(vec3(-size.x / 2, -size.y / 2, -size.z / 2) + offset, vec3(-1,0,0), MyColor(255, 255, 255, 255), vec2(0.6666f, 0.0f)),//16
 		//right
-		VertexFormat(vec3(size.x / 2, -size.y / 2, -size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(1.0f, 0.0f)),//23
-		VertexFormat(vec3(size.x / 2,  size.y / 2, -size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(1.0f, 1.0f)),//22
-		VertexFormat(vec3(size.x / 2,  size.y / 2, size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.8333f, 1.0f)),//21
-		VertexFormat(vec3(size.x / 2, -size.y / 2, size.z / 2) + offset, MyColor(255, 255, 255, 255), vec2(0.8333f, 0.0f)),//20
+		VertexFormat(vec3(size.x / 2, -size.y / 2, -size.z / 2) + offset, vec3(1,0,0), MyColor(255, 255, 255, 255), vec2(1.0f, 0.0f)),//23
+		VertexFormat(vec3(size.x / 2,  size.y / 2, -size.z / 2) + offset, vec3(1,0,0), MyColor(255, 255, 255, 255), vec2(1.0f, 1.0f)),//22
+		VertexFormat(vec3(size.x / 2,  size.y / 2, size.z / 2) + offset, vec3(1,0,0), MyColor(255, 255, 255, 255), vec2(0.8333f, 1.0f)),//21
+		VertexFormat(vec3(size.x / 2, -size.y / 2, size.z / 2) + offset, vec3(1,0,0), MyColor(255, 255, 255, 255), vec2(0.8333f, 0.0f)),//20
 	};
 
 	unsigned int indices[36] =
@@ -96,6 +96,7 @@ void Mesh::CreatePlane(vec2 worldsize, ivec2 vertcount)
 		{
 			vertexAttributes[y * vertcount.x + x].m_Pos = vec3(x * stepX - pivot.x, 0, y* stepY - pivot.y);
 			vertexAttributes[y * vertcount.x + x].m_UV = vec2(x * uvStepX, y * uvStepY);
+			vertexAttributes[y * vertcount.x + x].m_Norm = vec3(0, 1, 0);
 		}
 	}
 

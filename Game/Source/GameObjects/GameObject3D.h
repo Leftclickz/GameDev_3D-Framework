@@ -27,11 +27,13 @@ public:
 
 	virtual void CreateBody(vec3 size, float mass = 0.0f);
 
+	virtual void CreatePlane();
+
 	virtual void Reset() override;
 
 	btRigidBody* GetBody() { return m_Body; }
 
-private:
+protected:
 	bool m_WasLoadedFromJSON = false;
 
 	btRigidBody* m_Body;

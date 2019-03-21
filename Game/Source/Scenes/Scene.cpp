@@ -28,6 +28,7 @@ Scene::Scene(Game* pGame, ResourceManager* pResources)
 	m_DebugDraw = false;
 	m_pPhysicsWorld = nullptr;
 	m_ShouldReset = false;
+	m_BulletManager = nullptr;
 
 	m_Camera = new Camera(vec3(0.0f, 5.0f, -5.0f), vec3(5.0f, 5.0f, 0.0f), 100.0f);
 	m_Camera->CreateProjectionMatrix();
@@ -47,6 +48,11 @@ Scene::~Scene()
 	}
 	delete m_pCubePool;
 	delete m_Camera;
+
+	if (m_BulletManager)
+	{
+		delete m_BulletManager;
+	}
 }
 
 void Scene::LoadContent()

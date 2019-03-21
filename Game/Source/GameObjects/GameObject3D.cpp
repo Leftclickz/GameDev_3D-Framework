@@ -18,6 +18,7 @@ GameObject3D::GameObject3D(Scene* pScene, std::string name, Transform transform,
 	: GameObject(pScene, name, transform, pMesh, pMaterial)
 {
 	m_MotionState = nullptr;
+	m_Body = nullptr;
 }
 
 GameObject3D::~GameObject3D()
@@ -25,6 +26,12 @@ GameObject3D::~GameObject3D()
 	if (m_MotionState)
 	{
 		delete m_MotionState;
+	}
+
+	if (m_Body)
+	{
+		m_pScene->GetBulletManager()->dynamicsWorld->removeRigidBody(m_Body);
+		delete m_Body;
 	}
 }
 
@@ -71,7 +78,7 @@ void GameObject3D::Draw(Camera* cam)
 #undef new
 void GameObject3D::CreateBody(vec3 size, float mass /*= 0.0f*/)
 {
-	btCollisionShape* groundShape = new btBoxShape(btVector3(btScalar(50.), btScalar(50.), btScalar(50.)));
+	btCollisionShape* groundShape = new btBoxShape(btVector3(btScalar(size.x), btScalar(size.y), btScalar(size.z)));
 
 	//m_pScene->GetBulletManager()->collisionShapes.push_back(groundShape);
 
@@ -95,8 +102,34 @@ void GameObject3D::CreateBody(vec3 size, float mass /*= 0.0f*/)
 	//add the body to the dynamics world
 	m_pScene->GetBulletManager()->dynamicsWorld->addRigidBody(m_Body);
 
-	m_Body->applyTorque(btVector3(0.0f, 10000.0f, 0.0f));
+	//m_Body->applyTorque(btVector3(0.0f, 10000.0f, 0.0f));
 
+}
+
+void GameObject3D::CreatePlane()
+{
+	btVector3 normal(0, 1, 0);
+	btCollisionShape* plane = new btStaticPlaneShape(normal, btScalar(1.0f));
+
+	btTransform groundTransform;
+	groundTransform.setIdentity();
+	groundTransform.setOrigin(btVector3(0, 0, 0));
+
+	//rigidbody is dynamic if and only if mass is non zero, otherwise static
+	bool isDynamic = (0 != 0.f);
+
+	btVector3 localInertia(0, 0, 0);
+	if (isDynamic)
+		plane->calculateLocalInertia(0, localInertia);
+
+	//using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
+	m_MotionState = new BulletMotionState(this);
+	btRigidBody::btRigidBodyConstructionInfo rbInfo(0, m_MotionState, plane, localInertia);
+	m_Body = new btRigidBody(rbInfo);
+	m_Body->setUserPointer(this);
+
+	//add the body to the dynamics world
+	m_pScene->GetBulletManager()->dynamicsWorld->addRigidBody(m_Body);
 }
 
 void GameObject3D::Reset()
