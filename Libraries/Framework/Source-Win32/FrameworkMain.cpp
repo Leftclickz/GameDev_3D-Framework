@@ -182,6 +182,15 @@ void Framework::GetMouseCoordinates(int* mx, int* my)
     }
 }
 
+void Framework::SetMousePosition(ivec2 pos)
+{
+	POINT point;
+	point.x = pos.x;
+	point.y = pos.y;
+	ClientToScreen(m_hWnd, &point);
+	SetCursorPos(point.x, point.y);
+}
+
 // Protected methods.
 
 void Framework::ResizeWindow(int width, int height)

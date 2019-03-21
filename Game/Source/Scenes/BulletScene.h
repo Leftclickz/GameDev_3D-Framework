@@ -1,7 +1,9 @@
 #pragma once
 #include "Scenes/Scene.h"
+
 class DebugDraw;
 class BulletManager;
+class ChaseCameraObject;
 
 class BulletScene : public Scene
 {

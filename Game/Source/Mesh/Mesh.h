@@ -66,7 +66,7 @@ public:
     void Init(const void* verts, int numVerts, GLenum primitiveType, GLenum usage);
 
     void SetupAttributes(ShaderProgram* pShaderProgram);
-    static void SetupUniforms(mat4 matrix, Camera* camera, Material* material);
+    static void SetupUniforms(mat4 matrix, mat4 normalmatrix, Camera* camera, Material* material);
     void Draw(ShaderProgram* pShaderProgram);
 
     // The following functions are defined in MeshShapes.cpp:

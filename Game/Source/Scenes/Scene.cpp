@@ -30,9 +30,10 @@ Scene::Scene(Game* pGame, ResourceManager* pResources)
 	m_ShouldReset = false;
 	m_BulletManager = nullptr;
 
-	m_Camera = new Camera(vec3(0.0f, 5.0f, -5.0f), vec3(5.0f, 5.0f, 0.0f), 100.0f);
+	m_Camera = new Camera(this, "Camera", Transform(vec3(0.0f, 5.0f, -5.0f)));
 	m_Camera->CreateProjectionMatrix();
 	m_Camera->CreateViewMatrix();
+	AddGameObject(m_Camera);
 }
 
 Scene::~Scene()
@@ -47,7 +48,6 @@ Scene::~Scene()
 		delete m_pPhysicsWorld;
 	}
 	delete m_pCubePool;
-	delete m_Camera;
 
 	if (m_BulletManager)
 	{
@@ -64,13 +64,6 @@ void Scene::OnEvent(Event* pEvent)
 	if (pEvent->GetEventType() == EventType_Input)
 	{
 		InputEvent* pInput = (InputEvent*)pEvent;
-
-		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 'L')
-		{
-			vec3 campos = m_Camera->GetPosition();
-			campos.z -= 1;
-			m_Camera->SetPosition(campos);
-		}
 	}
 }
 

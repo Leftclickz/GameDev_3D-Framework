@@ -46,7 +46,10 @@ void GameObject::Draw(Camera* cam)
 			mat4 matrix;
 			matrix.CreateSRT(m_Scale, m_Rotation, m_Position);
 
-			m_pMesh->SetupUniforms(matrix, cam, m_pMaterial);
+			mat4 WorldRotMat;
+			WorldRotMat.CreateRotation(m_Rotation);
+
+			m_pMesh->SetupUniforms(matrix, WorldRotMat, cam, m_pMaterial);
 			m_pMesh->Draw(m_pMaterial->GetShader());
 		}
 	}

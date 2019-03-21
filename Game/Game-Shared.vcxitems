@@ -18,6 +18,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\cJSONHelpers.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Bullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Camera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\ChaseCameraObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingMineObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingPlayerObject.h" />
@@ -38,7 +39,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\SaveLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\BulletScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\FileTestScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\FloatingScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\GraphicsScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\ImGuiManager.h" />
@@ -65,6 +65,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\cJSONHelpers.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Bullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Camera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\ChaseCameraObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingMineObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingPlayerObject.cpp" />
@@ -85,7 +86,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\SaveLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\BulletScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\FileTestScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\FloatingScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\GraphicsScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\ImGuiManager.cpp" />

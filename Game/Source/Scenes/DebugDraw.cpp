@@ -32,7 +32,11 @@ void DebugDraw::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2C
 
 	mat4 matrix;
 	matrix.SetIdentity();
-	Mesh::SetupUniforms(matrix, m_pCamera, m_pMaterial);
+
+	mat4 matrix2;
+	matrix2.SetIdentity();
+
+	Mesh::SetupUniforms(matrix, matrix2, m_pCamera, m_pMaterial);
 
 	//draw lines
 	glLineWidth(3); //fat lines
@@ -57,7 +61,10 @@ void DebugDraw::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, cons
 
 	mat4 matrix;
 	matrix.SetIdentity();
-	Mesh::SetupUniforms(matrix, m_pCamera, m_pMaterial);
+	mat4 matrix2;
+	matrix2.SetIdentity();
+
+	Mesh::SetupUniforms(matrix, matrix2, m_pCamera, m_pMaterial);
 
 	glColor4f(1, 0, 0, 0.5f);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, vertexCount);
@@ -106,7 +113,10 @@ void DebugDraw::DrawCircle(const b2Vec2& center, float32 radius, const b2Color& 
 
 	mat4 matrix;
 	matrix.SetIdentity();
-	Mesh::SetupUniforms(matrix, m_pCamera, m_pMaterial);
+	mat4 matrix2;
+	matrix2.SetIdentity();
+
+	Mesh::SetupUniforms(matrix, matrix2, m_pCamera, m_pMaterial);
 
 	glLineWidth(3); //fat lines
 	glColor4f(1, 0, 1, 1);
@@ -156,7 +166,10 @@ void DebugDraw::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Ve
 
 	mat4 matrix;
 	matrix.SetIdentity();
-	Mesh::SetupUniforms(matrix, m_pCamera, m_pMaterial);
+	mat4 matrix2;
+	matrix2.SetIdentity();
+
+	Mesh::SetupUniforms(matrix, matrix2, m_pCamera, m_pMaterial);
 	glColor4f(1, 0, 0, 0.5f);
 
 	glDrawArrays(GL_TRIANGLE_FAN, 0, vertcount);	
@@ -183,7 +196,10 @@ void DebugDraw::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& c
 
 	mat4 matrix;
 	matrix.SetIdentity();
-	Mesh::SetupUniforms(matrix, m_pCamera, m_pMaterial);
+	mat4 matrix2;
+	matrix2.SetIdentity();
+
+	Mesh::SetupUniforms(matrix, matrix2, m_pCamera, m_pMaterial);
 
 	//glDrawArrays(GL_TRIANGLE_FAN, 0, vertexCount);
 
@@ -215,7 +231,10 @@ void DebugDraw::DrawPoint(const b2Vec2& p, float32 size, const b2Color& color)
 
 	mat4 matrix;
 	matrix.SetIdentity();
-	Mesh::SetupUniforms(matrix, m_pCamera, m_pMaterial);
+	mat4 matrix2;
+	matrix2.SetIdentity();
+
+	Mesh::SetupUniforms(matrix, matrix2, m_pCamera, m_pMaterial);
 
 	glColor4f(1, 0, 1, 1);
 

@@ -7,9 +7,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\cJSONHelpers.cpp">
       <Filter>Extensions</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\FileTestScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\FloatingScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -133,6 +130,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Physics\BulletMotionState.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\ChaseCameraObject.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Camera.h">
@@ -140,9 +140,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\cJSONHelpers.h">
       <Filter>Extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\FileTestScene.h">
-      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\FloatingScene.h">
       <Filter>Scenes</Filter>
@@ -269,6 +266,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Physics\BulletMotionState.h">
       <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\ChaseCameraObject.h">
+      <Filter>Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

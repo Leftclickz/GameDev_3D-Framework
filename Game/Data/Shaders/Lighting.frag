@@ -5,11 +5,14 @@ uniform sampler2D u_Texture;
 varying vec2 v_UV;
 varying vec3 v_WorldPosition;
 
-varying vec3 v_LightPos;
 varying vec3 v_Surfacenormal;
 
+varying vec3 v_LightPos;
 uniform vec4 u_MaterialColor;
 uniform vec4 u_LightColor;
+uniform float u_LightRange;
+
+uniform vec3 u_Campos;
 
 void main()
 {
@@ -18,18 +21,30 @@ void main()
 	vec4 lightcolor = u_LightColor;
 	lightcolor = vec4(1,1,1,1);
 
-	vec3 lightpos = vec3(0,2,0);
+	vec3 lightpos = vec3(0,8,0);
+
+	float dist = distance(lightpos, v_WorldPosition);
 
 	vec3 dirtolight = normalize(lightpos - v_WorldPosition);
 
-	float diffuseperc = dot(dirtolight, v_Surfacenormal);
+	float diffuseperc = dot(dirtolight, normalize(v_Surfacenormal));
 
-	if(diffuseperc < 0)
-		diffuseperc = 0;
+
+	vec3 simulatedlightpos = normalize(normalize(lightpos) + normalize(u_Campos));
+	float specular = dot(normalize(v_Surfacenormal), simulatedlightpos);
+
+	diffuseperc += specular;
+	diffuseperc = max(0, diffuseperc);
 
 	lightcolor *= diffuseperc;
 	matcolor *= diffuseperc;
 
 	matcolor *= lightcolor;
+
+	float range = 0.1;
+
+	float attenuation = max(0, pow(1 - (dist / range), 0.25));
+
+	matcolor /= attenuation;
 	gl_FragColor = vec4(matcolor.xyz, texture2D( u_Texture, v_UV ).a);
 }

@@ -3,6 +3,8 @@
 struct Transform
 {
 	Transform(vec3 pos, vec3 rot, vec3 scale) { Position = pos; Rotation = rot; Scale = scale; }
+	Transform(vec3 pos) { Position = pos; Rotation = vec3(0); Scale = vec3(1); }
+	Transform(vec3 pos, vec3 rot) { Position = pos; Rotation = rot; Scale = vec3(1); }
 	Transform() { Position = vec3(0); Rotation = vec3(0); Scale = vec3(1); }
 
 	vec3 Position;

@@ -23,7 +23,7 @@ void PlayerController::OnEvent(Event* pEvent)
                 if( keyID == 'E' ) { m_Directions |= DIR_IN; }
 
 				if (keyID == 'C' && !isOther) { m_Directions |= DIR_OTHER; isOther = true; }
-				if (keyID == 'Z' && !isJumping) { m_Directions |= DIR_JUMP; isJumping = true; }
+				if (keyID == ' ' && !isJumping) { m_Directions |= DIR_JUMP; isJumping = true; }
 				if (keyID == 'X' && !isShooting) { m_Directions |= DIR_SHOOT; isShooting = true; }
             }
 
@@ -37,7 +37,7 @@ void PlayerController::OnEvent(Event* pEvent)
 				if (keyID == 'E') { m_Directions &= ~DIR_IN; }
 
 				if (keyID == 'C') { m_Directions &= ~DIR_OTHER; isOther = false; }
-				if (keyID == 'Z') { m_Directions &= ~DIR_JUMP; isJumping = false; }
+				if (keyID == ' ') { m_Directions &= ~DIR_JUMP; isJumping = false; }
 				if (keyID == 'X') { m_Directions &= ~DIR_SHOOT; isShooting = false; }
             }
         }

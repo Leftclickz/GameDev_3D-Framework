@@ -151,7 +151,7 @@ void Mesh::SetupAttributes(ShaderProgram* pShader)
     }
 }
 
-void Mesh::SetupUniforms(mat4 matrix, Camera* camera, Material* material)
+void Mesh::SetupUniforms(mat4 matrix, mat4 normalmatrix, Camera* camera, Material* material)
 {
     assert(material->GetShader() != nullptr );
     assert(material->GetShader()->GetProgram() != 0 );
@@ -183,7 +183,10 @@ void Mesh::SetupUniforms(mat4 matrix, Camera* camera, Material* material)
 	mat4 view = camera->GetViewMatrix();
 	mat4 proj = camera->GetProjectionMatrix();
 
+	SetUniform3f(shader, "u_Campos", camera->GetPosition());
+
 	SetUniformMat4(shader, "u_WorldMatrix", &matrix.m11);
+	SetUniformMat4(shader, "u_NormalMatrix", &normalmatrix.m11);
 	SetUniformMat4(shader, "u_ViewMatrix", &view.m11);
 	SetUniformMat4(shader, "u_ProjectionMatrix", &proj.m11);
 	

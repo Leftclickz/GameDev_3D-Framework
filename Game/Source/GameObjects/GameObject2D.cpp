@@ -43,21 +43,6 @@ void GameObject2D::Update(float deltatime)
 void GameObject2D::Draw(Camera* cam)
 {
 	GameObject::Draw(cam);
-
-	if (isEnabled)
-	{
-		if (m_pMesh != nullptr)
-		{
-			m_pMesh->SetupAttributes(m_pMaterial->GetShader());
-
-			//worldmatrix
-			mat4 matrix;
-			matrix.CreateSRT(m_Scale, m_Rotation, m_Position);
-
-			m_pMesh->SetupUniforms(matrix, cam, m_pMaterial);
-			m_pMesh->Draw(m_pMaterial->GetShader());
-		}
-	}
 }
 
 b2Body* GameObject2D::GetBody()

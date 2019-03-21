@@ -58,21 +58,6 @@ void GameObject3D::Update(float deltatime)
 void GameObject3D::Draw(Camera* cam)
 {
 	GameObject::Draw(cam);
-
-	if (isEnabled)
-	{
-		if (m_pMesh != nullptr)
-		{
-			m_pMesh->SetupAttributes(m_pMaterial->GetShader());
-
-			//worldmatrix
-			mat4 matrix;
-			matrix.CreateSRT(m_Scale, m_Rotation, m_Position);
-
-			m_pMesh->SetupUniforms(matrix, cam, m_pMaterial);
-			m_pMesh->Draw(m_pMaterial->GetShader());
-		}
-	}
 }
 
 #undef new
@@ -85,6 +70,7 @@ void GameObject3D::CreateBody(vec3 size, float mass /*= 0.0f*/)
 	btTransform groundTransform;
 	groundTransform.setIdentity();
 	groundTransform.setOrigin(btVector3(0, 0, 0));
+	groundTransform.setRotation(btQuaternion(btScalar(2.0f), btScalar(0.0f), btScalar(0.0f)));
 
 	//rigidbody is dynamic if and only if mass is non zero, otherwise static
 	bool isDynamic = (mass != 0.f);
@@ -94,6 +80,7 @@ void GameObject3D::CreateBody(vec3 size, float mass /*= 0.0f*/)
 		groundShape->calculateLocalInertia(mass, localInertia);
 
 	//using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
+	m_Rotation.x += 3.0f;
 	m_MotionState = new BulletMotionState(this);
 	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, m_MotionState, groundShape, localInertia);
 	m_Body = new btRigidBody(rbInfo);
@@ -101,15 +88,12 @@ void GameObject3D::CreateBody(vec3 size, float mass /*= 0.0f*/)
 
 	//add the body to the dynamics world
 	m_pScene->GetBulletManager()->dynamicsWorld->addRigidBody(m_Body);
-
-	//m_Body->applyTorque(btVector3(0.0f, 10000.0f, 0.0f));
-
 }
 
 void GameObject3D::CreatePlane()
 {
 	btVector3 normal(0, 1, 0);
-	btCollisionShape* plane = new btStaticPlaneShape(normal, btScalar(1.0f));
+	btCollisionShape* plane = new btStaticPlaneShape(normal, btScalar(0.0f));
 
 	btTransform groundTransform;
 	groundTransform.setIdentity();

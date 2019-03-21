@@ -13,7 +13,6 @@
 #include "Scenes/PhysicsScene.h"
 #include "Scenes/PoolTestScene.h"
 #include "Scenes/FloatingScene.h"
-#include "Scenes/FileTestScene.h"
 #include "Scenes/PlatformerScene.h"
 #include "ImGuiManager.h"
 #include "Scenes/HUD_Scene.h"
@@ -119,43 +118,16 @@ void Game::LoadContent()
 		m_pResourceManager->AddTexture("Dice", new Texture("Data/Textures/Dice.png"));
 		m_pResourceManager->AddTexture("Meteor", new Texture("Data/Textures/Meteor.png"));
 		m_pResourceManager->AddTexture("Water", new Texture("Data/Textures/Water.png"));
-		m_pResourceManager->AddTexture("Ground", new Texture("Data/Textures/Ground.png"));
-		m_pResourceManager->AddTexture("Spike", new Texture("Data/Textures/Spike.png"));
-		m_pResourceManager->AddTexture("Boshy", new Texture("Data/Textures/Boshy.png"));
-		m_pResourceManager->AddTexture("Coin", new Texture("Data/Textures/Coin.png"));
-		m_pResourceManager->AddTexture("Red", new Texture("Data/Textures/Red.png"));
-		m_pResourceManager->AddTexture("Bullet", new Texture("Data/Textures/Bullet.png"));
-		m_pResourceManager->AddTexture("Door", new Texture("Data/Textures/Door.png"));
-		m_pResourceManager->AddTexture("Elevator", new Texture("Data/Textures/Elevator.png"));
-		m_pResourceManager->AddTexture("White", new Texture("Data/Textures/White.png"));
 	}
 
 	//Spritesheets
 	{
-		m_pResourceManager->AddSpriteSheet("Die", new SpriteSheet("DataSource/Dice", "Die1.png"));
+		//font
 		m_pResourceManager->AddSpriteSheet("DefaultText", new SpriteSheet("Textures/DefaultFont_White", "0.png"));
 	}
 
 	{
-		m_pResourceManager->AddMaterial("Cube",    new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetTexture("Dice")));
-		m_pResourceManager->AddMaterial("Meteor",  new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetTexture("Meteor")));
-		m_pResourceManager->AddMaterial("Spike",  new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetTexture("Spike")));
-		m_pResourceManager->AddMaterial("Boshy",  new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetTexture("Boshy")));
-		m_pResourceManager->AddMaterial("Coin",  new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetTexture("Coin")));
 		m_pResourceManager->AddMaterial("Megaman", new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetTexture("Megaman")));
-		m_pResourceManager->AddMaterial("Ground",  new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetTexture("Ground")));
-		m_pResourceManager->AddMaterial("Bullet",  new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetTexture("Bullet")));
-		m_pResourceManager->AddMaterial("Door",  new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetTexture("Door")));
-		m_pResourceManager->AddMaterial("Elevator",  new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetTexture("Elevator")));
-
-		m_pResourceManager->AddMaterial("Red",  new Material(m_pResourceManager->GetShader("NormalShader"), m_pResourceManager->GetTexture("Red")));
-		m_pResourceManager->AddMaterial("Sphere",    new Material(m_pResourceManager->GetShader("NormalShader"), m_pResourceManager->GetTexture("Water")));
-
-		m_pResourceManager->AddMaterial("Lighting",    new Material(m_pResourceManager->GetShader("LightingShader"), m_pResourceManager->GetTexture("Water")));
-		m_pResourceManager->AddMaterial("Lighting2",    new Material(m_pResourceManager->GetShader("LightingShader"), m_pResourceManager->GetTexture("White")));
-
-		m_pResourceManager->AddMaterial("Water",   new Material(m_pResourceManager->GetShader("WaterShader"), m_pResourceManager->GetTexture("Water")));
-		m_pResourceManager->AddMaterial("Normal", new Material(m_pResourceManager->GetShader("NormalShader"), m_pResourceManager->GetTexture("Water")));
 		m_pResourceManager->AddMaterial("Debug",   new Material(m_pResourceManager->GetShader("DebugShader"), m_pResourceManager->GetTexture("Dice")));
 		m_pResourceManager->AddMaterial("Text",  new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetSpriteSheet("DefaultText")));
 	}
@@ -171,7 +143,6 @@ void Game::LoadContent()
 	m_pScenes["Physics"] = new PhysicsScene(this, m_pResourceManager);
 	m_pScenes["PoolTest"] = new PoolTestScene(this, m_pResourceManager);
 	m_pScenes["Floatyboi"] = new FloatingScene(this, m_pResourceManager);
-	m_pScenes["FileTestScene"] = new FileTestScene(this, m_pResourceManager);
 	m_pScenes["PlatformerScene"] = new PlatformerScene(this, m_pResourceManager);
 	m_pScenes["BulletScene"] = new BulletScene(this, m_pResourceManager);
 
@@ -179,7 +150,6 @@ void Game::LoadContent()
 	m_pScenes["Physics"]->LoadContent();
 	m_pScenes["PoolTest"]->LoadContent();
 	m_pScenes["Floatyboi"]->LoadContent();
-	m_pScenes["FileTestScene"]->LoadContent();
 	m_pScenes["PlatformerScene"]->LoadContent();
 	m_pScenes["BulletScene"]->LoadContent();
 
@@ -237,15 +207,17 @@ void Game::OnEvent(Event* pEvent)
 
 		//Scene 5
 		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 53)
-			m_pCurrentScene = m_pScenes["FileTestScene"];
+			m_pCurrentScene = m_pScenes["PlatformerScene"];
+
 
 		//Scene 6
 		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 54)
-			m_pCurrentScene = m_pScenes["PlatformerScene"];
+			m_pCurrentScene = m_pScenes["BulletScene"];
 
 		//Scene 7
 		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 55)
-			m_pCurrentScene = m_pScenes["BulletScene"];
+		{
+		}
 	}
 #endif //WIN32
 }

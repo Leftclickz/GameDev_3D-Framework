@@ -29,12 +29,12 @@ void PhysicsScene::LoadContent()
 {
 	Scene::LoadContent();
 
+	m_pResources->AddMaterial("Water", new Material(m_pResources->GetShader("WaterShader"), m_pResources->GetTexture("Water")));
+
 	//make the player
 	Player* player = new Player(this, "Player", Transform(vec3(0,0,0), vec3(0), vec3(1)), m_pResources->GetMesh("Plane"), m_pResources->GetMaterial("Water"));
 	player->SetPlayerController(m_pGame->GetController(0));
 	m_pGameObjects.push_back(player);
-
-	//m_Camera->SetLookAtPosition(player);
 }
 
 void PhysicsScene::OnEvent(Event* pEvent)

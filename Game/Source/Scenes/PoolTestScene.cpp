@@ -32,6 +32,9 @@ void PoolTestScene::LoadContent()
 {
 	Scene::LoadContent();
 
+	m_pResources->AddMaterial("Meteor", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("Meteor")));
+	m_pResources->AddMaterial("Cube", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("Dice")));
+
 	//make the player
 	PlatformerPlayer* player = new PlatformerPlayer(this, "Player", Transform(vec3(0, 5, 0), vec3(0), vec3(1)), m_pResources->GetMesh("Cube"), m_pResources->GetMaterial("Cube"));
 	player->SetPlayerController(m_pGame->GetController(0));
