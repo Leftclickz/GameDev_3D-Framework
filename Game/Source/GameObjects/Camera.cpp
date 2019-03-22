@@ -1,10 +1,9 @@
 #include "GamePCH.h"
 #include "Camera.h"
 
-Camera::Camera(vec3 position, vec3 lookat, float range)
-	: GameObject(nullptr, "Camera", Transform(), nullptr, nullptr)
+Camera::Camera(Scene* pScene, std::string name, Transform transform, vec3 lookat, float range)
+	: GameObject(pScene, name, transform, nullptr, nullptr)
 {
-	m_Position = position;
 	m_LookAtPosition = lookat;
 	m_Range = range;
 	m_Offset = vec3(0);

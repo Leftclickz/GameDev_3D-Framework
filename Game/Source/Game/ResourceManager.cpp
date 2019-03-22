@@ -56,9 +56,10 @@ void ResourceManager::AddTexture(std::string name, Texture* pTexture)
 
 void ResourceManager::AddMaterial(std::string name, Material* pMaterial)
 {
-	assert(m_pMaterials.find(name) == m_pMaterials.end());
-
-	m_pMaterials[name] = pMaterial;
+	if (m_pMaterials.find(name) == m_pMaterials.end())
+		m_pMaterials[name] = pMaterial;
+	else
+		delete pMaterial;
 }
 
 void ResourceManager::AddSpriteSheet(std::string name, SpriteSheet* pSheet)

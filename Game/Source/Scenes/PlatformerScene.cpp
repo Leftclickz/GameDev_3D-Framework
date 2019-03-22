@@ -42,6 +42,30 @@ PlatformerScene::~PlatformerScene()
 
 void PlatformerScene::LoadContent()
 {
+	//create the textures we'll need for boshy later
+	m_pResources->AddTexture("BloodyBoshy", new Texture("Data/Textures/BloodyBoshy.png"));
+	m_pResources->AddTexture("VictoryBoshy", new Texture("Data/Textures/VictoryBoshy.png"));
+	m_pResources->AddTexture("Ground", new Texture("Data/Textures/Ground.png"));
+	m_pResources->AddTexture("Spike", new Texture("Data/Textures/Spike.png"));
+	m_pResources->AddTexture("Boshy", new Texture("Data/Textures/Boshy.png"));
+	m_pResources->AddTexture("Coin", new Texture("Data/Textures/Coin.png"));
+	m_pResources->AddTexture("Red", new Texture("Data/Textures/Red.png"));
+	m_pResources->AddTexture("Bullet", new Texture("Data/Textures/Bullet.png"));
+	m_pResources->AddTexture("Door", new Texture("Data/Textures/Door.png"));
+	m_pResources->AddTexture("Elevator", new Texture("Data/Textures/Elevator.png"));
+
+	m_pResources->AddMaterial("Red", new Material(m_pResources->GetShader("NormalShader"), m_pResources->GetTexture("Red")));
+	m_pResources->AddMaterial("BloodyBoshy", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("BloodyBoshy")));
+	m_pResources->AddMaterial("VictoryBoshy", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("VictoryBoshy")));
+	m_pResources->AddMaterial("Meteor", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("Meteor")));
+	m_pResources->AddMaterial("Spike", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("Spike")));
+	m_pResources->AddMaterial("Boshy", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("Boshy")));
+	m_pResources->AddMaterial("Coin", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("Coin")));
+	m_pResources->AddMaterial("Ground", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("Ground")));
+	m_pResources->AddMaterial("Bullet", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("Bullet")));
+	m_pResources->AddMaterial("Door", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("Door")));
+	m_pResources->AddMaterial("Elevator", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("Elevator")));
+	
 	m_ShouldFilter = true;
 
 	Scene::LoadContent();
@@ -52,12 +76,6 @@ void PlatformerScene::LoadContent()
 	//load our scene
 	LoadFromSceneFile("Data/Scenes/Platforming.box2dscene");
 
-	//create the textures we'll need for boshy later
-	m_pResources->AddTexture("BloodyBoshy", new Texture("Data/Textures/BloodyBoshy.png"));
-	m_pResources->AddTexture("VictoryBoshy", new Texture("Data/Textures/VictoryBoshy.png"));
-
-	m_pResources->AddMaterial("BloodyBoshy", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("BloodyBoshy")));
-	m_pResources->AddMaterial("VictoryBoshy", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("VictoryBoshy")));
 
 	//create audio voice
 	m_GameAudio = m_pResources->CreateAudio("Main Music", "Main Music");

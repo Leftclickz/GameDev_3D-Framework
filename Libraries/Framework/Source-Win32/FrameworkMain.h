@@ -46,6 +46,8 @@ public:
     bool IsKeyDown(int value);
     bool IsMouseButtonDown(int id);
     void GetMouseCoordinates(int* mx, int* my);
+	void SetMousePosition(ivec2 pos);
+
 
     unsigned int GetWindowWidth() { return m_CurrentWindowWidth; }
     unsigned int GetWindowHeight() { return m_CurrentWindowHeight; }

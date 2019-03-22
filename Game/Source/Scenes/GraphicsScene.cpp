@@ -28,6 +28,8 @@ void GraphicsScene::LoadContent()
 {
 	Scene::LoadContent();
 
+	m_pResources->AddMaterial("Normal", new Material(m_pResources->GetShader("NormalShader"), m_pResources->GetTexture("Water")));
+
 	Player* player = new Player(this, "Player", Transform(vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)), m_pResources->GetMesh("Teapot"), m_pResources->GetMaterial("Normal"));
 	player->SetPlayerController(m_pGame->GetController(0));
 	//player->CreateBody(b2_dynamicBody);

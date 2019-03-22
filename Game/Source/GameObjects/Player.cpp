@@ -28,6 +28,15 @@ void Player::Update(float deltatime)
 
     if( m_pPlayerController )
     {
+		if (m_pPlayerController->IsPressed_Jump())
+		{
+			if (m_Body)
+			{
+				m_Body->applyCentralImpulse(btVector3(0.0f, 10.0f, 0.0f));
+				m_pPlayerController->RemoveJumpInput();
+			}
+		}
+
         if( m_pPlayerController->IsHeld_Up() )
         {
             dir.z = 1;
@@ -57,25 +66,40 @@ void Player::Update(float deltatime)
 		{
 			dir.y = 1;
 		}
+
+		GameObject* cam = m_pScene->GetGameObjectByName("ChaseCamera");
+		if (cam)
+		{
+			vec3 camrot = cam->GetRotation() / 180.0f * PI;
+			vec3 radpos = m_Position / 180 * PI;
+			m_Rotation.y = camrot.y / PI * 180;
+
+			if (dir.x != 0 || dir.z != 0)
+			{
+				float ang = atan2f(dir.z, dir.x);
+				ang += camrot.y;
+				dir = vec3(cosf(ang), dir.y, sinf(ang));
+			}
+		}
     }
 
-	//if (m_Body)
-	//{
-	//	//dir.y = -9.8f; //apply gravity
-
-	//	float mass = 1 / m_Body->getInvMass();
-	//	btVector3 currentVel = m_Body->getLinearVelocity();
-
-	//	btVector3 VelDiff = btVector3(dir.x - currentVel.x(), dir.y - currentVel.y(), dir.z - currentVel.z());
-
-	//	float timestep = 1 / 60.0f;
-
-	//	btVector3 force = mass * VelDiff;
-	//	force.setX(force.x() / timestep);
-
-	//	m_Body->applyCentralImpulse(force);
-	//}
-	//else
+// 	if (m_Body)
+// 	{
+// 		dir.y = -.8f; //apply gravity
+// 
+// 		float mass = 1 / m_Body->getInvMass();
+// 		btVector3 currentVel = m_Body->getLinearVelocity();
+// 
+// 		btVector3 VelDiff = btVector3(dir.x - currentVel.x(), dir.y - currentVel.y(), dir.z - currentVel.z());
+// 
+// 		float timestep = 1 / 60.0f;
+// 
+// 		btVector3 force = mass * VelDiff;
+// 		force.setX(force.x() / timestep);
+// 
+// 		m_Body->applyCentralImpulse(force);
+// 	}
+// 	else
 		m_Position += dir * m_Speed * deltatime;
 }
 

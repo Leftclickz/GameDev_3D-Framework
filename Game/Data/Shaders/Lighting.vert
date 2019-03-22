@@ -8,6 +8,7 @@ attribute vec4 a_Color;
 uniform mat4 u_WorldMatrix;
 uniform mat4 u_ViewMatrix;
 uniform mat4 u_ProjectionMatrix;
+uniform mat4 u_NormalMatrix;
 
 varying vec2 v_UV;
 varying vec3 v_WorldPosition;
@@ -34,7 +35,8 @@ void main()
 
 	v_UV = a_UV;
 	v_WorldPosition = worldpos.xyz;
-	v_Surfacenormal = a_Normal;
+	vec4 normals = vec4(a_Normal, 1);
+	v_Surfacenormal = (u_NormalMatrix * normals).xyz;
 
 	vec3 pos = v_WorldPosition;
 	pos.y += 15;
