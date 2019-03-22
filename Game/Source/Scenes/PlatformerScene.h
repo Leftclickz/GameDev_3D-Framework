@@ -32,6 +32,9 @@ public:
 
 	virtual void LoadFromSceneFile(std::string filename) override;
 
+	virtual void HasEnteredFocus() override;
+	virtual void HasLeftFocus() override;
+
 	Pool<GameObject*> m_BulletPool;
 protected:
 	float m_GameOverTimer = 3.0f;

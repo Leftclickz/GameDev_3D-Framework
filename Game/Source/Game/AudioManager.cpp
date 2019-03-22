@@ -58,20 +58,30 @@ bool AudioManager::LoadFromPath(const char* name, const char* path)
 	//look for 'RIFF' chunk identifier
 	inFile.seekg(0, std::ios::beg);
 	inFile.read(reinterpret_cast<char*>(&dwChunkId), sizeof(dwChunkId));
+
+	//if we didnt find RIFF then this isn't a wave file. Get out.
 	if (dwChunkId != 'FFIR')
 	{
 		inFile.close();
 		return false;
 	}
-	inFile.seekg(4, std::ios::beg); //get file size
+
+	//get file size
+	inFile.seekg(4, std::ios::beg); 
 	inFile.read(reinterpret_cast<char*>(&dwFileSize), sizeof(dwFileSize));
+
+	//if our file size is 16 bytes or less, get out.
 	if (dwFileSize <= 16)
 	{
 		inFile.close();
 		return false;
 	}
-	inFile.seekg(8, std::ios::beg); //get file format
+
+	//get file format
+	inFile.seekg(8, std::ios::beg); 
 	inFile.read(reinterpret_cast<char*>(&dwExtra), sizeof(dwExtra));
+
+	//if the file format isn't WAVE, get out.
 	if (dwExtra != 'EVAW')
 	{
 		inFile.close();
@@ -86,23 +96,33 @@ bool AudioManager::LoadFromPath(const char* name, const char* path)
 	bool bFilledFormat = false;
 	for (unsigned int i = 12; i < dwFileSize; )
 	{
+		//find our format ID
 		inFile.seekg(i, std::ios::beg);
 		inFile.read(reinterpret_cast<char*>(&dwChunkId), sizeof(dwChunkId));
+
+		//get our format size. by default this should end up being 16
 		inFile.seekg(i + 4, std::ios::beg);
 		inFile.read(reinterpret_cast<char*>(&dwChunkSize), sizeof(dwChunkSize));
+
 		if (dwChunkId == ' tmf')
 		{
+			//fill our wave format
 			inFile.seekg(i + 8, std::ios::beg);
 			inFile.read(reinterpret_cast<char*>(&waveData->waveFormat), sizeof(waveData->waveFormat));
+
+			//break out now that format has been found and filled
 			bFilledFormat = true;
 			break;
 		}
+
+		//didn't find it. skip over a chunk.
 		dwChunkSize += 8; //add offsets of the chunk id, and chunk size data entries
 		dwChunkSize += 1;
 		dwChunkSize &= 0xfffffffe; //guarantees WORD padding alignment
 		i += dwChunkSize;
 	}
 
+	//we didnt get our format chunk. Get out.
 	if (bFilledFormat == false)
 	{
 		delete waveData;
@@ -114,27 +134,42 @@ bool AudioManager::LoadFromPath(const char* name, const char* path)
 	bool bFilledData = false;
 	for (unsigned int i = 12; i < dwFileSize; )
 	{
+		//get our data ID
 		inFile.seekg(i, std::ios::beg);
 		inFile.read(reinterpret_cast<char*>(&dwChunkId), sizeof(dwChunkId));
+
+		//get our data chunk
 		inFile.seekg(i + 4, std::ios::beg);
 		inFile.read(reinterpret_cast<char*>(&dwChunkSize), sizeof(dwChunkSize));
+
 		if (dwChunkId == 'atad')
 		{
+			//allocate space for the chunk
 			waveData->data = new unsigned char[dwChunkSize];
+
+			//fill the data with said chunk
 			inFile.seekg(i + 8, std::ios::beg);
 			inFile.read(reinterpret_cast<char*>(waveData->data), dwChunkSize);
+
+			//set buffer values
 			waveData->buffer.AudioBytes = dwChunkSize;
 			waveData->buffer.pAudioData = (BYTE*)waveData->data;
 			waveData->buffer.PlayBegin = 0;
 			waveData->buffer.PlayLength = 0;
+
+			//break out now that data has been found and filled
 			bFilledData = true;
 			break;
 		}
+
+		//didn't find it. skip over a chunk.
 		dwChunkSize += 8; //add offsets of the chunk id, and chunk size data entries
 		dwChunkSize += 1;
 		dwChunkSize &= 0xfffffffe; //guarantees WORD padding alignment
 		i += dwChunkSize;
 	}
+
+	//we didnt find our data chunk. Get out.
 	if (!bFilledData)
 	{
 		delete waveData;
@@ -142,11 +177,10 @@ bool AudioManager::LoadFromPath(const char* name, const char* path)
 		return false;
 	}
 
-
 	//Close the input file
 	inFile.close();
 
-	//store the wave data in our map
+	//store the wave data in our audio manager map
 	(*LoadedWaveDataMap)[name] = waveData;
 
 	//Return true

@@ -5,6 +5,7 @@
 
 Audio::Audio(const char* audioname, const char* filename) :
 	m_Source(nullptr),
+	m_EventManager(nullptr),
 	m_IsPlaying(false),
 	m_SampleOffset(0)
 {
@@ -230,4 +231,16 @@ double Audio::GetDuration()
 	unsigned int milleseconds = GetDurationMS();
 	double seconds = (double)milleseconds / 1000.0;
 	return seconds;
+}
+
+void Audio::DispatchEvent(AudioEvent* pEvent)
+{
+	if (m_EventManager != nullptr)
+	{
+		//if we're queueing a playback stop event we are no longer playing audio
+		if (pEvent->GetEventCode() == Audio_Playback_Ended)
+			m_IsPlaying = false;
+
+		m_EventManager->QueueEvent(pEvent);
+	}
 }

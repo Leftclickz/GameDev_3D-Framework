@@ -2,10 +2,13 @@
 
 #include "ResourceManager.h"
 #include "AudioManager.h"
+#include "Game.h"
+#include "AudioDataStructures.h"
 
-ResourceManager::ResourceManager()
+ResourceManager::ResourceManager(Game* game)
 {
 	AudioManager::Initialize();
+	m_EventManager = game->GetEventManager();
 }
 
 ResourceManager::~ResourceManager()
@@ -67,7 +70,9 @@ void ResourceManager::AddSpriteSheet(std::string name, SpriteSheet* pSheet)
 
 Audio* ResourceManager::CreateAudio(const char* AudioName, const char* FilePath)
 {
-	return AudioManager::CreateAudio(AudioName, FilePath);
+	Audio* audio = AudioManager::CreateAudio(AudioName, FilePath);
+	audio->SetEventManager(m_EventManager);
+	return audio;
 }
 
 void ResourceManager::LoadWaveData(const char* WaveName, const char* FilePath)
@@ -125,4 +130,32 @@ Audio* ResourceManager::GetAudio(const std::string name)
 	return AudioManager::GetAudio(name.c_str());
 }
 
+void ResourceManager::HandleEvent(Event* pEvent)
+{
+	if (pEvent->GetEventType() == EventType_Audio)
+	{
+		AudioEvent* audioEvent = (AudioEvent*)pEvent;
+
+		if (audioEvent)
+		{
+			Audio* audio = reinterpret_cast<Audio*>(audioEvent->GetContext());
+
+			if (audio)
+			{
+				switch (audioEvent->GetEventCode())
+				{
+				case Audio_Playback_Started:
+					break;
+				case Audio_Playback_Ended:
+					audio->Stop();
+					break;
+				case Audio_Loop_Ended:
+					break;
+				default:
+					break;
+				}
+			}
+		}
+	}
+}
 

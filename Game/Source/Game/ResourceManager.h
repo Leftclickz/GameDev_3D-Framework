@@ -9,6 +9,7 @@ class ResourceManager;
 #include "Mesh/SpriteSheet.h"
 
 class Game;
+class EventManager;
 struct WaveData;
 class ShaderProgram;
 class SpriteSheet;
@@ -23,8 +24,10 @@ protected:
 	std::map<std::string, SpriteSheet*> m_pSheets;
 	std::map<std::string, Material*> m_pMaterials;
 
+	EventManager* m_EventManager;
+
 public:
-	ResourceManager();
+	ResourceManager(Game* game);
 	virtual ~ResourceManager();
 
 	Mesh* AddMesh(std::string name, Mesh* pMesh);
@@ -51,7 +54,7 @@ public:
 	SpriteSheet*   GetSpriteSheet(const std::string name);
 	Audio*		   GetAudio(const std::string name);
 
-
+	void HandleEvent(Event* pEvent);
 
 };
 

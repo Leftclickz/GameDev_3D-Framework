@@ -18,6 +18,7 @@
 #include "ImGuiManager.h"
 #include "Scenes/HUD_Scene.h"
 #include "Scenes/BulletScene.h"
+#include "../Framework/Source/Events/SceneChangeEvent.h"
 
 Game::Game(Framework* pFramework)
 : GameCore( pFramework, new EventManager() )
@@ -74,7 +75,7 @@ void Game::LoadContent()
     glEnable( GL_BLEND );
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 
-	m_pResourceManager = new ResourceManager();
+	m_pResourceManager = new ResourceManager(this);
 
 	//MESHES
 	{
@@ -183,7 +184,10 @@ void Game::LoadContent()
 	m_pScenes["PlatformerScene"]->LoadContent();
 	m_pScenes["BulletScene"]->LoadContent();
 
+
+	//set the current scene and notify the framework of this.
 	m_pCurrentScene = m_pScenes["BulletScene"];
+	GetEventManager()->QueueEvent(new SceneChangeEvent(nullptr, m_pCurrentScene));
 
 	m_HUD = new HUD_Scene(this, m_pResourceManager);
 	m_HUD->LoadContent();
@@ -219,34 +223,82 @@ void Game::OnEvent(Event* pEvent)
 		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == VK_F2)
 			wglSwapInterval(0);
 
-		// Scene 1.
-		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 49)
-			m_pCurrentScene = m_pScenes["Floatyboi"];
-	
-		// Scene 2.
-		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 50)
-			m_pCurrentScene = m_pScenes["Physics"];
+		//Scene transfering
+		{
+			Scene* Previous = m_pCurrentScene;
+			Scene* Next = nullptr;
 
-		// Scene 3.
-		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 51)
-			m_pCurrentScene = m_pScenes["PoolTest"];
+			// Scene 1.
+			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 49)
+			{
+				Next = m_pScenes["Floatyboi"];
+			}
 
-		//Scene 4
-		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 52)
-			m_pCurrentScene = m_pScenes["Graphics"];
+			// Scene 2.
+			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 50)
+			{
+				Next = m_pScenes["Physics"];
+			}
 
-		//Scene 5
-		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 53)
-			m_pCurrentScene = m_pScenes["FileTestScene"];
+			// Scene 3.
+			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 51)
+			{
+				Next = m_pScenes["PoolTest"];
+			}
 
-		//Scene 6
-		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 54)
-			m_pCurrentScene = m_pScenes["PlatformerScene"];
+			//Scene 4
+			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 52)
+			{
+				Next = m_pScenes["Graphics"];
+			}
 
-		//Scene 7
-		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 55)
-			m_pCurrentScene = m_pScenes["BulletScene"];
+			//Scene 5
+			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 53)
+			{
+				Next = m_pScenes["FileTestScene"];
+			}
+
+			//Scene 6
+			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 54)
+			{
+				Next = m_pScenes["PlatformerScene"];
+			}
+
+			//Scene 7
+			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 55)
+			{
+				Next = m_pScenes["BulletScene"];
+			}
+
+			//if we're changing scenes potentially
+			if (Next != nullptr)
+			{
+				if (Previous != Next)
+				{
+					m_pCurrentScene = Next;
+					GetEventManager()->QueueEvent(new SceneChangeEvent(Previous, Next));
+				}
+			}
+		}
 	}
+
+	//Scene changing event handling
+	if (pEvent->GetEventType() == EventType_SceneChange)
+	{
+		SceneChangeEvent* sceneEvent = (SceneChangeEvent*)pEvent;
+
+		if (sceneEvent)
+		{
+			Scene* Previous = reinterpret_cast<Scene*>(sceneEvent->GetFrom());
+			Scene* Next = reinterpret_cast<Scene*>(sceneEvent->GetTo());
+
+			if (Previous)	Previous->HasLeftFocus();
+			if (Next)		Next->HasEnteredFocus();
+
+		}
+	}
+
+
 #endif //WIN32
 }
 

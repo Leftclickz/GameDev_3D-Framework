@@ -6,7 +6,9 @@ enum EventTypes
     EventType_Input,
 	EventType_HUDValueAdjust,
 	EventType_TranslateObject,
-	EventType_GameState
+	EventType_GameState,
+	EventType_Audio,
+	EventType_SceneChange
 };
 
 class Event

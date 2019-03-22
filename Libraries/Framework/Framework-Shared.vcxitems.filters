@@ -137,5 +137,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Events\GameStateEvent.h">
       <Filter>Source Files\Events</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Events\AudioEvent.h">
+      <Filter>Source Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Events\SceneChangeEvent.h">
+      <Filter>Source Files\Events</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

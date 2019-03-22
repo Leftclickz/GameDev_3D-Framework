@@ -17,7 +17,7 @@
 BulletScene::BulletScene(Game* pGame, ResourceManager* pResources) :
 	Scene(pGame, pResources)
 {
-	m_Camera->SetPosition(vec3(0.0f, 0.5f, -15.0f));
+	m_Camera->SetPosition(vec3(0.0f, 5.0f, -15.0f));
 	m_Camera->SetLookAtPosition(vec3(0.0f, 0.0f, 0.0f));
 
 	m_BulletManager = new BulletManager();
@@ -31,9 +31,9 @@ void BulletScene::LoadContent()
 {
 	Scene::LoadContent();
 
-	Player* player = new Player(this, "Player", Transform(vec3(0, 5, 0), vec3(0), vec3(1)), m_pResources->GetMesh("Teapot"), m_pResources->GetMaterial("Lighting2"));
+	Player* player = new Player(this, "Player", Transform(vec3(0, 5, 0), vec3(0), vec3(1)), m_pResources->GetMesh("Cube"), m_pResources->GetMaterial("Lighting2"));
 	player->SetPlayerController(m_pGame->GetController(0));
-	player->CreateBody(vec3(0.2f, 0.2f, 0.2f), 1.0f);
+	player->CreateBody(vec3(0.5f, 0.5f, 0.5f), 1.0f);
 	m_pGameObjects.push_back(player);
 
 	GameObject3D* Floor = new GameObject3D(this, "Floor", Transform(vec3(0, 0, 0), vec3(0), vec3(1)), m_pResources->GetMesh("Plane"), m_pResources->GetMaterial("Lighting"));

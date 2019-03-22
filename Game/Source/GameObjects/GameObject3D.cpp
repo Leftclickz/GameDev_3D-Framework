@@ -109,7 +109,7 @@ void GameObject3D::CreateBody(vec3 size, float mass /*= 0.0f*/)
 void GameObject3D::CreatePlane()
 {
 	btVector3 normal(0, 1, 0);
-	btCollisionShape* plane = new btStaticPlaneShape(normal, btScalar(1.0f));
+	btCollisionShape* plane = new btStaticPlaneShape(normal, btScalar(0.0f));
 
 	btTransform groundTransform;
 	groundTransform.setIdentity();

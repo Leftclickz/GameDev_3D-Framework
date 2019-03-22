@@ -47,8 +47,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Libraries\imgui\imgui.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Libraries\imgui\imgui_internal.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Libraries\LodePNG\lodepng.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Events\AudioEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Events\GameStateEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Events\HUD_ValueAdjustEvent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Events\SceneChangeEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Events\TranslateObjectEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Memory\MyMemory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Events\Event.h" />

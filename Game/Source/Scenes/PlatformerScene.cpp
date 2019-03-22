@@ -107,7 +107,9 @@ void PlatformerScene::LoadContent()
 	if (m_GameAudio != nullptr)
 	{
 		m_GameAudio->SetDoesLoop(true);
-		m_GameAudio->Play();
+		m_GameAudio->SetVolume(0.1f);
+		//m_GameAudio->Play();
+		//m_GameAudio->Pause();
 	}
 }
 
@@ -412,4 +414,14 @@ void PlatformerScene::LoadFromSceneFile(std::string filename)
 
 	cJSON_Delete(jRoot);
 	delete[] contents;
+}
+
+void PlatformerScene::HasEnteredFocus()
+{
+	m_GameAudio->Play();
+}
+
+void PlatformerScene::HasLeftFocus()
+{
+	m_GameAudio->Stop();
 }

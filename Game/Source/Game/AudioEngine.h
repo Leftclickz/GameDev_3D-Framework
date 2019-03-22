@@ -26,5 +26,5 @@ class AudioEngine
 	private:
 		IXAudio2* m_Engine;
 		IXAudio2MasteringVoice* m_MasteringVoice;
-		AudioCallback m_Callback;
+		AudioEventCallback m_Callback;
 };

@@ -61,6 +61,13 @@ public:
 	virtual void Reset();
 
 	BulletManager* GetBulletManager() { return m_BulletManager; }
+
+	//event-driven function for when this scene is no longer the current scene for the game
+	virtual void HasLeftFocus() {}
+
+	//event-driven function for when this scene is now the current scene for the game
+	virtual void HasEnteredFocus() {}
+
 };
 
 #endif //__Scene_H__
