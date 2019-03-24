@@ -1,5 +1,7 @@
 #include "GamePCH.h"
 #include "BulletManager.h"
+#include "GameObjects/GameObject3D.h"
+#include "Scenes/DebugDraw3D.h"
 
 #undef new //defined as new(__FILE__, __LINE__) by MyMemory.h
 
@@ -26,11 +28,15 @@ BulletManager::BulletManager()
 	gContactStartedCallback = ContactStartedCallback;
 	gContactEndedCallback = ContactEndedCallback;
 
+	debug = new DebugDraw3D();
+	dynamicsWorld->setDebugDrawer(debug);
+
 	///-----initialization_end-----
 }
 
 BulletManager::~BulletManager()
 {
+	delete debug;
 	delete dynamicsWorld;
 	delete solver;
 	delete overlappingPairCache;
@@ -63,12 +69,61 @@ void BulletManager::Update(float delta)
 	///-----stepsimulation_end-----
 }
 
+void BulletManager::Draw(Camera* cam, Material* mat)
+{
+	//set flags here
+	int debugmode = DebugDraw3D::DBG_NoDebug;
+
+	ImGui::Begin("Debug Drawing");
+	ImGui::Checkbox("Debug Draw Everything", &Everything);
+	ImGui::Checkbox("Debug Draw Wireframe", &WireFrame);
+	ImGui::Checkbox("Debug Draw ContactPoints", &ContactPoints);
+	ImGui::Checkbox("Debug Draw AABB", &AABB);
+	ImGui::Checkbox("Debug Draw Constraints", &Constraints);
+	ImGui::Checkbox("Debug Draw Normals", &Normals);
+	ImGui::End();
+
+	if (WireFrame)
+		debugmode |= DebugDraw3D::DBG_DrawWireframe;
+
+	if (Constraints)
+		debugmode |= DebugDraw3D::DBG_DrawConstraints;
+
+	if (ContactPoints)
+		debugmode |= DebugDraw3D::DBG_DrawContactPoints;
+
+	if (AABB)
+		debugmode |= DebugDraw3D::DBG_DrawAabb;
+
+	if (Normals)
+		debugmode |= DebugDraw3D::DBG_DrawNormals;
+
+	if (Everything)
+		debugmode |= DebugDraw3D::DBG_MAX_DEBUG_DRAW_MODE;
+
+
+	debug->setDebugMode(debugmode);
+
+	debug->SetCamera(cam);
+	debug->SetMaterial(mat);
+
+	dynamicsWorld->debugDrawWorld();
+}
+
 void BulletManager::ContactStartedCallback(btPersistentManifold* const& manifold)
 {
+	GameObject3D* pObjA =  (GameObject3D*)manifold->getBody0()->getUserPointer();
+	GameObject3D* pObjB =  (GameObject3D*)manifold->getBody1()->getUserPointer();
 
+	pObjA->ContactStarted(pObjB);
+	pObjB->ContactStarted(pObjA);
 }
 
 void BulletManager::ContactEndedCallback(btPersistentManifold* const& manifold)
 {
+	GameObject3D* pObjA = (GameObject3D*)manifold->getBody0()->getUserPointer();
+	GameObject3D* pObjB = (GameObject3D*)manifold->getBody1()->getUserPointer();
 
+	pObjA->ContactEnded(pObjB);
+	pObjB->ContactEnded(pObjA);
 }

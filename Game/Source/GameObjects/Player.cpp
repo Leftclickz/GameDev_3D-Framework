@@ -24,6 +24,10 @@ void Player::Update(float deltatime)
 {
 	GameObject3D::Update( deltatime );
 
+	ImGui::Begin("Player");
+	ImGui::SliderFloat("Speed", &m_Speed, 0.0f, 5.0f);
+	ImGui::End();
+
     vec3 dir( 0, 0, 0 );
 
     if( m_pPlayerController )
@@ -83,23 +87,24 @@ void Player::Update(float deltatime)
 		}
     }
 
-// 	if (m_Body)
-// 	{
-// 		dir.y = -.8f; //apply gravity
-// 
-// 		float mass = 1 / m_Body->getInvMass();
-// 		btVector3 currentVel = m_Body->getLinearVelocity();
-// 
-// 		btVector3 VelDiff = btVector3(dir.x - currentVel.x(), dir.y - currentVel.y(), dir.z - currentVel.z());
-// 
-// 		float timestep = 1 / 60.0f;
-// 
-// 		btVector3 force = mass * VelDiff;
-// 		force.setX(force.x() / timestep);
-// 
-// 		m_Body->applyCentralImpulse(force);
-// 	}
-// 	else
+ 	if (m_Body)
+ 	{
+ 		float mass = 1 / m_Body->getInvMass();
+ 		btVector3 currentVel = m_Body->getLinearVelocity();
+		//currentVel.setY(currentVel.y() - m_Body->getGravity().y());
+ 
+ 		btVector3 VelDiff = btVector3(dir.x - currentVel.x(), dir.y - currentVel.y(), dir.z - currentVel.z());
+
+ 		float timestep = 1 / 60.0f;
+
+ 		btVector3 force = mass * VelDiff;
+ 		force.setX((force.x() / timestep) * m_Speed);
+ 		force.setZ((force.z() / timestep) * m_Speed);
+ 
+		m_Body->activate(true);
+ 		m_Body->applyCentralForce(force);
+ 	}
+ 	else
 		m_Position += dir * m_Speed * deltatime;
 }
 

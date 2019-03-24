@@ -8,7 +8,7 @@ class PlayerController;
 
 class Player : public GameObject3D
 {
-    const float PLAYER_SPEED        = 4.5f;   // Units per second
+    const float PLAYER_SPEED        = 2.0f;   // Units per second
 
 protected:
     PlayerController* m_pPlayerController;

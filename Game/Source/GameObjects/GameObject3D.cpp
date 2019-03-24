@@ -48,9 +48,11 @@ void GameObject3D::Update(float deltatime)
 	{
 		if (m_Body)
 		{
+			ImGui::Begin("GameObject3D");
 			ImGui::Text("PositionX: %.3f", m_Position.x);
 			ImGui::Text("PositionY: %.3f", m_Position.y);
 			ImGui::Text("PositionZ: %.3f", m_Position.z);
+			ImGui::End();
 		}
 	}
 }
@@ -60,8 +62,23 @@ void GameObject3D::Draw(Camera* cam)
 	GameObject::Draw(cam);
 }
 
+void GameObject3D::Reset()
+{
+	GameObject::Reset();
+}
+
+void GameObject3D::ContactStarted(GameObject3D * pOtherObj)
+{
+	m_Body->applyTorque(btVector3(0, 50, 0));
+}
+
+void GameObject3D::ContactEnded(GameObject3D * pOtherObj)
+{
+}
+
 #undef new
-void GameObject3D::CreateBody(vec3 size, float mass /*= 0.0f*/)
+//Creates a Rigid Body for this object by default mass is 0 meaning the object is static
+void GameObject3D::CreateBoxBody(vec3 size, float mass /*= 0.0f*/)
 {
 	btCollisionShape* groundShape = new btBoxShape(btVector3(btScalar(size.x), btScalar(size.y), btScalar(size.z)));
 
@@ -90,6 +107,65 @@ void GameObject3D::CreateBody(vec3 size, float mass /*= 0.0f*/)
 	m_pScene->GetBulletManager()->dynamicsWorld->addRigidBody(m_Body);
 }
 
+void GameObject3D::CreateSphereBody(float radius, float mass /*= 0.0f*/)
+{
+	btCollisionShape* sphereShape = new btSphereShape(radius);
+
+	//m_pScene->GetBulletManager()->collisionShapes.push_back(groundShape);
+
+	btTransform groundTransform;
+	groundTransform.setIdentity();
+	groundTransform.setOrigin(btVector3(0, 0, 0));
+	groundTransform.setRotation(btQuaternion(btScalar(2.0f), btScalar(0.0f), btScalar(0.0f)));
+
+	//rigidbody is dynamic if and only if mass is non zero, otherwise static
+	bool isDynamic = (mass != 0.f);
+
+	btVector3 localInertia(0, 0, 0);
+	if (isDynamic)
+		sphereShape->calculateLocalInertia(mass, localInertia);
+
+	//using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
+	m_Rotation.x += 3.0f;
+	m_MotionState = new BulletMotionState(this);
+	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, m_MotionState, sphereShape, localInertia);
+	m_Body = new btRigidBody(rbInfo);
+	m_Body->setUserPointer(this);
+
+	//add the body to the dynamics world
+	m_pScene->GetBulletManager()->dynamicsWorld->addRigidBody(m_Body);
+}
+
+void GameObject3D::CreateTriangleBody(float mass /*= 0.0f*/)
+{
+// 	btCollisionShape* sphereShape = new btTriangleShape();
+// 
+// 		//m_pScene->GetBulletManager()->collisionShapes.push_back(groundShape);
+// 
+// 		btTransform groundTransform;
+// 	groundTransform.setIdentity();
+// 	groundTransform.setOrigin(btVector3(0, 0, 0));
+// 	groundTransform.setRotation(btQuaternion(btScalar(2.0f), btScalar(0.0f), btScalar(0.0f)));
+// 
+// 	//rigidbody is dynamic if and only if mass is non zero, otherwise static
+// 	bool isDynamic = (mass != 0.f);
+// 
+// 	btVector3 localInertia(0, 0, 0);
+// 	if (isDynamic)
+// 		sphereShape->calculateLocalInertia(mass, localInertia);
+// 
+// 	//using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
+// 	m_Rotation.x += 3.0f;
+// 	m_MotionState = new BulletMotionState(this);
+// 	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, m_MotionState, sphereShape, localInertia);
+// 	m_Body = new btRigidBody(rbInfo);
+// 	m_Body->setUserPointer(this);
+// 
+// 	//add the body to the dynamics world
+// 	m_pScene->GetBulletManager()->dynamicsWorld->addRigidBody(m_Body);
+}
+
+//creates an infinite plane for a floor at 0,0,0
 void GameObject3D::CreatePlane()
 {
 	btVector3 normal(0, 1, 0);
@@ -114,9 +190,4 @@ void GameObject3D::CreatePlane()
 
 	//add the body to the dynamics world
 	m_pScene->GetBulletManager()->dynamicsWorld->addRigidBody(m_Body);
-}
-
-void GameObject3D::Reset()
-{
-	GameObject::Reset();
 }

@@ -133,6 +133,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\ChaseCameraObject.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw3D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Camera.h">
@@ -270,6 +273,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\ChaseCameraObject.h">
       <Filter>Camera</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw3D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Water.frag">
@@ -306,6 +312,12 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Lighting.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug3D.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug3D.vert">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

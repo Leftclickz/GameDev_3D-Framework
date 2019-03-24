@@ -109,6 +109,7 @@ void Game::LoadContent()
 		m_pResourceManager->AddShader("TextureShader", new ShaderProgram("Data/Shaders/Texture.vert", "Data/Shaders/Texture.frag"));
 		m_pResourceManager->AddShader("WaterShader", new ShaderProgram("Data/Shaders/Water.vert", "Data/Shaders/Water.frag"));
 		m_pResourceManager->AddShader("DebugShader", new ShaderProgram("Data/Shaders/Debug.vert", "Data/Shaders/Debug.frag"));
+		m_pResourceManager->AddShader("Debug3DShader", new ShaderProgram("Data/Shaders/Debug3D.vert", "Data/Shaders/Debug3D.frag"));
 		m_pResourceManager->AddShader("NormalShader", new ShaderProgram("Data/Shaders/Normal.vert", "Data/Shaders/Normal.frag"));
 		m_pResourceManager->AddShader("LightingShader", new ShaderProgram("Data/Shaders/Lighting.vert", "Data/Shaders/Lighting.frag"));
 	}
@@ -130,6 +131,7 @@ void Game::LoadContent()
 	{
 		m_pResourceManager->AddMaterial("Megaman", new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetTexture("Megaman")));
 		m_pResourceManager->AddMaterial("Debug",   new Material(m_pResourceManager->GetShader("DebugShader"), m_pResourceManager->GetTexture("Dice")));
+		m_pResourceManager->AddMaterial("Debug3D",   new Material(m_pResourceManager->GetShader("Debug3DShader"), m_pResourceManager->GetTexture("Dice")));
 		m_pResourceManager->AddMaterial("Text",  new Material(m_pResourceManager->GetShader("TextureShader"), m_pResourceManager->GetSpriteSheet("DefaultText")));
 	}
 

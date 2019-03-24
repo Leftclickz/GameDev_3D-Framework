@@ -44,15 +44,23 @@ void BulletScene::LoadContent()
 
 	Player* player = new Player(this, "Player", Transform(vec3(0, 5, 0), vec3(0), vec3(1)), m_pResources->GetMesh("Sphere"), m_pResources->GetMaterial("Lighting2"));
 	player->SetPlayerController(m_pGame->GetController(0));
-	player->CreateBody(vec3(0.5f, 0.5f, 0.5f), 1.0f);
+	//player->CreateBoxBody(vec3(0.5f, 0.5f, 0.5f), 1.0f);
+	player->CreateSphereBody(1.0f, 1.0f);
 	m_pGameObjects.push_back(player);
 
 	((ChaseCameraObject*)m_Camera)->SetObjectToFollow(player, 10.0f);
 
 	GameObject3D* Floor = new GameObject3D(this, "Floor", Transform(vec3(0, 0, 0), vec3(0), vec3(1)), m_pResources->GetMesh("Plane"), m_pResources->GetMaterial("Lighting"));
 	Floor->CreatePlane();
-	//Floor->CreateBody(vec3(100.0f, 0.001f, 100.0f), 0);
+	//Floor->GetBody()->setFriction(100);
 	m_pGameObjects.push_back(Floor);
+
+	for (int x = 0; x < 10; x++)
+	{
+		GameObject3D* box = new GameObject3D(this, "box" + std::to_string(x), Transform(vec3(x * 2, 4, 4), vec3(0), vec3(1)), m_pResources->GetMesh("Cube"), m_pResources->GetMaterial("Lighting2"));
+		box->CreateBoxBody(vec3(0.5f, 0.5f, 0.5f), 5);
+		m_pGameObjects.push_back(box);
+	}
 }
 
 void BulletScene::OnEvent(Event* pEvent)
@@ -78,4 +86,5 @@ void BulletScene::Update(float deltatime)
 void BulletScene::Draw()
 {
 	Scene::Draw();
+	m_BulletManager->Draw(m_Camera ,m_pResources->GetMaterial("Debug3D"));
 }

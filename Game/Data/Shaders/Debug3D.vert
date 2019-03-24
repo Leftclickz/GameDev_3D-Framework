@@ -1,20 +1,14 @@
 #version 120
 
 attribute vec3 a_Position;
-attribute vec3 a_Normal;
 attribute vec2 a_UV;
 attribute vec4 a_Color;
 
 uniform mat4 u_WorldMatrix;
 uniform mat4 u_ViewMatrix;
 uniform mat4 u_ProjectionMatrix;
-uniform mat4 u_NormalMatrix;
 
 varying vec2 v_UV;
-varying vec3 v_WorldPosition;
-
-varying vec3 v_LightPos;
-varying vec3 v_Surfacenormal;
 
 void main()
 {
@@ -34,9 +28,6 @@ void main()
     gl_Position = clippos;
 
 	v_UV = a_UV;
-	v_WorldPosition = worldpos.xyz;
-	vec4 normals = vec4(a_Normal, 1);
-	v_Surfacenormal = (u_NormalMatrix * normals).xyz;
 
-	v_LightPos = v_WorldPosition;
+	gl_FrontColor = gl_Color;
 }

@@ -19,7 +19,7 @@ void main()
 	vec4 matcolor = texture2D( u_Texture, v_UV );
 
 	vec4 lightcolor = u_LightColor;
-	lightcolor = vec4(1,1,1,1);
+	lightcolor = vec4(1,1,0,1);
 
 	vec3 lightpos = vec3(0,8,0);
 
@@ -37,14 +37,17 @@ void main()
 	diffuseperc = max(0, diffuseperc);
 
 	lightcolor *= diffuseperc;
-	matcolor *= diffuseperc;
+	//matcolor *= diffuseperc;
 
 	matcolor *= lightcolor;
 
-	float range = 0.1;
+	float range = 2;
 
-	float attenuation = max(0, pow(1 - (dist / range), 0.25));
+	//something is wrong with this line
+	float attenuation = max(0.5, pow(1 - (range / dist), 0.25));
+	//float attenuation = max(0.5, pow(1 - (dist / range), 0.25));
 
 	matcolor /= attenuation;
+	//matcolor = normalize(matcolor);
 	gl_FragColor = vec4(matcolor.xyz, texture2D( u_Texture, v_UV ).a);
 }
