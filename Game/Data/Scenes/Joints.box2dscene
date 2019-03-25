@@ -224,7 +224,7 @@
 					"PrimitiveType":	"Box",
 					"Static":	0,
 					"FixedRotation":	0,
-					"Density":	0.5,
+					"Density":	3,
 					"IsSensor":	0,
 					"Friction":	0.86000001430511475,
 					"Restitution":	0

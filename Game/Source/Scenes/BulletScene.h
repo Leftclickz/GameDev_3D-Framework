@@ -15,4 +15,6 @@ public:
 	virtual void OnEvent(Event* pEvent) override;
 	virtual void Update(float deltatime) override;
 	virtual void Draw() override;
+
+	virtual void LoadFromSceneFile(std::string filename) override;
 };

@@ -21,7 +21,7 @@
 					"Type":	"2D Collision Object",
 					"PrefabComponentID":	0,
 					"Offset":	[0, 0],
-					"PrimitiveType":	"Circle",
+					"PrimitiveType":	"Box",
 					"Static":	0,
 					"FixedRotation":	0,
 					"Density":	1,

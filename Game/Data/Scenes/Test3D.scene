@@ -1,0 +1,101 @@
+{
+	"Files":	[{
+			"Path":	"Data/Textures/Megaman.png"
+		}, {
+			"Path":	"Data/Shaders/Shader_Texture.glsl"
+		}],
+	"GameObjects":	[{
+			"ID":	1,
+			"Name":	"Main Camera",
+			"Properties":	{
+				"Flags":	["Camera-Main"]
+			}
+		}, {
+			"ID":	2,
+			"Name":	"Hud Camera",
+			"Properties":	{
+				"Flags":	["Camera-HUD"]
+			}
+		}, {
+			"ID":	3,
+			"Name":	"Player",
+			"Properties":	{
+				"Flags":	["Player"]
+			}
+		}],
+	"Transforms":	[{
+			"GOID":	1,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[0, 0, -10],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1]
+		}, {
+			"GOID":	2,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[0, 0, 0],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1]
+		}, {
+			"GOID":	3,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[0, 0, 0],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1]
+		}],
+	"Components":	[{
+			"Type":	"3D Collision Object",
+			"GOID":	3,
+			"ID":	3,
+			"PrefabComponentID":	0,
+			"Mass":	1,
+			"Primitive":	"Cube",
+			"Scale":	[1, 1, 1]
+		}, {
+			"Type":	"Camera",
+			"GOID":	1,
+			"ID":	1,
+			"PrefabComponentID":	0,
+			"Layers":	["Main view"],
+			"Deferred":	0,
+			"Ortho":	0,
+			"DesiredWidth":	640,
+			"DesiredHeight":	960,
+			"OrthoNearZ":	0,
+			"OrthoFarZ":	1000,
+			"FoV":	45,
+			"PerspectiveNearZ":	1,
+			"PerspectiveFarZ":	10000,
+			"ColorBit":	1,
+			"DepthBit":	1
+		}, {
+			"Type":	"Camera",
+			"GOID":	2,
+			"ID":	2,
+			"PrefabComponentID":	0,
+			"Layers":	["HUD"],
+			"Deferred":	0,
+			"Ortho":	1,
+			"DesiredWidth":	640,
+			"DesiredHeight":	960,
+			"OrthoNearZ":	0,
+			"OrthoFarZ":	1000,
+			"FoV":	45,
+			"PerspectiveNearZ":	1,
+			"PerspectiveFarZ":	10000,
+			"ColorBit":	0,
+			"DepthBit":	0
+		}, {
+			"Type":	"Sprite",
+			"GOID":	3,
+			"ID":	5,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"Tint":	[255, 255, 255, 255],
+			"Size":	[1, 1],
+			"Material":	"Data/Materials/Box.mymaterial"
+		}]
+}

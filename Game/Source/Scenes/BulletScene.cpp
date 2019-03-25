@@ -42,6 +42,8 @@ void BulletScene::LoadContent()
 	m_pResources->AddMaterial("Lighting", new Material(m_pResources->GetShader("LightingShader"), m_pResources->GetTexture("Water")));
 	m_pResources->AddMaterial("Lighting2", new Material(m_pResources->GetShader("LightingShader"), m_pResources->GetTexture("White")));
 
+	//LoadFromSceneFile("Data/Scenes/Test3D.box2dscene");
+
 	Player* player = new Player(this, "Player", Transform(vec3(0, 5, 0), vec3(0), vec3(1)), m_pResources->GetMesh("Sphere"), m_pResources->GetMaterial("Lighting2"));
 	player->SetPlayerController(m_pGame->GetController(0));
 	//player->CreateBoxBody(vec3(0.5f, 0.5f, 0.5f), 1.0f);
@@ -87,4 +89,51 @@ void BulletScene::Draw()
 {
 	Scene::Draw();
 	m_BulletManager->Draw(m_Camera ,m_pResources->GetMaterial("Debug3D"));
+}
+
+void BulletScene::LoadFromSceneFile(std::string filename)
+{
+	char* contents = LoadCompleteFile(filename.c_str(), nullptr);
+
+	cJSON* jRoot = cJSON_Parse(contents);
+	cJSON* jGameObjectArray = cJSON_GetObjectItem(jRoot, "GameObjects");
+
+	int numobjects = cJSON_GetArraySize(jGameObjectArray);
+
+	for (int i = 0; i < numobjects; i++)
+	{
+		cJSON* jGameObject = cJSON_GetArrayItem(jGameObjectArray, i);
+
+
+		cJSON* jFlagArray = cJSON_GetObjectItem(jGameObject, "Flags");
+
+		//only get the first flag.
+		std::string flag;
+		if (cJSON_GetArrayItem(jFlagArray, 0) != nullptr)
+		{
+			flag = cJSON_GetArrayItem(jFlagArray, 0)->valuestring;
+		}
+		else
+		{
+			flag = "GameObject";
+		}
+
+		//player
+		if (flag == "Player")
+		{
+			Player* player = new Player(this, "Player", Transform(), nullptr, nullptr);
+			player->SetPlayerController(m_pGame->GetController(0));
+			player->LoadFromcJSON(jGameObject, m_pResources);
+			AddGameObject(player);
+		}
+		else if (flag == "GameObject")
+		{
+			GameObject3D* gameobject = new GameObject3D(this, "Object", Transform(), m_pResources->GetMesh("Box"), nullptr);
+			gameobject->LoadFromcJSON(jGameObject, m_pResources);
+			AddGameObject(gameobject);
+		}
+	}
+
+	cJSON_Delete(jRoot);
+	delete[] contents;
 }

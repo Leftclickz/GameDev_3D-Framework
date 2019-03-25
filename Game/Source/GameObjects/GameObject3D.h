@@ -27,7 +27,6 @@ public:
 
 	virtual void CreateBoxBody(vec3 size, float mass = 0.0f);
 	virtual void CreateSphereBody(float radius, float mass = 0.0f);
-	virtual void CreateTriangleBody(float mass = 0.0f);
 
 	virtual void CreatePlane();
 
@@ -38,8 +37,15 @@ public:
 	virtual void ContactStarted(GameObject3D* pOtherObj);
 	virtual void ContactEnded(GameObject3D* pOtherObj);
 
-protected:
-	bool m_WasLoadedFromJSON = false;
+	virtual void LoadFromcJSON(cJSON* obj, ResourceManager* manager) override;
 
+protected:
 	btRigidBody* m_Body;
+
+private:
+	vec3 cJSONpos;
+	vec3 cJSONrot;
+	vec3 cJSONscale;
+
+	bool m_WasLoadedFromJSON = false;
 };

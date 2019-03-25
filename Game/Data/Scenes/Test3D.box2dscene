@@ -1,0 +1,29 @@
+{
+	"GameObjects":	[{
+			"Name":	"Main Camera",
+			"Pos":	[0, 0, -10],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["Camera-Main"]
+		}, {
+			"Name":	"Hud Camera",
+			"Pos":	[0, 0, 0],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["Camera-HUD"]
+		}, {
+			"Name":	"Player",
+			"Pos":	[0, 0, 0],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["Player"],
+			"Components":	[{
+					"Type":	"Sprite",
+					"PrefabComponentID":	0,
+					"Material":	"new",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}]
+}
