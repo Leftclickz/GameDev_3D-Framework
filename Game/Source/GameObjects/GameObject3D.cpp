@@ -69,7 +69,6 @@ void GameObject3D::Reset()
 
 void GameObject3D::ContactStarted(GameObject3D * pOtherObj)
 {
-	m_Body->applyTorque(btVector3(0, 50, 0));
 }
 
 void GameObject3D::ContactEnded(GameObject3D * pOtherObj)

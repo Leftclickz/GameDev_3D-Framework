@@ -27,6 +27,11 @@ public:
     void SetPlayerController(PlayerController* controller) { m_pPlayerController = controller; }
     void SetSpeed(float speed) { m_Speed = speed; }
     void SetTurningSpeed(float speed) { m_TurningSpeed = speed; }
+
+	void Jump();
+
+	virtual void ContactStarted(GameObject3D* pOtherObj) override;
+	virtual void ContactEnded(GameObject3D* pOtherObj) override;
 };
 
 #endif //__Player_H__

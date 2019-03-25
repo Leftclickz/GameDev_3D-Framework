@@ -34,11 +34,7 @@ void Player::Update(float deltatime)
     {
 		if (m_pPlayerController->IsPressed_Jump())
 		{
-			if (m_Body)
-			{
-				m_Body->applyCentralImpulse(btVector3(0.0f, 10.0f, 0.0f));
-				m_pPlayerController->RemoveJumpInput();
-			}
+			Jump();
 		}
 
         if( m_pPlayerController->IsHeld_Up() )
@@ -115,5 +111,35 @@ void Player::Draw(Camera* cam)
 // 	ImGui::Text("RotationX: %.3f", m_Rotation.x);
 // 	ImGui::Text("RotationY: %.3f", m_Rotation.y);
 // 	ImGui::Text("RotationZ: %.3f", m_Rotation.z);
+}
 
+void Player::Jump()
+{
+	if (m_Body)
+	{
+		m_Body->applyCentralImpulse(btVector3(0.0f, 10.0f, 0.0f));
+		m_pPlayerController->RemoveJumpInput();
+	}
+}
+
+void Player::ContactStarted(GameObject3D* pOtherObj)
+{
+	GameObject3D::ContactStarted(pOtherObj);
+
+	std::string stringtype(pOtherObj->GetName());
+	//Push boxes
+	if (stringtype.find("Box") != std::string::npos)
+	{
+		vec3 dir = pOtherObj->GetPosition() - m_Position;
+		dir.Normalize();
+
+		dir *= 50.0f;
+
+		pOtherObj->GetBody()->applyCentralImpulse(btVector3(dir.x, dir.y, dir.z));
+	}
+}
+
+void Player::ContactEnded(GameObject3D* pOtherObj)
+{
+	GameObject3D::ContactEnded(pOtherObj);
 }
