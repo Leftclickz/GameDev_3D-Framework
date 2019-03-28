@@ -142,6 +142,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\LightObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SceneManager.cpp">
+      <Filter>Resource Management</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Camera.h">
@@ -285,8 +288,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\SharedAudioChannel.h">
       <Filter>Resource Management</Filter>
     </ClInclude>
-    <ClInclude Include="D:\ALGONQUIN\Game And Graphics Assignments\Group Project 2\Week 11\19W_GAM1573_Game2\Game\Source\GameObjects\LightObject.h">
-      <Filter>GameObjects</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\LightObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SceneManager.h">
+      <Filter>Resource Management</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,7 @@ public:
 	~Camera();
 
 	void CreateViewMatrix(vec3 up = vec3(0,1,0));
-	void CreateProjectionMatrix(float FOV = 45.0f, float nearZ = 0.01f, float aspect = 1.0f );
+	void CreateProjectionMatrix(float FOV = 45.0f, float nearZ = 0.01f);
 
 	//getters&setters
 	mat4 GetProjectionMatrix() { return m_ProjectionMatrix; }

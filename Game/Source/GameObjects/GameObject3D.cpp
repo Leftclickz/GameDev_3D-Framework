@@ -48,19 +48,16 @@ void GameObject3D::Update(float deltatime)
 
 	if (isEnabled)
 	{
-		if (m_Body)
+		ImGui::Begin("GameObjects");
+		ImGui::PushID(this);
+		if (ImGui::CollapsingHeader(m_Name.c_str()))
 		{
-			ImGui::Begin("GameObjects");
-			ImGui::PushID(this);
-			if (ImGui::CollapsingHeader(m_Name.c_str()))
-			{
-				ImGui::Text("PositionX: %.3f", m_Position.x);
-				ImGui::Text("PositionY: %.3f", m_Position.y);
-				ImGui::Text("PositionZ: %.3f", m_Position.z);
-			}
-			ImGui::PopID();
-			ImGui::End();
+			ImGui::Text("PositionX: %.3f", m_Position.x);
+			ImGui::Text("PositionY: %.3f", m_Position.y);
+			ImGui::Text("PositionZ: %.3f", m_Position.z);
 		}
+		ImGui::PopID();
+		ImGui::End();
 	}
 }
 
@@ -79,7 +76,7 @@ void GameObject3D::Draw(Camera* cam)
 			mat4 WorldRotMat;
 			WorldRotMat.CreateRotation(m_Rotation);
 
-			BulletScene* scene = reinterpret_cast<BulletScene*>(m_pScene);
+			BulletScene* scene = dynamic_cast<BulletScene*>(m_pScene);
 			if (scene)
 				m_pMesh->SetupUniforms(matrix, WorldRotMat, cam, m_pMaterial, scene->GetLightVector());
 			else 

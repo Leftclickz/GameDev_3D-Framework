@@ -1,5 +1,7 @@
 #include "GamePCH.h"
 #include "Camera.h"
+#include "../Scenes/Scene.h"
+#include "Game/Game.h"
 
 Camera::Camera(Scene* pScene, std::string name, Transform transform, vec3 lookat, float range)
 	: GameObject(pScene, name, transform, nullptr, nullptr)
@@ -20,8 +22,9 @@ void Camera::CreateViewMatrix(vec3 up /*= vec3(0,1,0)*/)
 	m_ViewMatrix.CreateLookAtView(m_Position, up, m_LookAtPosition);
 }
 
-void Camera::CreateProjectionMatrix(float FOV /*= 45.0f*/, float nearZ /*= 0.01f*/, float aspect /*= 1.0f */)
+void Camera::CreateProjectionMatrix(float FOV /*= 45.0f*/, float nearZ /*= 0.01f*/)
 {
+	float aspect = (float)m_pScene->GetGame()->GetFramework()->GetWindowWidth() / (float)m_pScene->GetGame()->GetFramework()->GetWindowHeight();
 	//if the camera is set to be orthographic use that instead and set it to the screen's size (HARDCODED)
 	if (!m_isOrtho)
 	{
@@ -29,7 +32,7 @@ void Camera::CreateProjectionMatrix(float FOV /*= 45.0f*/, float nearZ /*= 0.01f
 	}
 	else
 	{
-		m_ProjectionMatrix.CreateOrtho(0.0f, 600.0f, 0.0f, 600.0f, -0.01f, m_Range);
+		m_ProjectionMatrix.CreateOrtho(0.0f, 10.0f * aspect, 0.0f, 10.0f * aspect, -0.01f, m_Range);
 	}
 }
 

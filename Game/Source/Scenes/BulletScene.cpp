@@ -33,8 +33,6 @@ BulletScene::BulletScene(Game* pGame, ResourceManager* pResources) :
 
 BulletScene::~BulletScene()
 {
-	for (auto light : m_pLights)
-		delete light;
 }
 
 void BulletScene::LoadContent()

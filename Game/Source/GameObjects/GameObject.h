@@ -19,6 +19,8 @@ enum EDirection
 class GameObject : public Transformable
 {
 protected:
+	std::string m_Name;
+
     Game* m_pGame;
 
 	Scene* m_pScene;
@@ -26,7 +28,6 @@ protected:
     Mesh* m_pMesh;
 	Material* m_pMaterial;
 
-	std::string m_Name;
 
 	bool isEnabled = true;
 

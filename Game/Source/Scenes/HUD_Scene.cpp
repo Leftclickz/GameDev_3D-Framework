@@ -5,6 +5,7 @@
 #include "Game/ResourceManager.h"
 #include "GameObjects/Camera.h"
 #include "GameObjects/PlatformerPlayer.h"
+#include "Game/Game.h"
 
 
 HUD_Scene::HUD_Scene(Game* pGame, ResourceManager* pResources)
@@ -21,33 +22,35 @@ void HUD_Scene::LoadContent()
 {
 	Scene::LoadContent();
 
+	float aspect = (float)m_pGame->GetFramework()->GetWindowWidth() / (float)m_pGame->GetFramework()->GetWindowHeight();
+
 	//score HUD object
 	HUD_TextObject* ScoreDisplay = new HUD_TextObject(this, "ScoreDisplay", Transform(), new TextMesh(), m_pResources->GetMaterial("Text"));
 	ScoreDisplay->SetString("SCORE : 0");
-	ScoreDisplay->SetPosition(vec3(5.0f, 540.0f, 0.0f));
-	ScoreDisplay->SetScale(vec3(5.0f, 5.0f, 5.0f));
+	ScoreDisplay->SetPosition(vec3(0.4f * aspect, 9.5f * aspect, 0.0f));
+	ScoreDisplay->SetScale(vec3(0.1f, 0.1f, 0.1f));
 	AddGameObject(ScoreDisplay);
 
 	//Lives HUD object
 	HUD_TextObject* LifeDisplay = new HUD_TextObject(this, "LifeDisplay", Transform(), new TextMesh(), m_pResources->GetMaterial("Text"));
 	LifeDisplay->SetString("LIVES : 2");
-	LifeDisplay->SetPosition(vec3(5.0f, 570.0f, 0.0f));
-	LifeDisplay->SetScale(vec3(5.0f, 5.0f, 5.0f));
+	LifeDisplay->SetPosition(vec3(0.4f * aspect, 8.5f * aspect, 0.0f));
+	LifeDisplay->SetScale(vec3(0.1f, 0.1f, 0.1f));
 	AddGameObject(LifeDisplay);
 
 	//VICTORY HUD object
 	HUD_TextObject* VictoryDisplay = new HUD_TextObject(this, "VictoryDisplay", Transform(), new TextMesh(), m_pResources->GetMaterial("Text"));
 	VictoryDisplay->SetString("VICTORY!");
-	VictoryDisplay->SetPosition(vec3(5.0f, 300.0f, 0.0f));
-	VictoryDisplay->SetScale(vec3(24.0f));
+	VictoryDisplay->SetPosition(vec3(5 * aspect, 5 * aspect, 0.0f));
+	VictoryDisplay->SetScale(vec3(0.3f));
 	AddGameObject(VictoryDisplay);
 	VictoryDisplay->SetIsVisible(false);
 
 	//DEFEAT HUD object
 	HUD_TextObject* DefeatDisplay = new HUD_TextObject(this, "DefeatDisplay", Transform(), new TextMesh(), m_pResources->GetMaterial("Text"));
 	DefeatDisplay->SetString("LUL YOU DIED!");
-	DefeatDisplay->SetPosition(vec3(5.0f, 300.0f, 0.0f));
-	DefeatDisplay->SetScale(vec3(17.0f));
+	DefeatDisplay->SetPosition(vec3(5 * aspect, 5 * aspect, 0.0f));
+	DefeatDisplay->SetScale(vec3(0.2f));
 	AddGameObject(DefeatDisplay);
 	DefeatDisplay->SetIsVisible(false);
 
