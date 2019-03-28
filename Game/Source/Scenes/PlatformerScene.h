@@ -4,6 +4,7 @@
 
 class DebugDraw;
 class Audio;
+class SharedAudioChannel;
 
 class PlatformerScene : public Scene
 {
@@ -47,4 +48,5 @@ protected:
 	vec3 m_LERPOffset = vec3(0);
 
 	Audio* m_GameAudio;
+	SharedAudioChannel* m_BackgroundChannel;
 };

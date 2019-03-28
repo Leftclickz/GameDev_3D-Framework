@@ -112,8 +112,17 @@ public:
 
 	//support function for dispatching audio events to the event manager
 	void DispatchEvent(AudioEvent* pEvent);
+	
+	//creates a unique voice channel for the audio class
+	void CreateVoice();
 
-private:
+	//sets the voice for this audio
+	void SetVoice(IXAudio2SourceVoice* Voice);
+
+	//Get the wave format of this audio file
+	WAVEFORMATEX* GetWaveFormat() { return &m_WaveFormat; }
+
+protected:
 	//Member variables
 	IXAudio2SourceVoice* m_Source;
 	WAVEFORMATEX m_WaveFormat;
@@ -122,7 +131,9 @@ private:
 	unsigned long long m_SampleOffset;
 	const char* m_AudioName;
 	EventManager* m_EventManager;
+	bool m_CreatedVoice;
 };
+
 
 //wrapper xaudiocallback class for supporting audio callback events.
 struct AudioEventCallback : public IXAudio2VoiceCallback

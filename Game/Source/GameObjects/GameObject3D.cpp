@@ -12,6 +12,7 @@
 #include "Physics/PhysicsWorld.h"
 #include "Game/BulletManager.h"
 #include "Physics/BulletMotionState.h"
+#include "Scenes/BulletScene.h"
 
 //for use with textures
 GameObject3D::GameObject3D(Scene* pScene, std::string name, Transform transform, Mesh* pMesh, Material* pMaterial)
@@ -59,7 +60,28 @@ void GameObject3D::Update(float deltatime)
 
 void GameObject3D::Draw(Camera* cam)
 {
-	GameObject::Draw(cam);
+	if (isEnabled)
+	{
+		if (m_pMesh != nullptr)
+		{
+			m_pMesh->SetupAttributes(m_pMaterial->GetShader());
+
+			//worldmatrix
+			mat4 matrix;
+			matrix.CreateSRT(m_Scale, m_Rotation, m_Position);
+
+			mat4 WorldRotMat;
+			WorldRotMat.CreateRotation(m_Rotation);
+
+			BulletScene* scene = reinterpret_cast<BulletScene*>(m_pScene);
+			if (scene)
+				m_pMesh->SetupUniforms(matrix, WorldRotMat, cam, m_pMaterial, scene->GetLightVector());
+			else 
+				m_pMesh->SetupUniforms(matrix, WorldRotMat, cam, m_pMaterial);
+
+			m_pMesh->Draw(m_pMaterial->GetShader());
+		}
+	}
 }
 
 void GameObject3D::Reset()

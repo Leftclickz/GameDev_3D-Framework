@@ -14,6 +14,7 @@
 #include "GameObjects/Camera.h"
 #include "GameObjects/ChaseCameraObject.h"
 #include "Game/BulletManager.h"
+#include "GameObjects/LightObject.h"
 
 BulletScene::BulletScene(Game* pGame, ResourceManager* pResources) :
 	Scene(pGame, pResources)
@@ -32,6 +33,8 @@ BulletScene::BulletScene(Game* pGame, ResourceManager* pResources) :
 
 BulletScene::~BulletScene()
 {
+	for (auto light : m_pLights)
+		delete light;
 }
 
 void BulletScene::LoadContent()
@@ -63,6 +66,18 @@ void BulletScene::LoadContent()
 		box->CreateBoxBody(vec3(0.5f, 0.5f, 0.5f), 5);
 		m_pGameObjects.push_back(box);
 	}
+
+	LightObject* light = new LightObject(this, "TestLight", Transform(vec3(-2, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);
+	light->AssignLightColor(vec4(1.0f, 0.0f, 0.0f, 1.0f));
+	m_pLights.push_back(light);
+
+	light = new LightObject(this, "TestLight", Transform(vec3(2, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);
+	light->AssignLightColor(vec4(0.0f, 1.0f, 0.0f, 1.0f));
+	m_pLights.push_back(light);
+
+	light = new LightObject(this, "TestLight", Transform(vec3(0, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);
+	light->AssignLightColor(vec4(0.0f, 0.0f, 1.0f, 1.0f));
+	m_pLights.push_back(light);
 }
 
 void BulletScene::OnEvent(Event* pEvent)

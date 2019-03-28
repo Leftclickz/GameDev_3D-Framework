@@ -5,6 +5,7 @@
 #include "Material.h"
 #include "../GameObjects/Camera.h"
 #include "SpriteSheet.h"
+#include "GameObjects/LightObject.h"
 
 Mesh::Mesh()
 {
@@ -151,7 +152,7 @@ void Mesh::SetupAttributes(ShaderProgram* pShader)
     }
 }
 
-void Mesh::SetupUniforms(mat4 matrix, mat4 normalmatrix, Camera* camera, Material* material)
+void Mesh::SetupUniforms(mat4 matrix, mat4 normalmatrix, Camera* camera, Material* material, std::vector<LightObject*>* Lights)
 {
     assert(material->GetShader() != nullptr );
     assert(material->GetShader()->GetProgram() != 0 );
@@ -210,6 +211,24 @@ void Mesh::SetupUniforms(mat4 matrix, mat4 normalmatrix, Camera* camera, Materia
 		glActiveTexture(GL_TEXTURE0 + textureUnitIndex);
 		glBindTexture(GL_TEXTURE_2D, pSheet->GetTextureID());
 	}
+
+	if (Lights != nullptr)
+	{
+		for (int i = 0; i < Lights->size(); i++)
+		{
+			StandardLight lightstruct = Lights->at(i)->GetLight();
+
+			std::string handle = "u_Lights[" + std::to_string(i);
+			std::string pos_handle = handle + "].pos";
+			std::string color_handle = handle + "].color";
+			std::string attenuation_handle = handle + "].attenuationFactor";
+
+			SetUniform3f(shader, pos_handle.c_str(), lightstruct.position);
+			SetUniform4f(shader, color_handle.c_str(), lightstruct.color);
+			SetUniform1f(shader, attenuation_handle.c_str(), lightstruct.attenuationFactor);
+		}
+	}
+
     CheckForGLErrors();
 }
 

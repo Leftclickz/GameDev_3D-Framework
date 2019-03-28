@@ -6,6 +6,9 @@
 		m_MasteringVoice(nullptr),
 		m_Callback()
 	{
+
+		CoInitializeEx(NULL, COINIT_MULTITHREADED);
+
 		//Create the engine
 		HRESULT result = XAudio2Create(&m_Engine);
 		assert(SUCCEEDED(result));
@@ -13,12 +16,14 @@
 		//Create the mastering voice
 		result = m_Engine->CreateMasteringVoice(&m_MasteringVoice);
 		assert(SUCCEEDED(result));
+	
 	}
 
 	AudioEngine::~AudioEngine()
 	{
 		m_MasteringVoice->DestroyVoice();
 		m_Engine->Release();
+		CoUninitialize();
 	}
 
 	void AudioEngine::CreateAudioVoice(IXAudio2SourceVoice** aSource, WAVEFORMATEX* aWaveFormat)

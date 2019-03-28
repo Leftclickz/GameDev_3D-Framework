@@ -22,19 +22,21 @@ Audio::Audio(const char* audioname, const char* filename) :
 	//Set the buffer's context pointer
 	m_Buffer.pContext = this;
 
-	//Create the audio voice
-	AudioManager::GetEngine()->CreateAudioVoice(&m_Source, &m_WaveFormat);
+	m_CreatedVoice = false;
 }
 
 Audio::~Audio()
 {
-	AudioManager::GetEngine()->DestroyAudioVoice(m_Source);
+	if (m_Source != nullptr && m_CreatedVoice == true)
+		AudioManager::GetEngine()->DestroyAudioVoice(m_Source);
 }
 
 void Audio::Play()
 {
+	Stop();
+
 	//We can only have one
-	if (IsPlaying() == false)
+	if (IsPlaying() == false && m_Source != nullptr)
 	{
 		//Submit the source buffer and start playing the sound
 		m_Source->SubmitSourceBuffer(&m_Buffer);
@@ -57,11 +59,14 @@ void Audio::Play()
 void Audio::Stop()
 {
 	//Stop playing the sound and flush the source buffer
-	m_Source->Stop();
-	m_Source->FlushSourceBuffers();
+	if (m_Source != nullptr)
+	{
+		m_Source->Stop();
+		m_Source->FlushSourceBuffers();
 
-	//Set the is playing flag to false
-	m_IsPlaying = false;
+		//Set the is playing flag to false
+		m_IsPlaying = false;
+	}
 }
 
 bool Audio::IsPlaying()
@@ -91,30 +96,44 @@ unsigned int Audio::GetSampleRate()
 
 void Audio::SetFrequencyRatio(float aFrequencyRatio)
 {
-	//Bounds check the frequency, it can't be negative
-	aFrequencyRatio = fmaxf(aFrequencyRatio, 0.0f);
+	if (m_Source != nullptr)
+	{
+		//Bounds check the frequency, it can't be negative
+		aFrequencyRatio = fmaxf(aFrequencyRatio, 0.0f);
 
-	//Set the frequency ratio
-	m_Source->SetFrequencyRatio(aFrequencyRatio);
+		//Set the frequency ratio
+		m_Source->SetFrequencyRatio(aFrequencyRatio);
+	}
 }
 
 float Audio::GetFrequencyRatio()
 {
-	float frequencyRatio = 0;
-	m_Source->GetFrequencyRatio(&frequencyRatio);
-	return frequencyRatio;
+	if (m_Source != nullptr)
+	{
+		float frequencyRatio = 0;
+		m_Source->GetFrequencyRatio(&frequencyRatio);
+		return frequencyRatio;
+	}
+
+	return 0.0f;
 }
 
 void Audio::SetVolume(float aVolume)
 {
-	m_Source->SetVolume(aVolume);
+	if (m_Source != nullptr)
+		m_Source->SetVolume(aVolume);
 }
 
 float Audio::GetVolume()
 {
-	float volume = 0.0f;
-	m_Source->GetVolume(&volume);
-	return volume;
+	if (m_Source != nullptr)
+	{
+		float volume = 0.0f;
+		m_Source->GetVolume(&volume);
+		return volume;
+	}
+
+	return 0.0f;
 }
 
 void Audio::SetSample(unsigned long long aSample)
@@ -147,9 +166,14 @@ void Audio::SetPosition(double aSeconds)
 
 unsigned long long Audio::GetElapsedSamples()
 {
-	XAUDIO2_VOICE_STATE state;
-	m_Source->GetState(&state);
-	return state.SamplesPlayed - m_SampleOffset;
+	if (m_Source != nullptr)
+	{
+		XAUDIO2_VOICE_STATE state;
+		m_Source->GetState(&state);
+		return state.SamplesPlayed - m_SampleOffset;
+	}
+
+	return 0;
 }
 
 unsigned int Audio::GetElapsedMS()
@@ -244,3 +268,26 @@ void Audio::DispatchEvent(AudioEvent* pEvent)
 		m_EventManager->QueueEvent(pEvent);
 	}
 }
+
+void Audio::CreateVoice()
+{
+	if (m_Source == nullptr)
+	{
+		//Create the audio voice
+		AudioManager::GetEngine()->CreateAudioVoice(&m_Source, &m_WaveFormat);
+
+		m_CreatedVoice = true;
+	}
+}
+
+void Audio::SetVoice(IXAudio2SourceVoice* Voice)
+{
+	if (Voice == nullptr)
+		return;
+
+	if (m_Source == nullptr)
+	{
+		m_Source = Voice;
+	}
+}
+

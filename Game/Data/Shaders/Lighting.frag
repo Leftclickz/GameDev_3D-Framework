@@ -1,25 +1,26 @@
 #version 120
 
 uniform sampler2D u_Texture;
-
 varying vec2 v_UV;
+
 varying vec3 v_WorldPosition;
-
 varying vec3 v_Surfacenormal;
-
-varying vec3 v_LightPos;
-uniform vec4 u_MaterialColor;
-uniform vec4 u_LightColor;
-uniform float u_LightRange;
-
 uniform vec3 u_Campos;
+
 
 void main()
 {
 	vec4 matcolor = texture2D( u_Texture, v_UV );
 
-	vec4 lightcolor = u_LightColor;
-	lightcolor = vec4(1,1,0,1);
+	gl_FragColor = ApplyLights(v_WorldPosition, v_Surfacenormal, u_Campos, matcolor, u_Lights, 0.7, 0.05);
+}
+
+void JimmyImplementation()
+{
+	vec4 matcolor = texture2D( u_Texture, v_UV );
+
+	//vec3 lightcolor = u_LightColor;
+	vec3 lightcolor = vec3(1,0.5,0.34);
 
 	vec3 lightpos = vec3(0,8,0);
 
@@ -27,11 +28,14 @@ void main()
 
 	vec3 dirtolight = normalize(lightpos - v_WorldPosition);
 
-	float diffuseperc = dot(dirtolight, normalize(v_Surfacenormal));
+	float diffuseperc = max(0,dot(dirtolight, normalize(v_Surfacenormal)));
 
-
-	vec3 simulatedlightpos = normalize(normalize(lightpos) + normalize(u_Campos));
-	float specular = dot(normalize(v_Surfacenormal), simulatedlightpos);
+	float specular = 0.0;
+	//if (diffuseperc > 0.0)
+	{
+		vec3 simulatedlightpos = normalize(normalize(lightpos) + normalize(u_Campos));
+		specular = dot(normalize(v_Surfacenormal), simulatedlightpos);
+	}
 
 	diffuseperc += specular;
 	diffuseperc = max(0, diffuseperc);

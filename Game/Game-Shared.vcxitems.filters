@@ -136,6 +136,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw3D.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\SharedAudioChannel.cpp">
+      <Filter>Resource Management</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\LightObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Camera.h">
@@ -275,6 +281,12 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw3D.h">
       <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\SharedAudioChannel.h">
+      <Filter>Resource Management</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\ALGONQUIN\Game And Graphics Assignments\Group Project 2\Week 11\19W_GAM1573_Game2\Game\Source\GameObjects\LightObject.h">
+      <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

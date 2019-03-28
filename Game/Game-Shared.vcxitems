@@ -24,6 +24,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingPlayerObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject3D.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\LightObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\HUD_TextObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlatformerEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlatformerPlayer.h" />
@@ -33,6 +34,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioDataStructures.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioEngine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\SharedAudioChannel.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\TextMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Physics\BulletMotionState.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Physics\ContactListener.h" />
@@ -73,6 +75,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject3D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\HUD_TextObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\LightObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlatformerEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlatformerPlayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Shootable.cpp" />
@@ -81,6 +84,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioEngine.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\BulletManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\SharedAudioChannel.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\TextMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Physics\BulletMotionState.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Physics\ContactListener.cpp" />

@@ -4,6 +4,7 @@
 class DebugDraw;
 class BulletManager;
 class ChaseCameraObject;
+class LightObject;
 
 class BulletScene : public Scene
 {
@@ -17,4 +18,10 @@ public:
 	virtual void Draw() override;
 
 	virtual void LoadFromSceneFile(std::string filename) override;
+
+	virtual std::vector<LightObject*>* GetLightVector() { return &m_pLights; }
+
+protected:
+
+	std::vector<LightObject*> m_pLights;
 };

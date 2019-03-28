@@ -4,6 +4,7 @@
 class Texture;
 class Camera;
 class Material;
+class LightObject;
 
 struct VertexFormat
 {
@@ -66,7 +67,9 @@ public:
     void Init(const void* verts, int numVerts, GLenum primitiveType, GLenum usage);
 
     void SetupAttributes(ShaderProgram* pShaderProgram);
-    static void SetupUniforms(mat4 matrix, mat4 normalmatrix, Camera* camera, Material* material);
+    static void SetupUniforms(mat4 matrix, mat4 normalmatrix, Camera* camera, Material* material, std::vector<LightObject*> *Lights = nullptr);
+
+
     void Draw(ShaderProgram* pShaderProgram);
 
     // The following functions are defined in MeshShapes.cpp:

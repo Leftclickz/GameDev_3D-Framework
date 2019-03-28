@@ -55,8 +55,14 @@ void ShaderProgram::Cleanup()
 void ShaderProgram::CompileShader(GLuint& shaderHandle, const char* shaderString)
 {
 #if WIN32
-    const char* strings[] = { shaderString };
-    glShaderSource( shaderHandle, 1, strings, nullptr );
+
+	const char* LightString = LoadCompleteFile("Data/Shaders/LightFunctions.txt", nullptr);
+	const char* removeVersionCall = "\n//";
+    const char* strings[] = { LightString, removeVersionCall, shaderString };
+
+    glShaderSource( shaderHandle, 3, strings, nullptr );
+
+	delete[] LightString;
 #else
     // Define glsl version, set default float precision
     //     and comment out the first line in the shader which should be #version for WIN32.
@@ -66,7 +72,7 @@ void ShaderProgram::CompileShader(GLuint& shaderHandle, const char* shaderString
 
     glCompileShader( shaderHandle );
 
-    //GLenum errorcode = glGetError();
+    GLenum errorcode = glGetError();
 
     int compiled = 0;
     glGetShaderiv( shaderHandle, GL_COMPILE_STATUS, &compiled );

@@ -22,6 +22,7 @@
 #include "GameObjects/Shootable.h"
 #include "GameObjects/PlatformerEnemy.h"
 #include "Game/AudioDataStructures.h"
+#include "Game/SharedAudioChannel.h"
 
 PlatformerScene::PlatformerScene(Game* pGame, ResourceManager* pResources) :
 	Scene(pGame, pResources)
@@ -38,6 +39,7 @@ PlatformerScene::PlatformerScene(Game* pGame, ResourceManager* pResources) :
 PlatformerScene::~PlatformerScene()
 {
 	Reset();
+	delete m_BackgroundChannel;
 }
 
 void PlatformerScene::LoadContent()
@@ -80,6 +82,8 @@ void PlatformerScene::LoadContent()
 	//create audio voice
 	m_GameAudio = m_pResources->CreateAudio("Main Music", "Main Music");
 
+	m_BackgroundChannel = new SharedAudioChannel(m_GameAudio->GetWaveFormat());
+	m_BackgroundChannel->AddAudio(m_GameAudio);
 
 	//Collision Filtering Setup time
 	b2Filter PickupFilter;
@@ -121,13 +125,12 @@ void PlatformerScene::LoadContent()
 		m_BulletPool.AddObjectToPool(b);
 	}
 
-	//make the audio loop and play
-	if (m_GameAudio != nullptr)
+	//make the audio loop
+	if (m_BackgroundChannel != nullptr)
 	{
-		m_GameAudio->SetDoesLoop(true);
-		m_GameAudio->SetVolume(0.1f);
-		//m_GameAudio->Play();
-		//m_GameAudio->Pause();
+		Audio* audio = m_BackgroundChannel->GetAudioAt(0);
+		audio->SetDoesLoop(true);
+		audio->SetVolume(0.1f);
 	}
 }
 
@@ -436,10 +439,18 @@ void PlatformerScene::LoadFromSceneFile(std::string filename)
 
 void PlatformerScene::HasEnteredFocus()
 {
-	m_GameAudio->Play();
+	if (m_BackgroundChannel != nullptr)
+	{
+		Audio* audio = m_BackgroundChannel->GetAudioAt(0);
+		audio->Play();
+	}
 }
 
 void PlatformerScene::HasLeftFocus()
 {
-	m_GameAudio->Stop();
+	if (m_BackgroundChannel != nullptr)
+	{
+		Audio* audio = m_BackgroundChannel->GetAudioAt(0);
+		audio->Stop();
+	}
 }
