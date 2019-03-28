@@ -46,19 +46,7 @@ void GameObject3D::Update(float deltatime)
 {
 	GameObject::Update(deltatime);
 
-	if (isEnabled)
-	{
-		ImGui::Begin("GameObjects");
-		ImGui::PushID(this);
-		if (ImGui::CollapsingHeader(m_Name.c_str()))
-		{
-			ImGui::Text("PositionX: %.3f", m_Position.x);
-			ImGui::Text("PositionY: %.3f", m_Position.y);
-			ImGui::Text("PositionZ: %.3f", m_Position.z);
-		}
-		ImGui::PopID();
-		ImGui::End();
-	}
+	DisplayImguiDebugInfo();
 }
 
 void GameObject3D::Draw(Camera* cam)
@@ -141,6 +129,23 @@ void GameObject3D::CreateBody(btCollisionShape* shape, float mass)
 	//add the body to the dynamics world
 	m_pScene->GetBulletManager()->dynamicsWorld->addRigidBody(m_Body);
 	m_pScene->Add3DBody(m_Body);
+}
+
+void GameObject3D::DisplayImguiDebugInfo()
+{
+	if (isEnabled)
+	{
+		ImGui::Begin("GameObjects");
+		ImGui::PushID(this);
+		if (ImGui::CollapsingHeader(m_Name.c_str()))
+		{
+			ImGui::Text("PositionX: %.3f", m_Position.x);
+			ImGui::Text("PositionY: %.3f", m_Position.y);
+			ImGui::Text("PositionZ: %.3f", m_Position.z);
+		}
+		ImGui::PopID();
+		ImGui::End();
+	}
 }
 
 //Creates a Box Rigid Body for this object by default mass is 0 meaning the object is static

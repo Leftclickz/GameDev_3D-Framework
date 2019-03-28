@@ -140,10 +140,13 @@
       <Filter>Resource Management</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\LightObject.cpp">
-      <Filter>GameObjects</Filter>
+      <Filter>GameObjects\Lights</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)SceneManager.cpp">
       <Filter>Resource Management</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\FollowLight.cpp">
+      <Filter>GameObjects\Lights</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +291,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\SharedAudioChannel.h">
       <Filter>Resource Management</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\LightObject.h">
+      <Filter>GameObjects\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\FollowLight.h">
+      <Filter>GameObjects\Lights</Filter>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\LightObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SceneManager.h">
       <Filter>Resource Management</Filter>
@@ -334,6 +342,9 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug3D.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\LightFunctions.frag">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
@@ -385,6 +396,9 @@
     </Filter>
     <Filter Include="Resource Management">
       <UniqueIdentifier>{faa058db-7ca8-4fab-bbd9-6371f6aa01e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Lights">
+      <UniqueIdentifier>{445a36d3-5ad2-4050-b53d-ad1bb98159e7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

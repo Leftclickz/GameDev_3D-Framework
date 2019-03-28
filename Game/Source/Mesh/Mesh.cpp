@@ -214,18 +214,28 @@ void Mesh::SetupUniforms(mat4 matrix, mat4 normalmatrix, Camera* camera, Materia
 
 	if (Lights != nullptr)
 	{
-		for (int i = 0; i < Lights->size(); i++)
+		for (unsigned int i = 0; i < Lights->size(); i++)
 		{
-			StandardLight lightstruct = Lights->at(i)->GetLight();
-
 			std::string handle = "u_Lights[" + std::to_string(i);
-			std::string pos_handle = handle + "].pos";
 			std::string color_handle = handle + "].color";
-			std::string attenuation_handle = handle + "].attenuationFactor";
 
-			SetUniform3f(shader, pos_handle.c_str(), lightstruct.position);
-			SetUniform4f(shader, color_handle.c_str(), lightstruct.color);
-			SetUniform1f(shader, attenuation_handle.c_str(), lightstruct.attenuationFactor);
+			if (Lights->at(i)->GetEnabled() == true)
+			{
+				StandardLight lightstruct = Lights->at(i)->GetLight();
+
+				std::string pos_handle = handle + "].pos";
+				std::string attenuation_handle = handle + "].attenuationFactor";
+				std::string ambience_handle = handle + "].ambientCoefficient";
+
+				SetUniform3f(shader, pos_handle.c_str(), lightstruct.position);
+				SetUniform4f(shader, color_handle.c_str(), lightstruct.color);
+				SetUniform1f(shader, attenuation_handle.c_str(), lightstruct.attenuationFactor);
+				SetUniform1f(shader, ambience_handle.c_str(), lightstruct.ambienceCoefficient);
+			}
+			else
+			{
+				SetUniform4f(shader, color_handle.c_str(), vec4(0,0,0,0));
+			}
 		}
 	}
 
