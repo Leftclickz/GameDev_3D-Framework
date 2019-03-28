@@ -1,308 +1,325 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GamePCH.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioManager.cpp">
+      <Filter>Resource Management\Audio</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Camera.cpp">
-      <Filter>Camera</Filter>
+      <Filter>Game Objects\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\cJSONHelpers.cpp">
-      <Filter>Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\FloatingScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\GraphicsScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\PhysicsScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\PlatformerScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\PoolTestScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\Scene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingMineObject.cpp">
-      <Filter>GameObjects\Floating</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingObject.cpp">
-      <Filter>GameObjects\Floating</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingPlayerObject.cpp">
-      <Filter>GameObjects\Floating</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\ChaseCameraObject.cpp">
+      <Filter>Game Objects\Camera</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GamePCH.cpp">
-      <Filter>Game</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Physics\BulletMotionState.cpp">
+      <Filter>Physics\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\BulletManager.cpp">
+      <Filter>Physics\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject.cpp">
-      <Filter>GameObjects</Filter>
+      <Filter>Game Objects</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Bullet.cpp">
-      <Filter>GameObjects\Platformer</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject2D.cpp">
+      <Filter>Game Objects\Game Object 2D</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\HUD_TextObject.cpp">
-      <Filter>HUD</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Physics\ContactListener.cpp">
+      <Filter>Physics\Box2D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw.cpp">
+      <Filter>Physics\Box2D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject3D.cpp">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\BulletScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw3D.cpp">
+      <Filter>Physics\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\FloatingScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\GraphicsScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\HUD_Scene.cpp">
-      <Filter>HUD</Filter>
+      <Filter>Scene\HUD</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlatformerEnemy.cpp">
-      <Filter>GameObjects\Platformer</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\FollowLight.cpp">
+      <Filter>Game Objects\Light</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlatformerPlayer.cpp">
-      <Filter>GameObjects\Platformer</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Transformable.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Player.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\Material.cpp">
-      <Filter>Textures</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\SpriteSheet.cpp">
-      <Filter>Textures</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\TextMesh.cpp">
-      <Filter>Textures</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\Texture.cpp">
-      <Filter>Textures</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\MeshShapes.cpp">
-      <Filter>Mesh</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\LightObject.cpp">
+      <Filter>Game Objects\Light</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\Mesh.cpp">
       <Filter>Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Shootable.cpp">
-      <Filter>GameObjects\Platformer</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlayerController.cpp">
-      <Filter>Physics\Controllers</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Physics\PhysicsWorld.cpp">
-      <Filter>Physics</Filter>
+      <Filter>Physics\Box2D</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Physics\ContactListener.cpp">
-      <Filter>Physics</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\PoolTestScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject3D.cpp">
-      <Filter>GameObjects</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\PlatformerScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\ImGuiManager.cpp">
-      <Filter>Extensions</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingPlayerObject.cpp">
+      <Filter>Game Objects\Game Object 2D\Floating Object</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\ResourceManager.cpp">
-      <Filter>Resource Management</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingObject.cpp">
+      <Filter>Game Objects\Game Object 2D\Floating Object</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingMineObject.cpp">
+      <Filter>Game Objects\Game Object 2D\Floating Object</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\MeshShapes.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Player.cpp">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\PhysicsScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Bullet.cpp">
+      <Filter>Game Objects\Game Object 2D\Platformer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlatformerPlayer.cpp">
+      <Filter>Game Objects\Game Object 2D\Platformer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlatformerEnemy.cpp">
+      <Filter>Game Objects\Game Object 2D\Platformer</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\SaveLoad.cpp">
       <Filter>Resource Management</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw.cpp">
-      <Filter>Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\BulletManager.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\ResourceManager.cpp">
       <Filter>Resource Management</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject2D.cpp">
-      <Filter>GameObjects</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\cJSONHelpers.cpp">
+      <Filter>Resource Management</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\BulletScene.cpp">
-      <Filter>Scenes</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Shootable.cpp">
+      <Filter>Game Objects\Game Object 2D\Platformer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Transformable.cpp">
+      <Filter>Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\HUD_TextObject.cpp">
+      <Filter>Game Objects\HUD</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioDataStructures.cpp">
-      <Filter>Resource Management</Filter>
+      <Filter>Audio</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioEngine.cpp">
-      <Filter>Resource Management</Filter>
+      <Filter>Audio</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioManager.cpp">
-      <Filter>Resource Management</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Physics\BulletMotionState.cpp">
-      <Filter>Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\ChaseCameraObject.cpp">
-      <Filter>Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw3D.cpp">
-      <Filter>Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\SharedAudioChannel.cpp">
-      <Filter>Resource Management</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\LightObject.cpp">
-      <Filter>GameObjects\Lights</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\ImGuiManager.cpp">
+      <Filter>Resource Management\Imgui</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)SceneManager.cpp">
-      <Filter>Resource Management</Filter>
+      <Filter>Resource Management\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\FollowLight.cpp">
-      <Filter>GameObjects\Lights</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\Texture.cpp">
+      <Filter>Mesh\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\SpriteSheet.cpp">
+      <Filter>Mesh\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\TextMesh.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\Material.cpp">
+      <Filter>Mesh\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\SharedAudioChannel.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlayerController.cpp">
+      <Filter>Controller</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GamePCH.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioManager.h">
+      <Filter>Resource Management\Audio</Filter>
+    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Camera.h">
-      <Filter>Camera</Filter>
+      <Filter>Game Objects\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\cJSONHelpers.h">
-      <Filter>Extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\FloatingScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\GraphicsScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\PhysicsScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\PlatformerScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\PoolTestScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\Scene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingMineObject.h">
-      <Filter>GameObjects\Floating</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingObject.h">
-      <Filter>GameObjects\Floating</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingPlayerObject.h">
-      <Filter>GameObjects\Floating</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\ChaseCameraObject.h">
+      <Filter>Game Objects\Camera</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\Game.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GamePCH.h">
-      <Filter>Game</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Physics\BulletMotionState.h">
+      <Filter>Physics\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\BulletManager.h">
+      <Filter>Physics\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject.h">
-      <Filter>GameObjects</Filter>
+      <Filter>Game Objects</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Bullet.h">
-      <Filter>GameObjects\Platformer</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject2D.h">
+      <Filter>Game Objects\Game Object 2D</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\HUD_TextObject.h">
-      <Filter>HUD</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Physics\ContactListener.h">
+      <Filter>Physics\Box2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw.h">
+      <Filter>Physics\Box2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject3D.h">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\BulletScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw3D.h">
+      <Filter>Physics\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\FloatingScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\GraphicsScene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\HUD_Scene.h">
-      <Filter>HUD</Filter>
+      <Filter>Scene\HUD</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlatformerEnemy.h">
-      <Filter>GameObjects\Platformer</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\FollowLight.h">
+      <Filter>Game Objects\Light</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlatformerPlayer.h">
-      <Filter>GameObjects\Platformer</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Transformable.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Player.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\Material.h">
-      <Filter>Textures</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\SpriteSheet.h">
-      <Filter>Textures</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\TextMesh.h">
-      <Filter>Textures</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\Texture.h">
-      <Filter>Textures</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\LightObject.h">
+      <Filter>Game Objects\Light</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\Mesh.h">
       <Filter>Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Physics\PhysicsWorld.h">
+      <Filter>Physics\Box2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\PoolTestScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\PlatformerScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingPlayerObject.h">
+      <Filter>Game Objects\Game Object 2D\Floating Object</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingObject.h">
+      <Filter>Game Objects\Game Object 2D\Floating Object</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\FloatingMineObject.h">
+      <Filter>Game Objects\Game Object 2D\Floating Object</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\PooledObject.h">
-      <Filter>GameObjects\Pooling</Filter>
+      <Filter>Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\Pool.h">
-      <Filter>GameObjects\Pooling</Filter>
+      <Filter>Game Objects</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Shootable.h">
-      <Filter>GameObjects\Platformer</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Player.h">
+      <Filter>Game Objects\Game Object 3D</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlayerController.h">
-      <Filter>Physics\Controllers</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\PhysicsScene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Physics\PhysicsWorld.h">
-      <Filter>Physics</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Bullet.h">
+      <Filter>Game Objects\Game Object 2D\Platformer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Physics\ContactListener.h">
-      <Filter>Physics</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlatformerPlayer.h">
+      <Filter>Game Objects\Game Object 2D\Platformer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject3D.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\ImGuiManager.h">
-      <Filter>Extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\ResourceManager.h">
-      <Filter>Resource Management</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlatformerEnemy.h">
+      <Filter>Game Objects\Game Object 2D\Platformer</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\SaveLoad.h">
       <Filter>Resource Management</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\BulletManager.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\ResourceManager.h">
       <Filter>Resource Management</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObject2D.h">
-      <Filter>GameObjects</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\cJSONHelpers.h">
+      <Filter>Resource Management</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\BulletScene.h">
-      <Filter>Scenes</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Shootable.h">
+      <Filter>Game Objects\Game Object 2D\Platformer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Transformable.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\HUD_TextObject.h">
+      <Filter>Game Objects\HUD</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioDataStructures.h">
-      <Filter>Resource Management</Filter>
+      <Filter>Audio</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioEngine.h">
-      <Filter>Resource Management</Filter>
+      <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioManager.h">
-      <Filter>Resource Management</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\ImGuiManager.h">
+      <Filter>Resource Management\Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Physics\BulletMotionState.h">
-      <Filter>Physics</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SceneManager.h">
+      <Filter>Resource Management\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\ChaseCameraObject.h">
-      <Filter>Camera</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\Texture.h">
+      <Filter>Mesh\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\DebugDraw3D.h">
-      <Filter>Physics</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\SpriteSheet.h">
+      <Filter>Mesh\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\TextMesh.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\Material.h">
+      <Filter>Mesh\Texture</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\SharedAudioChannel.h">
-      <Filter>Resource Management</Filter>
+      <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\LightObject.h">
-      <Filter>GameObjects\Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\FollowLight.h">
-      <Filter>GameObjects\Lights</Filter>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\LightObject.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SceneManager.h">
-      <Filter>Resource Management</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlayerController.h">
+      <Filter>Controller</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Water.frag">
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug3D.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug3D.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Lighting.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Lighting.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\LightFunctions.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Water2.vert">
       <Filter>Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Water.vert">
@@ -311,13 +328,13 @@
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Water2.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Water2.vert">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Texture.frag">
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Water.frag">
       <Filter>Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Texture.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Texture.frag">
       <Filter>Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Normal.vert">
@@ -326,79 +343,79 @@
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Normal.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug.vert">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Lighting.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Lighting.vert">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug3D.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug3D.vert">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\LightFunctions.frag">
-      <Filter>Shaders</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(MSBuildThisFileDirectory)..\readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="GameObjects">
-      <UniqueIdentifier>{4552a714-a89a-4da9-b49c-4823313e661c}</UniqueIdentifier>
+    <Filter Include="Resource Management">
+      <UniqueIdentifier>{754d84d8-d65f-4ddf-abf5-5d4ba7bc2d19}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scenes">
-      <UniqueIdentifier>{959ab63c-a50e-4e64-be0e-6358d6c6ec0a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{e4bafdd7-6cd0-48e1-976d-014c8b7fb2f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Physics">
-      <UniqueIdentifier>{3d586c49-aab7-485a-9457-69a349e25aef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Camera">
-      <UniqueIdentifier>{5dc79949-6369-41b2-9e1f-595b6274442b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Textures">
-      <UniqueIdentifier>{79c409c0-e255-4d55-9b9a-3766246acad3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mesh">
-      <UniqueIdentifier>{4a53f7ce-7359-4680-a0e3-32dc1c0b4f85}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObjects\Floating">
-      <UniqueIdentifier>{a1c355d7-42f8-4834-a51e-d242806cd6c9}</UniqueIdentifier>
+    <Filter Include="Resource Management\Audio">
+      <UniqueIdentifier>{ddaf7638-3eda-4bb8-abeb-28a128ea49af}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game">
-      <UniqueIdentifier>{6dc597f8-889d-496f-98db-38720c33550e}</UniqueIdentifier>
+      <UniqueIdentifier>{63da2cc8-8b16-4d7c-9164-ab50a761434b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObjects\Platformer">
-      <UniqueIdentifier>{e066fd21-92ea-4f1b-9926-1cda012fe9fc}</UniqueIdentifier>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{5b531d27-aa84-436b-a76e-8eb7506db766}</UniqueIdentifier>
     </Filter>
-    <Filter Include="HUD">
-      <UniqueIdentifier>{86e28b94-6f6c-4dea-ba34-4fbd0ca9fe99}</UniqueIdentifier>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{99f321d9-355b-4c4d-b1ea-23c1ae463f19}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObjects\Pooling">
-      <UniqueIdentifier>{28d03bec-1c97-4a2a-a2bb-a64f6dd12d53}</UniqueIdentifier>
+    <Filter Include="Game Objects">
+      <UniqueIdentifier>{3299c597-fa9f-499d-9192-7c3d7270bdee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics\Controllers">
-      <UniqueIdentifier>{59fe9d2b-67d5-4fc6-a783-458ee75fc883}</UniqueIdentifier>
+    <Filter Include="Game Objects\Game Object 2D">
+      <UniqueIdentifier>{a4240183-2762-409d-a92f-f268b43f94f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Extensions">
-      <UniqueIdentifier>{a1899e3b-5a2b-4f87-814d-3a4753f6814b}</UniqueIdentifier>
+    <Filter Include="Game Objects\Game Object 3D">
+      <UniqueIdentifier>{30b4af31-4e3c-4123-982d-8ae73343634a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Management">
-      <UniqueIdentifier>{faa058db-7ca8-4fab-bbd9-6371f6aa01e9}</UniqueIdentifier>
+    <Filter Include="Game Objects\Camera">
+      <UniqueIdentifier>{194a70b5-d83a-4d0d-ad31-957237737da2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObjects\Lights">
-      <UniqueIdentifier>{445a36d3-5ad2-4050-b53d-ad1bb98159e7}</UniqueIdentifier>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{6820280d-73e8-48dc-b16d-a4a540f5021d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Bullet">
+      <UniqueIdentifier>{1da1ece4-b331-41b6-9f4a-5cf742a5ac8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Box2D">
+      <UniqueIdentifier>{61b4149f-4af4-43da-9190-9e06a6e5b99e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\HUD">
+      <UniqueIdentifier>{964b9c70-c67c-4532-977f-d66b7b0a00b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mesh">
+      <UniqueIdentifier>{388658cc-0fb3-426c-95e6-f282671c275c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\Light">
+      <UniqueIdentifier>{bacdf57c-af3a-45a6-87c4-3e8a8d00e815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\Game Object 2D\Floating Object">
+      <UniqueIdentifier>{5172c95f-cb5a-4bb1-80df-003e1d3ff4c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\Game Object 2D\Platformer">
+      <UniqueIdentifier>{fc365444-6ed9-4bd0-8ffb-7aeaaa87dce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\HUD">
+      <UniqueIdentifier>{c5b45bd1-e22c-4226-9432-eeb2a26d578b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{d60ac6ee-7a44-4865-9ead-f942ce275103}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Management\Imgui">
+      <UniqueIdentifier>{fd97510b-669a-476d-9112-59e5975aa3ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Management\Scene">
+      <UniqueIdentifier>{35bf3639-ca15-4eb9-ab9d-f6245253d925}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mesh\Texture">
+      <UniqueIdentifier>{25124f57-d904-44be-b33c-f560f8443956}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{3483c397-34b9-41b2-86ad-9b059d49fe3a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
