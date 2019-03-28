@@ -15,6 +15,7 @@
 #include "GameObjects/ChaseCameraObject.h"
 #include "Game/BulletManager.h"
 #include "GameObjects/LightObject.h"
+#include "GameObjects/FollowLight.h"
 
 BulletScene::BulletScene(Game* pGame, ResourceManager* pResources) :
 	Scene(pGame, pResources)
@@ -74,6 +75,13 @@ void BulletScene::LoadContent()
 	light = new LightObject(this, "Blue", Transform(vec3(0, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);
 	light->AssignLightColor(vec4(0.0f, 0.0f, 1.0f, 1.0f));
 	m_pLights.push_back(light);
+
+	FollowLight* pLight = new FollowLight(this, "PlayerLight", Transform(vec3(0, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);
+	pLight->SetObjectAttachment(player);
+	pLight->SetFollowOffset(vec3(0, 2, 0));
+	pLight->SetAttenuationFactor(0.15f);
+	pLight->AssignLightColor(vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	m_pLights.push_back(pLight);
 }
 
 void BulletScene::OnEvent(Event* pEvent)

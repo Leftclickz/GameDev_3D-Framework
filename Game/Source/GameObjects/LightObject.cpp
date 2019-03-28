@@ -30,13 +30,20 @@ void LightObject::DisplayImguiDebugInfo()
 
 		if (isEnabled == true)
 		{
-			ImGui::SliderFloat("PositionX", &m_Position.x, -25.0f, 25.0f);
-			ImGui::SliderFloat("PositionY", &m_Position.y, -25.0f, 25.0f);
-			ImGui::SliderFloat("PositionZ", &m_Position.z, -25.0f, 25.0f);
-
-			ImGui::SliderFloat("Attenuation", &m_Light.attenuationFactor, 0.0f, 1.0f);
-			ImGui::SliderFloat("Ambience", &m_Light.ambienceCoefficient, 0.0f, 1.0f);
-			ImGui::ColorEdit3("Color", &m_Light.color.x);
+			if (ImGui::TreeNode("Position"))
+			{
+				ImGui::SliderFloat("PositionX", &m_Position.x, -25.0f, 25.0f);
+				ImGui::SliderFloat("PositionY", &m_Position.y, -25.0f, 25.0f);
+				ImGui::SliderFloat("PositionZ", &m_Position.z, -25.0f, 25.0f);
+				ImGui::TreePop();
+			}
+			if (ImGui::TreeNode("Light"))
+			{
+				ImGui::SliderFloat("Attenuation", &m_Light.attenuationFactor, 0.0f, 1.0f);
+				ImGui::SliderFloat("Ambience", &m_Light.ambienceCoefficient, 0.0f, 1.0f);
+				ImGui::ColorEdit3("Color", &m_Light.color.x);
+				ImGui::TreePop();
+			}
 		}
 	}
 
