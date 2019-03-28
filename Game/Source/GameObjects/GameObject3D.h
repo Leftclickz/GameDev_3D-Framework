@@ -39,6 +39,7 @@ public:
 
 protected:
 	virtual void CreateBody(btCollisionShape* shape, float mass);
+	virtual void DisplayImguiDebugInfo();
 
 	BulletMotionState* m_MotionState;
 	btRigidBody* m_Body;

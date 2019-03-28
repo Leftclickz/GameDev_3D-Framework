@@ -12,7 +12,7 @@ void main()
 {
 	vec4 matcolor = texture2D( u_Texture, v_UV );
 
-	gl_FragColor = ApplyLights(v_WorldPosition, v_Surfacenormal, u_Campos, matcolor, u_Lights, 0.7, 0.05);
+	gl_FragColor = ApplyLights(v_WorldPosition, v_Surfacenormal, u_Campos, matcolor, u_Lights, 0.7);
 }
 
 void JimmyImplementation()

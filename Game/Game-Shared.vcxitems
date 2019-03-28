@@ -120,6 +120,7 @@
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug.vert" />
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug3D.frag" />
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug3D.vert" />
+    <None Include="$(MSBuildThisFileDirectory)Data\Shaders\LightFunctions.frag" />
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Lighting.frag" />
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Lighting.vert" />
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Normal.frag" />

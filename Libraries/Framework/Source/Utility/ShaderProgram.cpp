@@ -56,7 +56,7 @@ void ShaderProgram::CompileShader(GLuint& shaderHandle, const char* shaderString
 {
 #if WIN32
 
-	const char* LightString = LoadCompleteFile("Data/Shaders/LightFunctions.txt", nullptr);
+	const char* LightString = LoadCompleteFile("Data/Shaders/LightFunctions.frag", nullptr);
 	const char* removeVersionCall = "\n//";
     const char* strings[] = { LightString, removeVersionCall, shaderString };
 
