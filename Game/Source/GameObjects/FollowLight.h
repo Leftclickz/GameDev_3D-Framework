@@ -12,6 +12,8 @@ public:
 
 	virtual void SetFollowOffset(vec3 offset) { m_FollowOffset = offset; }
 
+	virtual void DisplayImguiDebugInfo() override;
+
 protected:
 
 	GameObject* m_ObjectToFollow;

@@ -15,3 +15,42 @@ StandardLight FollowLight::GetLight()
 
 	return LightObject::GetLight();
 }
+
+void FollowLight::DisplayImguiDebugInfo()
+{
+	ImGui::Begin("Lights");
+	ImGui::PushID(this);
+
+	if (ImGui::CollapsingHeader(m_Name.c_str()))
+	{
+		ImGui::Checkbox("Enabled", &isEnabled);
+
+		if (isEnabled == true)
+		{
+			if (ImGui::TreeNode("Position"))
+			{
+				ImGui::Text("X: %.3f", m_Position.x);
+				ImGui::Text("Y: %.3f", m_Position.y);
+				ImGui::Text("Z: %.3f", m_Position.z);
+				ImGui::TreePop();
+			}
+			if (ImGui::TreeNode("Offset"))
+			{
+				ImGui::SliderFloat("PositionX", &m_FollowOffset.x, -25.0f, 25.0f);
+				ImGui::SliderFloat("PositionY", &m_FollowOffset.y, -25.0f, 25.0f);
+				ImGui::SliderFloat("PositionZ", &m_FollowOffset.z, -25.0f, 25.0f);
+				ImGui::TreePop();
+			}
+			if (ImGui::TreeNode("Light"))
+			{
+				ImGui::SliderFloat("Attenuation", &m_Light.attenuationFactor, 0.0f, 1.0f);
+				ImGui::SliderFloat("Ambience", &m_Light.ambienceCoefficient, 0.0f, 1.0f);
+				ImGui::ColorEdit3("Color", &m_Light.color.x);
+				ImGui::TreePop();
+			}
+		}
+	}
+
+	ImGui::PopID();
+	ImGui::End();
+}

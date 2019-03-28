@@ -299,49 +299,49 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug3D.vert">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug.frag">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug.vert">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug3D.frag">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Lighting.vert">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Lighting.frag">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\LightFunctions.frag">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Water2.vert">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Water.vert">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Water2.frag">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Water.frag">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Texture.vert">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Texture.frag">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Normal.vert">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Normal.frag">
-      <Filter>Shaders</Filter>
+      <Filter>Data\Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -356,9 +356,6 @@
     </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{63da2cc8-8b16-4d7c-9164-ab50a761434b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{5b531d27-aa84-436b-a76e-8eb7506db766}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{99f321d9-355b-4c4d-b1ea-23c1ae463f19}</UniqueIdentifier>
@@ -416,6 +413,12 @@
     </Filter>
     <Filter Include="Controller">
       <UniqueIdentifier>{3483c397-34b9-41b2-86ad-9b059d49fe3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{4ae9ec71-2ae1-4ff9-b95d-0affd2634251}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\Shaders">
+      <UniqueIdentifier>{5b531d27-aa84-436b-a76e-8eb7506db766}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
