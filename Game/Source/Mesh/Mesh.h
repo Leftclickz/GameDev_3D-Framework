@@ -57,6 +57,8 @@ protected:
     unsigned int m_NumVerts;
     unsigned int m_NumIndices;
 
+	std::vector<vec3> m_OBJVerts;
+
     GLenum m_PrimitiveType;
 
 public:
@@ -77,6 +79,9 @@ public:
 	void CreateCube(vec3 size, vec3 offset);
 	void CreatePlane(vec2 worldsize, ivec2 vertcount);
 	void GenerateOBJ(const char* objfilename, float scale = 1.0f, vec3 vertoffset = vec3(0));
+
+	std::vector<vec3> GetOBJVerts() { return m_OBJVerts; }
+	unsigned int GetNumVerts() { return m_NumVerts; }
 };
 
 #endif //__Mesh_H__

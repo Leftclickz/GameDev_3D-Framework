@@ -51,20 +51,18 @@ void BulletScene::LoadContent()
 	player->SetPlayerController(m_pGame->GetController(0));
 	//player->CreateBoxBody(vec3(0.5f, 0.5f, 0.5f), 1.0f);
 	player->CreateSphereBody(1.0f, 1.0f);
-	m_pGameObjects.push_back(player);
+	//player->CreateConvexHullBody(1.0f);
 
 	((ChaseCameraObject*)m_Camera)->SetObjectToFollow(player, 10.0f);
 
 	GameObject3D* Floor = new GameObject3D(this, "Floor", Transform(vec3(0, 0, 0), vec3(0), vec3(1)), m_pResources->GetMesh("Plane"), m_pResources->GetMaterial("Lighting"));
 	Floor->CreatePlane();
 	//Floor->GetBody()->setFriction(100);
-	m_pGameObjects.push_back(Floor);
 
 	for (int x = 0; x < 10; x++)
 	{
 		GameObject3D* box = new GameObject3D(this, "Box" + std::to_string(x), Transform(vec3((float)x * 2.0f, 4, 4), vec3(0), vec3(1)), m_pResources->GetMesh("Cube"), m_pResources->GetMaterial("Lighting2"));
 		box->CreateBoxBody(vec3(0.5f, 0.5f, 0.5f), 5);
-		m_pGameObjects.push_back(box);
 	}
 
 	LightObject* light = new LightObject(this, "TestLight", Transform(vec3(-2, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);

@@ -182,6 +182,24 @@ GameObject * Scene::GetGameObjectByName(std::string name)
 	return nullptr;
 }
 
+void Scene::Add3DBody(btRigidBody* pObject)
+{
+	m_pBodies3D.push_back(pObject);
+}
+
+bool Scene::Remove3DBody(btRigidBody* pObject)
+{
+	auto iteratorForObject = std::find(m_pBodies3D.begin(), m_pBodies3D.end(), pObject);
+
+	if (iteratorForObject != m_pBodies3D.end())
+	{
+		m_pBodies3D.erase(iteratorForObject);
+		return true;
+	}
+
+	return false;
+}
+
 PhysicsWorld* Scene::GetPhysicsWorld()
 {
 	if (m_pPhysicsWorld == nullptr)
