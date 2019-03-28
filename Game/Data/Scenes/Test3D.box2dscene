@@ -18,12 +18,31 @@
 			"Scale":	[1, 1, 1],
 			"Flags":	["Player"],
 			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	1,
+					"Primitive":	"Cube",
+					"Scale":	[1, 1, 1]
+				}, {
 					"Type":	"Sprite",
 					"PrefabComponentID":	0,
-					"Material":	"new",
+					"Material":	"Box",
 					"Texture":	"Data/Textures/Megaman.png",
 					"Shader":	"Shader_Texture",
 					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Point Light",
+			"Pos":	[3.1849656105041504, 0, 0],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"Light",
+					"PrefabComponentID":	0,
+					"LightType":	"Point",
+					"Color":	[1, 1, 1, 1],
+					"Atten":	[900, 0, 0.090000003576278687]
 				}]
 		}]
 }

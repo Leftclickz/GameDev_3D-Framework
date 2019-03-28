@@ -14,6 +14,28 @@ uniform float u_LightRange;
 
 uniform vec3 u_Campos;
 
+/*
+Mat: shine, color - material
+
+Light: position, range, falloff, color - light, ambient level, spotlight angle
+
+Misc: campos
+*/
+
+struct LightVars
+{
+	vec4 lightcolor;
+
+	vec3 pos;
+	vec3 spotlightAngle;
+
+	float range;
+	float falloff;
+	float ambientLevel;
+};
+
+uniform LightVars u_LightVars[3];
+
 void main()
 {
 	vec4 matcolor = texture2D( u_Texture, v_UV );

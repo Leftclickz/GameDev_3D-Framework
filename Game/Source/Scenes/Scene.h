@@ -18,6 +18,7 @@ protected:
     ResourceManager* m_pResources;
 
     std::vector<GameObject*> m_pGameObjects;
+    std::vector<btRigidBody*> m_pBodies3D;
 
 	PhysicsWorld* m_pPhysicsWorld;
 
@@ -52,6 +53,9 @@ public:
 	void TempRemoveGameObject(GameObject* pObj);
 	bool HideGameObject(GameObject * pObject);
 	GameObject* GetGameObjectByName(std::string name);
+
+	void Add3DBody(btRigidBody* pObject);
+	bool Remove3DBody(btRigidBody* pObject);
 
     Game* GetGame() { return m_pGame; }
     ResourceManager* GetResourceManager() { return m_pResources; }

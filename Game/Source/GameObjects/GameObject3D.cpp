@@ -19,6 +19,7 @@ GameObject3D::GameObject3D(Scene* pScene, std::string name, Transform transform,
 {
 	m_MotionState = nullptr;
 	m_Body = nullptr;
+	m_pScene->AddGameObject(this);
 }
 
 GameObject3D::~GameObject3D()
@@ -48,10 +49,15 @@ void GameObject3D::Update(float deltatime)
 	{
 		if (m_Body)
 		{
-			ImGui::Begin(m_Name.c_str());
-			ImGui::Text("PositionX: %.3f", m_Position.x);
-			ImGui::Text("PositionY: %.3f", m_Position.y);
-			ImGui::Text("PositionZ: %.3f", m_Position.z);
+			ImGui::Begin("GameObjects");
+			ImGui::PushID(this);
+			if (ImGui::CollapsingHeader(m_Name.c_str()))
+			{
+				ImGui::Text("PositionX: %.3f", m_Position.x);
+				ImGui::Text("PositionY: %.3f", m_Position.y);
+				ImGui::Text("PositionZ: %.3f", m_Position.z);
+			}
+			ImGui::PopID();
 			ImGui::End();
 		}
 	}
@@ -90,63 +96,65 @@ void GameObject3D::ContactEnded(GameObject3D * pOtherObj)
 }
 
 #undef new
-//Creates a Rigid Body for this object by default mass is 0 meaning the object is static
+//Called by all body types to actually create the body
+void GameObject3D::CreateBody(btCollisionShape* shape, float mass)
+{
+	//m_pScene->GetBulletManager()->collisionShapes.push_back(shape);
+
+	btTransform groundTransform;
+	groundTransform.setIdentity();
+	groundTransform.setOrigin(btVector3(0, 0, 0));
+	groundTransform.setRotation(btQuaternion(btScalar(2.0f), btScalar(0.0f), btScalar(0.0f)));
+
+	//rigidbody is dynamic if and only if mass is non zero, otherwise static
+	bool isDynamic = (mass != 0.f);
+
+	btVector3 localInertia(0, 0, 0);
+	if (isDynamic)
+		shape->calculateLocalInertia(mass, localInertia);
+
+	//using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
+	m_MotionState = new BulletMotionState(this);
+	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, m_MotionState, shape, localInertia);
+	m_Body = new btRigidBody(rbInfo);
+	m_Body->setUserPointer(this);
+
+	//add the body to the dynamics world
+	m_pScene->GetBulletManager()->dynamicsWorld->addRigidBody(m_Body);
+	m_pScene->Add3DBody(m_Body);
+}
+
+//Creates a Box Rigid Body for this object by default mass is 0 meaning the object is static
 void GameObject3D::CreateBoxBody(vec3 size, float mass /*= 0.0f*/)
 {
 	btCollisionShape* groundShape = new btBoxShape(btVector3(btScalar(size.x), btScalar(size.y), btScalar(size.z)));
 
-	//m_pScene->GetBulletManager()->collisionShapes.push_back(groundShape);
-
-	btTransform groundTransform;
-	groundTransform.setIdentity();
-	groundTransform.setOrigin(btVector3(0, 0, 0));
-	groundTransform.setRotation(btQuaternion(btScalar(2.0f), btScalar(0.0f), btScalar(0.0f)));
-
-	//rigidbody is dynamic if and only if mass is non zero, otherwise static
-	bool isDynamic = (mass != 0.f);
-
-	btVector3 localInertia(0, 0, 0);
-	if (isDynamic)
-		groundShape->calculateLocalInertia(mass, localInertia);
-
-	//using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
-	m_Rotation.x += 3.0f;
-	m_MotionState = new BulletMotionState(this);
-	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, m_MotionState, groundShape, localInertia);
-	m_Body = new btRigidBody(rbInfo);
-	m_Body->setUserPointer(this);
-
-	//add the body to the dynamics world
-	m_pScene->GetBulletManager()->dynamicsWorld->addRigidBody(m_Body);
+	CreateBody(groundShape, mass);
 }
 
+//Creates a Sphere Rigid Body for this object by default mass is 0 meaning the object is static
 void GameObject3D::CreateSphereBody(float radius, float mass /*= 0.0f*/)
 {
 	btCollisionShape* sphereShape = new btSphereShape(radius);
 
-	//m_pScene->GetBulletManager()->collisionShapes.push_back(groundShape);
+	CreateBody(sphereShape, mass);
 
-	btTransform groundTransform;
-	groundTransform.setIdentity();
-	groundTransform.setOrigin(btVector3(0, 0, 0));
-	groundTransform.setRotation(btQuaternion(btScalar(2.0f), btScalar(0.0f), btScalar(0.0f)));
+}
 
-	//rigidbody is dynamic if and only if mass is non zero, otherwise static
-	bool isDynamic = (mass != 0.f);
+//Creates a Rigid Body for this object by default mass is 0 meaning the object is static
+//Use this for any OBJ built objects. If it is not created with OBJ this will create nothing
+void GameObject3D::CreateConvexHullBody(float mass /*= 0.0f*/)
+{
+	btCollisionShape* hullShape = new btConvexHullShape();
 
-	btVector3 localInertia(0, 0, 0);
-	if (isDynamic)
-		sphereShape->calculateLocalInertia(mass, localInertia);
+	std::vector<vec3>points = m_pMesh->GetOBJVerts();
 
-	//using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
-	m_Rotation.x += 3.0f;
-	m_MotionState = new BulletMotionState(this);
-	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, m_MotionState, sphereShape, localInertia);
-	m_Body = new btRigidBody(rbInfo);
-	m_Body->setUserPointer(this);
+	for (unsigned int i = 0; i < points.size(); i++)
+	{
+		((btConvexHullShape*)hullShape)->addPoint(btVector3(points[i].x, points[i].y, points[i].z));
+	}
 
-	//add the body to the dynamics world
-	m_pScene->GetBulletManager()->dynamicsWorld->addRigidBody(m_Body);
+	CreateBody(hullShape, mass);
 }
 
 //creates an infinite plane for a floor at 0,0,0
@@ -155,25 +163,7 @@ void GameObject3D::CreatePlane()
 	btVector3 normal(0, 1, 0);
 	btCollisionShape* plane = new btStaticPlaneShape(normal, btScalar(0.0f));
 
-	btTransform groundTransform;
-	groundTransform.setIdentity();
-	groundTransform.setOrigin(btVector3(0, 0, 0));
-
-	//rigidbody is dynamic if and only if mass is non zero, otherwise static
-	bool isDynamic = (0 != 0.f);
-
-	btVector3 localInertia(0, 0, 0);
-	if (isDynamic)
-		plane->calculateLocalInertia(0, localInertia);
-
-	//using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
-	m_MotionState = new BulletMotionState(this);
-	btRigidBody::btRigidBodyConstructionInfo rbInfo(0, m_MotionState, plane, localInertia);
-	m_Body = new btRigidBody(rbInfo);
-	m_Body->setUserPointer(this);
-
-	//add the body to the dynamics world
-	m_pScene->GetBulletManager()->dynamicsWorld->addRigidBody(m_Body);
+	CreateBody(plane, 0.0f);
 }
 
 void GameObject3D::LoadFromcJSON(cJSON* obj, ResourceManager* manager)

@@ -89,7 +89,7 @@ void Game::LoadContent()
 		m_pResourceManager->GetMesh("Bullet")->CreateBox(vec2(0.25f, 0.25f), vec2(0.0f, 0.0f));
 
 		m_pResourceManager->AddMesh("Plane", new Mesh());
-		m_pResourceManager->GetMesh("Plane")->CreatePlane(vec2(10.0f, 10.0f), ivec2(60, 30));
+		m_pResourceManager->GetMesh("Plane")->CreatePlane(vec2(100.0f, 100.0f), ivec2(600, 300));
 
 		m_pResourceManager->AddMesh("Obj", new Mesh());
 		m_pResourceManager->GetMesh("Obj")->GenerateOBJ("Data/OBJ/cube.obj");
@@ -226,19 +226,16 @@ void Game::OnEvent(Event* pEvent)
 
 		//Scene 5
 		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 53)
-			m_pCurrentScene = m_pScenes["FileTestScene"];
+			Next = m_pScenes["PlatformerScene"];
+
 
 			//Scene 6
 			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 54)
-			{
-				Next = m_pScenes["PlatformerScene"];
-			}
+				Next = m_pScenes["BulletScene"];
+
 
 			//Scene 7
-			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 55)
-			{
-				Next = m_pScenes["BulletScene"];
-			}
+			//if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 55)
 
 			//if we're changing scenes potentially
 			if (Next != nullptr)

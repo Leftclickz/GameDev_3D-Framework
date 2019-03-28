@@ -33,8 +33,6 @@ void GraphicsScene::LoadContent()
 	Player* player = new Player(this, "Player", Transform(vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)), m_pResources->GetMesh("Teapot"), m_pResources->GetMaterial("Normal"));
 	player->SetPlayerController(m_pGame->GetController(0));
 	//player->CreateBody(b2_dynamicBody);
-
-	m_pGameObjects.push_back(player);
 }
 
 void GraphicsScene::OnEvent(Event* pEvent)
