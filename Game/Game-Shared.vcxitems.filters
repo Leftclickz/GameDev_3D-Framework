@@ -146,17 +146,17 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioVoice.cpp">
       <Filter>Audio\Data Structures</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\ShuffleAudioList.cpp">
-      <Filter>Audio\AudioList</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\WeightedRandomAudioList.cpp">
-      <Filter>Audio\AudioList</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\FBODefinition.cpp">
       <Filter>Mesh</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\SceneManager.cpp">
       <Filter>Resource Management\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\WeightedRandomAudioList.cpp">
+      <Filter>Audio\AudioList</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\ShuffleAudioList.cpp">
+      <Filter>Audio\AudioList</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

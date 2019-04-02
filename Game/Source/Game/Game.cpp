@@ -198,10 +198,6 @@ void Game::Update(float deltatime)
 	ImGui::PopID();
 	ImGui::End();
 
-	m_pCurrentScene->Update(deltatime);
-	if (m_pCurrentScene == m_pScenes["PlatformerScene"])
-		m_HUD->Update(deltatime);
-
 }
 
 void Game::Draw()

@@ -94,6 +94,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioVoice.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\BulletManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\ShuffleAudioList.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\WeightedRandomAudioList.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\FBODefinition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\TextMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Physics\BulletMotionState.cpp" />
