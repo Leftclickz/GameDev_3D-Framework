@@ -8,9 +8,11 @@ protected:
 
 public:
     Texture(const char* filename);
+	Texture();
     virtual ~Texture();
 
     GLuint GetTextureID() { return m_TextureID; }
+	void SetTectureID(GLuint id) { m_TextureID = id; }
 };
 
 #endif //__Texture_H__

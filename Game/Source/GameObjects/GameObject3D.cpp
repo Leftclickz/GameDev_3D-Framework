@@ -20,7 +20,7 @@ GameObject3D::GameObject3D(Scene* pScene, std::string name, Transform transform,
 {
 	m_MotionState = nullptr;
 	m_Body = nullptr;
-	m_pScene->AddGameObject(this);
+	//m_pScene->AddGameObject(this);
 }
 
 GameObject3D::~GameObject3D()

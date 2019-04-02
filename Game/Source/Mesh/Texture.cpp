@@ -7,6 +7,11 @@ Texture::Texture(const char* filename)
     m_TextureID = LoadTexture( filename );
 }
 
+Texture::Texture()
+{
+
+}
+
 Texture::~Texture()
 {
     glDeleteTextures( 1, &m_TextureID );

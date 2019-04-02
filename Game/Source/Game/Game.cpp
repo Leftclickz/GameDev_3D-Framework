@@ -20,13 +20,11 @@
 #include "../Framework/Source/Events/SceneChangeEvent.h"
 #include "AudioManager.h"
 #include "AudioEngine.h"
+#include "SceneManager.h"
 
 Game::Game(Framework* pFramework)
 : GameCore( pFramework, new EventManager() )
 {
-	m_pResourceManager = nullptr;
-
-	m_pCurrentScene = nullptr;
 
     for( int i=0; i<4; i++ )
     {
@@ -34,6 +32,9 @@ Game::Game(Framework* pFramework)
     }
 
     m_pPlayer = nullptr;
+	m_pResourceManager = nullptr;
+	m_pSceneManager = nullptr;
+	m_pImGuiManager = nullptr;
 }
 
 Game::~Game()
@@ -47,12 +48,8 @@ Game::~Game()
 
 	delete m_pImGuiManager;
 
-	for (auto object : m_pScenes)
-		delete object.second;
-
-	delete m_HUD;
-
 	delete m_pResourceManager;
+	delete m_pSceneManager;
 }
 
 void Game::OnSurfaceChanged(unsigned int width, unsigned int height)
@@ -77,6 +74,7 @@ void Game::LoadContent()
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 
 	m_pResourceManager = new ResourceManager(this);
+	m_pSceneManager = new SceneManager();
 
 	//MESHES
 	{
@@ -93,8 +91,8 @@ void Game::LoadContent()
 		m_pResourceManager->AddMesh("Plane", new Mesh());
 		m_pResourceManager->GetMesh("Plane")->CreatePlane(vec2(100.0f, 100.0f), ivec2(600, 300));
 
-		m_pResourceManager->AddMesh("Obj", new Mesh());
-		m_pResourceManager->GetMesh("Obj")->GenerateOBJ("Data/OBJ/cube.obj");
+		m_pResourceManager->AddMesh("ObjCube", new Mesh());
+		m_pResourceManager->GetMesh("ObjCube")->GenerateOBJ("Data/OBJ/cube.obj");
 
 		m_pResourceManager->AddMesh("Sphere", new Mesh());
 		m_pResourceManager->GetMesh("Sphere")->GenerateOBJ("Data/OBJ/sphere.obj");
@@ -144,27 +142,9 @@ void Game::LoadContent()
     }
 
 	//Scenes
-	m_pScenes["Graphics"] = new GraphicsScene(this, m_pResourceManager);
-	m_pScenes["Physics"] = new PhysicsScene(this, m_pResourceManager);
-	m_pScenes["PoolTest"] = new PoolTestScene(this, m_pResourceManager);
-	m_pScenes["Floatyboi"] = new FloatingScene(this, m_pResourceManager);
-	m_pScenes["PlatformerScene"] = new PlatformerScene(this, m_pResourceManager);
-	m_pScenes["BulletScene"] = new BulletScene(this, m_pResourceManager);
 
-	m_pScenes["Graphics"]->LoadContent();
-	m_pScenes["Physics"]->LoadContent();
-	m_pScenes["PoolTest"]->LoadContent();
-	m_pScenes["Floatyboi"]->LoadContent();
-	m_pScenes["PlatformerScene"]->LoadContent();
-	m_pScenes["BulletScene"]->LoadContent();
-
-
-	//set the current scene and notify the framework of this.
-	m_pCurrentScene = m_pScenes["BulletScene"];
-	GetEventManager()->QueueEvent(new SceneChangeEvent(nullptr, m_pCurrentScene));
-
-	m_HUD = new HUD_Scene(this, m_pResourceManager);
-	m_HUD->LoadContent();
+	m_pSceneManager->AddScene("BulletScene", new BulletScene(this, m_pResourceManager));
+	m_pSceneManager->PushScene("BulletScene");
 
 	m_pImGuiManager = new ImGuiManager();
 	m_pImGuiManager->Init();
@@ -178,10 +158,7 @@ void Game::OnEvent(Event* pEvent)
 
 	m_pImGuiManager->OnEvent(pEvent);
 
-	m_pCurrentScene->OnEvent(pEvent);
-
-	if (m_pCurrentScene == m_pScenes["PlatformerScene"])
-		m_HUD->OnEvent(pEvent);
+	m_pSceneManager->OnEvent(pEvent);
 
 #if WIN32
 	// Enable/Disable V-Sync with F1 and F2.
@@ -196,78 +173,7 @@ void Game::OnEvent(Event* pEvent)
 		// Disable V-Sync.
 		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == VK_F2)
 			wglSwapInterval(0);
-
-		//Scene transfering
-		{
-			Scene* Previous = m_pCurrentScene;
-			Scene* Next = nullptr;
-
-			// Scene 1.
-			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 49)
-			{
-				Next = m_pScenes["Floatyboi"];
-			}
-
-			// Scene 2.
-			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 50)
-			{
-				Next = m_pScenes["Physics"];
-			}
-
-			// Scene 3.
-			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 51)
-			{
-				Next = m_pScenes["PoolTest"];
-			}
-
-			//Scene 4
-			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 52)
-			{
-				Next = m_pScenes["Graphics"];
-			}
-
-		//Scene 5
-		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 53)
-			Next = m_pScenes["PlatformerScene"];
-
-
-			//Scene 6
-			if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 54)
-				Next = m_pScenes["BulletScene"];
-
-
-			//Scene 7
-			//if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 55)
-
-			//if we're changing scenes potentially
-			if (Next != nullptr)
-			{
-				if (Previous != Next)
-				{
-					m_pCurrentScene = Next;
-					GetEventManager()->QueueEvent(new SceneChangeEvent(Previous, Next));
-				}
-			}
-		}
 	}
-
-	//Scene changing event handling
-	if (pEvent->GetEventType() == EventType_SceneChange)
-	{
-		SceneChangeEvent* sceneEvent = (SceneChangeEvent*)pEvent;
-
-		if (sceneEvent)
-		{
-			Scene* Previous = reinterpret_cast<Scene*>(sceneEvent->GetFrom());
-			Scene* Next = reinterpret_cast<Scene*>(sceneEvent->GetTo());
-
-			if (Previous)	Previous->HasLeftFocus();
-			if (Next)		Next->HasEnteredFocus();
-
-		}
-	}
-
-
 #endif //WIN32
 }
 
@@ -307,9 +213,7 @@ void Game::Draw()
 #endif
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-	m_pCurrentScene->Draw();
-	if (m_pCurrentScene == m_pScenes["PlatformerScene"])
-		m_HUD->Draw();
+	m_pSceneManager->Draw();
 
 	m_pImGuiManager->EndFrame();
 

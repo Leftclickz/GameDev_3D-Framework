@@ -10,24 +10,17 @@ class ResourceManager;
 class Scene;
 class ImGuiManager;
 class HUD_Scene;
+class SceneManager;
 
 class Game : public GameCore
 {
 protected:
-
-	ResourceManager* m_pResourceManager;
-
-	Scene* m_pCurrentScene;
-	//std::vector<Scene*> m_pScenes;
-
-	std::map<std::string, Scene*> m_pScenes;
-	HUD_Scene* m_HUD;
-
     PlayerController* m_pControllers[4];
-
     Player* m_pPlayer;
 
+	ResourceManager* m_pResourceManager;
 	ImGuiManager* m_pImGuiManager;
+	SceneManager* m_pSceneManager;
 
 public:
     Game(Framework* pFramework);
@@ -42,7 +35,7 @@ public:
 
     PlayerController* GetController(int index) { return m_pControllers[index]; }
 
-	Scene* GetCurrentScene() { return m_pCurrentScene; }
+	SceneManager* GetSceneManager() { return m_pSceneManager; }
 };
 
 #endif //__Game_H__

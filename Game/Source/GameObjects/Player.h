@@ -32,6 +32,8 @@ public:
 
 	virtual void ContactStarted(GameObject3D* pOtherObj) override;
 	virtual void ContactEnded(GameObject3D* pOtherObj) override;
+
+	virtual void DisplayImguiDebugInfo() override;
 };
 
 #endif //__Player_H__
