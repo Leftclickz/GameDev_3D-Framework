@@ -125,9 +125,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\ImGuiManager.cpp">
       <Filter>Resource Management\Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)SceneManager.cpp">
-      <Filter>Resource Management\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\Texture.cpp">
       <Filter>Mesh\Texture</Filter>
     </ClCompile>
@@ -145,6 +142,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlayerController.cpp">
       <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\FBODefinition.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\SceneManager.cpp">
+      <Filter>Resource Management\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -275,9 +278,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\ImGuiManager.h">
       <Filter>Resource Management\Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)SceneManager.h">
-      <Filter>Resource Management\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\Texture.h">
       <Filter>Mesh\Texture</Filter>
     </ClInclude>
@@ -295,6 +295,12 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlayerController.h">
       <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\FBODefinition.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\SceneManager.h">
+      <Filter>Resource Management\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

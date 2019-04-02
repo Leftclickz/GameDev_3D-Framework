@@ -24,15 +24,6 @@ void Player::Update(float deltatime)
 {
 	GameObject3D::Update( deltatime );
 
-	ImGui::Begin("GameObjects");
-	ImGui::PushID(this);
-	if (ImGui::CollapsingHeader(m_Name.c_str()))
-	{
-		ImGui::SliderFloat("Speed", &m_Speed, 0.0f, 20.0f);
-	}
-	ImGui::PopID();
-	ImGui::End();
-
 	btVector3 dir( 0, 0, 0 );
 
     if( m_pPlayerController )
@@ -142,4 +133,22 @@ void Player::ContactStarted(GameObject3D* pOtherObj)
 void Player::ContactEnded(GameObject3D* pOtherObj)
 {
 	GameObject3D::ContactEnded(pOtherObj);
+}
+
+void Player::DisplayImguiDebugInfo()
+{
+	if (isEnabled)
+	{
+		ImGui::Begin("GameObjects");
+		ImGui::PushID(this);
+		if (ImGui::CollapsingHeader(m_Name.c_str()))
+		{
+			ImGui::Text("PositionX: %.3f", m_Position.x);
+			ImGui::Text("PositionY: %.3f", m_Position.y);
+			ImGui::Text("PositionZ: %.3f", m_Position.z);
+			ImGui::SliderFloat("Speed", &m_Speed, 0.0f, 20.0f);
+		}
+		ImGui::PopID();
+		ImGui::End();
+	}
 }

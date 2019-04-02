@@ -11,6 +11,7 @@
 HUD_Scene::HUD_Scene(Game* pGame, ResourceManager* pResources)
 	:Scene(pGame, pResources)
 {
+	m_IsTransparent = true;
 }
 
 HUD_Scene::~HUD_Scene()

@@ -15,7 +15,7 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)SceneManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\SceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\cJSONHelpers.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Bullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Camera.h" />
@@ -37,6 +37,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioEngine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\SharedAudioChannel.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\FBODefinition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\TextMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Physics\BulletMotionState.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Physics\ContactListener.h" />
@@ -67,7 +68,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Physics\PhysicsWorld.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)SceneManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\SceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\cJSONHelpers.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Bullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Camera.cpp" />
@@ -89,6 +90,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\BulletManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\SharedAudioChannel.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\FBODefinition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\TextMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Physics\BulletMotionState.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Physics\ContactListener.cpp" />

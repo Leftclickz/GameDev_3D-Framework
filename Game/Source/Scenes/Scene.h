@@ -10,6 +10,7 @@ class Camera;
 class HUD_Scene;
 
 #include "../Game/Pool.h"
+#include "../GameObjects/GameObject.h"
 
 class Scene
 {
@@ -33,6 +34,8 @@ protected:
 	Pool<GameObject*> m_RemovedPool;
 
 	BulletManager* m_BulletManager;
+
+	bool m_IsTransparent = false;
 
 public:
 	bool m_ShouldReset = false;
@@ -65,6 +68,8 @@ public:
 	virtual void Reset();
 
 	BulletManager* GetBulletManager() { return m_BulletManager; }
+
+	bool IsTransparent() { return m_IsTransparent; }
 
 	//event-driven function for when this scene is no longer the current scene for the game
 	virtual void HasLeftFocus() {}

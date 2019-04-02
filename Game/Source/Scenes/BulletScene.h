@@ -5,6 +5,7 @@ class DebugDraw;
 class BulletManager;
 class ChaseCameraObject;
 class LightObject;
+class FBODefinition;
 
 class BulletScene : public Scene
 {
@@ -24,4 +25,7 @@ public:
 protected:
 
 	std::vector<LightObject*> m_pLights;
+	FBODefinition* m_FBO;
+
+	class GameObject3D* m_FBOobject;
 };
