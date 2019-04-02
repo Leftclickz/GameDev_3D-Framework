@@ -2,9 +2,10 @@
 #include "AudioDataStructures.h"
 #include "AudioEngine.h"
 #include "AudioManager.h"
+#include "AudioVoice.h"
 
 Audio::Audio(const char* audioname, const char* filename) :
-	m_Source(nullptr),
+	m_Voice(nullptr),
 	m_EventManager(nullptr),
 	m_IsPlaying(false),
 	m_SampleOffset(0)
@@ -21,50 +22,45 @@ Audio::Audio(const char* audioname, const char* filename) :
 
 	//Set the buffer's context pointer
 	m_Buffer.pContext = this;
-
-	m_CreatedVoice = false;
 }
 
 Audio::~Audio()
 {
-	if (m_Source != nullptr && m_CreatedVoice == true)
-		AudioManager::GetEngine()->DestroyAudioVoice(m_Source);
+	if (m_Voice != nullptr)
+	{
+		if (m_Voice->GetVoiceType() == VoiceType_Dedicated)
+			AudioManager::GetEngine()->DestroyAudioVoice(m_Voice);
+	}
 }
 
-void Audio::Play()
+void Audio::Play(bool UsePublicChannel /*= false*/)
 {
-	Stop();
 
-	//We can only have one
-	if (IsPlaying() == false && m_Source != nullptr)
+	if (UsePublicChannel == false)
 	{
-		//Submit the source buffer and start playing the sound
-		m_Source->SubmitSourceBuffer(&m_Buffer);
-		m_Source->Start();
-
-		//Query the state of the buffer to calculate the sample offset, 
-		//this is needed for accurate playback information
-		XAUDIO2_VOICE_STATE state;
-		m_Source->GetState(&state);
-		m_SampleOffset = state.SamplesPlayed;
-
-		//Reset the buffer
-		m_Buffer.PlayBegin = 0;
-
-		//Set the is playing flag to true
-		m_IsPlaying = true;
+		if (m_Voice != nullptr)
+		{
+			Stop();
+			m_Voice->PlayAudio(this);
+			m_IsPlaying = true;
+		}
 	}
+	else
+	{
+		AudioVoice* channel = AudioManager::GetEngine()->GetAvailablePublicChannel();
+		if (channel != nullptr)
+		{
+			channel->PlayAudio(this);
+		}
+	}
+
 }
 
 void Audio::Stop()
 {
-	//Stop playing the sound and flush the source buffer
-	if (m_Source != nullptr)
+	if (m_Voice != nullptr)
 	{
-		m_Source->Stop();
-		m_Source->FlushSourceBuffers();
-
-		//Set the is playing flag to false
+		m_Voice->StopAudio();
 		m_IsPlaying = false;
 	}
 }
@@ -96,22 +92,22 @@ unsigned int Audio::GetSampleRate()
 
 void Audio::SetFrequencyRatio(float aFrequencyRatio)
 {
-	if (m_Source != nullptr)
+	if (m_Voice != nullptr)
 	{
 		//Bounds check the frequency, it can't be negative
 		aFrequencyRatio = fmaxf(aFrequencyRatio, 0.0f);
 
 		//Set the frequency ratio
-		m_Source->SetFrequencyRatio(aFrequencyRatio);
+		m_Voice->GetSource()->SetFrequencyRatio(aFrequencyRatio);
 	}
 }
 
 float Audio::GetFrequencyRatio()
 {
-	if (m_Source != nullptr)
+	if (m_Voice != nullptr)
 	{
 		float frequencyRatio = 0;
-		m_Source->GetFrequencyRatio(&frequencyRatio);
+		m_Voice->GetSource()->GetFrequencyRatio(&frequencyRatio);
 		return frequencyRatio;
 	}
 
@@ -120,16 +116,16 @@ float Audio::GetFrequencyRatio()
 
 void Audio::SetVolume(float aVolume)
 {
-	if (m_Source != nullptr)
-		m_Source->SetVolume(aVolume);
+	if (m_Voice != nullptr)
+		m_Voice->GetSource()->SetVolume(aVolume);
 }
 
 float Audio::GetVolume()
 {
-	if (m_Source != nullptr)
+	if (m_Voice != nullptr)
 	{
 		float volume = 0.0f;
-		m_Source->GetVolume(&volume);
+		m_Voice->GetSource()->GetVolume(&volume);
 		return volume;
 	}
 
@@ -166,10 +162,10 @@ void Audio::SetPosition(double aSeconds)
 
 unsigned long long Audio::GetElapsedSamples()
 {
-	if (m_Source != nullptr)
+	if (m_Voice != nullptr)
 	{
 		XAUDIO2_VOICE_STATE state;
-		m_Source->GetState(&state);
+		m_Voice->GetSource()->GetState(&state);
 		return state.SamplesPlayed - m_SampleOffset;
 	}
 
@@ -261,33 +257,29 @@ void Audio::DispatchEvent(AudioEvent* pEvent)
 {
 	if (m_EventManager != nullptr)
 	{
-		//if we're queueing a playback stop event we are no longer playing audio
-		if (pEvent->GetEventCode() == Audio_Playback_Ended)
-			m_IsPlaying = false;
-
 		m_EventManager->QueueEvent(pEvent);
 	}
 }
 
 void Audio::CreateVoice()
 {
-	if (m_Source == nullptr)
+	if (m_Voice == nullptr)
 	{
-		//Create the audio voice
-		AudioManager::GetEngine()->CreateAudioVoice(&m_Source, &m_WaveFormat);
+		m_Voice = new AudioVoice(m_WaveFormat, VoiceType_Dedicated);
 
-		m_CreatedVoice = true;
+		//Create the audio voice
+		AudioManager::GetEngine()->CreateAudioVoice(m_Voice);
 	}
 }
 
-void Audio::SetVoice(IXAudio2SourceVoice* Voice)
+void Audio::SetVoice(AudioVoice* Voice)
 {
 	if (Voice == nullptr)
 		return;
 
-	if (m_Source == nullptr)
+	if (m_Voice == nullptr)
 	{
-		m_Source = Voice;
+		m_Voice = Voice;
 	}
 }
 

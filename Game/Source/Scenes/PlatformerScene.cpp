@@ -22,7 +22,10 @@
 #include "GameObjects/Shootable.h"
 #include "GameObjects/PlatformerEnemy.h"
 #include "Game/AudioDataStructures.h"
-#include "Game/SharedAudioChannel.h"
+#include "Game/AudioManager.h"
+#include "Game/AudioEngine.h"
+#include "Game/WeightedRandomAudioList.h"
+#include "Game/ShuffleAudioList.h"
 
 PlatformerScene::PlatformerScene(Game* pGame, ResourceManager* pResources) :
 	Scene(pGame, pResources)
@@ -72,8 +75,12 @@ void PlatformerScene::LoadContent()
 
 	Scene::LoadContent();
 
-	//load wave file
+	//load wave files
 	m_pResources->LoadWaveData("Main Music", "Floor_1");
+	m_pResources->LoadWaveData("Player Swing 1", "Player_Swing_1");
+	m_pResources->LoadWaveData("Player Swing 2", "Player_Swing_2");
+	m_pResources->LoadWaveData("Player Swing 3", "Player_Swing_3");
+	m_pResources->LoadWaveData("Player Swing 4", "Player_Swing_4");
 	
 	//load our scene
 	LoadFromSceneFile("Data/Scenes/Platforming.box2dscene");
@@ -82,8 +89,18 @@ void PlatformerScene::LoadContent()
 	//create audio voice
 	m_GameAudio = m_pResources->CreateAudio("Main Music", "Main Music");
 
-	m_BackgroundChannel = new SharedAudioChannel(m_GameAudio->GetWaveFormat());
-	m_BackgroundChannel->AddAudio(m_GameAudio);
+	m_BackgroundChannel = new WeightedRandomAudioList();
+
+	AudioManager::GetEngine()->SetDefaultWaveFormat(*m_GameAudio->GetWaveFormat());
+	AudioManager::GetEngine()->CreatePublicAudioChannels();
+	
+	m_BackgroundChannel->AddAudio(m_pResources->CreateAudio("Player Swing 1", "Player Swing 1"));
+	m_BackgroundChannel->AddAudio(m_pResources->CreateAudio("Player Swing 2", "Player Swing 2"));
+	m_BackgroundChannel->AddAudio(m_pResources->CreateAudio("Player Swing 3", "Player Swing 3"));
+	m_BackgroundChannel->AddAudio(m_pResources->CreateAudio("Player Swing 4", "Player Swing 4"));
+	m_BackgroundChannel->SetName("Soundboard");
+
+	//m_BackgroundChannel->RemoveAudio(m_pResources->GetAudio("Player Swing 3"));
 
 	//Collision Filtering Setup time
 	b2Filter PickupFilter;
@@ -123,14 +140,6 @@ void PlatformerScene::LoadContent()
 		b->SetPool(&m_BulletPool);
 
 		m_BulletPool.AddObjectToPool(b);
-	}
-
-	//make the audio loop
-	if (m_BackgroundChannel != nullptr)
-	{
-		Audio* audio = m_BackgroundChannel->GetAudioAt(0);
-		audio->SetDoesLoop(true);
-		audio->SetVolume(0.1f);
 	}
 }
 
@@ -175,7 +184,16 @@ void PlatformerScene::Update(float deltatime)
 	ImGui::Checkbox("Wireframe", &m_Wireframe);
 	ImGui::Checkbox("Debug", &m_DebugDraw);
 
+	m_BackgroundChannel->Update(deltatime);
+
 	Scene::Update(deltatime);
+
+	//m_Timer += deltatime;
+	if (m_Timer >= 0.5f)
+	{
+		m_BackgroundChannel->PlayAudio();
+		m_Timer -= 0.5f;
+	}
 
 	//if we won or lost start the timer
 	if (m_GameState == WinState || m_GameState == LoseState)
@@ -441,8 +459,7 @@ void PlatformerScene::HasEnteredFocus()
 {
 	if (m_BackgroundChannel != nullptr)
 	{
-		Audio* audio = m_BackgroundChannel->GetAudioAt(0);
-		audio->Play();
+		m_BackgroundChannel->PlayAudio(0);
 	}
 }
 
@@ -450,7 +467,6 @@ void PlatformerScene::HasLeftFocus()
 {
 	if (m_BackgroundChannel != nullptr)
 	{
-		Audio* audio = m_BackgroundChannel->GetAudioAt(0);
-		audio->Stop();
+		m_BackgroundChannel->StopAudio();
 	}
 }

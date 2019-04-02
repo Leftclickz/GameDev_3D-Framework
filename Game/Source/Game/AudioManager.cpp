@@ -23,6 +23,9 @@ void AudioManager::Initialize()
 
 void AudioManager::Release()
 {
+	delete Engine;
+	Engine = nullptr;
+
 	for (auto object : *LoadedAudioMap)
 		delete object.second;
 
@@ -31,9 +34,6 @@ void AudioManager::Release()
 
 	delete LoadedAudioMap;
 	delete LoadedWaveDataMap;
-
-	delete Engine;
-	Engine = nullptr;
 }
 
 bool AudioManager::LoadFromPath(const char* name, const char* path)

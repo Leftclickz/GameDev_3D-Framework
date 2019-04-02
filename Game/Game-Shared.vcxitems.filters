@@ -116,12 +116,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\HUD_TextObject.cpp">
       <Filter>Game Objects\HUD</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioDataStructures.cpp">
-      <Filter>Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioEngine.cpp">
-      <Filter>Audio</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\ImGuiManager.cpp">
       <Filter>Resource Management\Imgui</Filter>
     </ClCompile>
@@ -140,11 +134,26 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Mesh\Material.cpp">
       <Filter>Mesh\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\SharedAudioChannel.cpp">
-      <Filter>Audio</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlayerController.cpp">
       <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioList.cpp">
+      <Filter>Audio\AudioList</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioEngine.cpp">
+      <Filter>Audio\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioDataStructures.cpp">
+      <Filter>Audio\Data Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\AudioVoice.cpp">
+      <Filter>Audio\Data Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\ShuffleAudioList.cpp">
+      <Filter>Audio\AudioList</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\WeightedRandomAudioList.cpp">
+      <Filter>Audio\AudioList</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -266,12 +275,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\HUD_TextObject.h">
       <Filter>Game Objects\HUD</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioDataStructures.h">
-      <Filter>Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioEngine.h">
-      <Filter>Audio</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\ImGuiManager.h">
       <Filter>Resource Management\Imgui</Filter>
     </ClInclude>
@@ -290,11 +293,26 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Mesh\Material.h">
       <Filter>Mesh\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\SharedAudioChannel.h">
-      <Filter>Audio</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\PlayerController.h">
       <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioList.h">
+      <Filter>Audio\AudioList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioEngine.h">
+      <Filter>Audio\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioDataStructures.h">
+      <Filter>Audio\Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\AudioVoice.h">
+      <Filter>Audio\Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\ShuffleAudioList.h">
+      <Filter>Audio\AudioList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\WeightedRandomAudioList.h">
+      <Filter>Audio\AudioList</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -419,6 +437,15 @@
     </Filter>
     <Filter Include="Data\Shaders">
       <UniqueIdentifier>{5b531d27-aa84-436b-a76e-8eb7506db766}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\AudioList">
+      <UniqueIdentifier>{e718f01d-c49f-47b2-b31a-2fbb48729cd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\Engine">
+      <UniqueIdentifier>{c5df7400-0cfd-4715-9f92-13fd8e3eff1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\Data Structures">
+      <UniqueIdentifier>{654975d3-c385-4142-972d-80028b64b8e3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

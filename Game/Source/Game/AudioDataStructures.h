@@ -3,6 +3,8 @@
 
 #define EVENTCALLBACK __declspec(nothrow) void __stdcall
 
+class AudioVoice;
+
 struct WaveData
 {
 	WaveData()
@@ -38,7 +40,7 @@ public:
 	~Audio();
 
 	//Play and Stop methods
-	void Play();
+	void Play(bool UsePublicChannel = false);
 	void Stop();
 
 	//Returns wether the audio is playing
@@ -117,21 +119,23 @@ public:
 	void CreateVoice();
 
 	//sets the voice for this audio
-	void SetVoice(IXAudio2SourceVoice* Voice);
+	void SetVoice(AudioVoice* Voice);
 
 	//Get the wave format of this audio file
 	WAVEFORMATEX* GetWaveFormat() { return &m_WaveFormat; }
 
+	XAUDIO2_BUFFER* GetBuffer() { return &m_Buffer; }
+	void SetSampleOffset(unsigned long long Offset) { m_SampleOffset = Offset; }
+
 protected:
 	//Member variables
-	IXAudio2SourceVoice* m_Source;
+	AudioVoice* m_Voice;
 	WAVEFORMATEX m_WaveFormat;
 	XAUDIO2_BUFFER m_Buffer;
 	bool m_IsPlaying;
 	unsigned long long m_SampleOffset;
 	const char* m_AudioName;
 	EventManager* m_EventManager;
-	bool m_CreatedVoice;
 };
 
 

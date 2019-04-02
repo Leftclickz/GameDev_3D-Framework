@@ -48,5 +48,7 @@ protected:
 	vec3 m_LERPOffset = vec3(0);
 
 	Audio* m_GameAudio;
-	SharedAudioChannel* m_BackgroundChannel;
+	class AudioList* m_BackgroundChannel;
+
+	float m_Timer = 0.0f;
 };

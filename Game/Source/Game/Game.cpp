@@ -18,6 +18,8 @@
 #include "Scenes/HUD_Scene.h"
 #include "Scenes/BulletScene.h"
 #include "../Framework/Source/Events/SceneChangeEvent.h"
+#include "AudioManager.h"
+#include "AudioEngine.h"
 
 Game::Game(Framework* pFramework)
 : GameCore( pFramework, new EventManager() )
@@ -271,15 +273,29 @@ void Game::OnEvent(Event* pEvent)
 
 void Game::Update(float deltatime)
 {
+
 	if (deltatime > 0.1f)
 	{
 		deltatime = 0.1f;
 	}
 	m_pImGuiManager->StartFrame((float)m_pFramework->GetWindowWidth(), (float)m_pFramework->GetWindowHeight(), deltatime);
 
+	ImGui::Begin("Sound");
+	ImGui::PushID(this);
+	if (ImGui::CollapsingHeader("Public Channels"))
+	{
+		if (ImGui::Button("Stop All Public Channels"))
+		{
+			AudioManager::GetEngine()->StopAllPublicAudioChannels();
+		}
+	}
+	ImGui::PopID();
+	ImGui::End();
+
 	m_pCurrentScene->Update(deltatime);
 	if (m_pCurrentScene == m_pScenes["PlatformerScene"])
 		m_HUD->Update(deltatime);
+
 }
 
 void Game::Draw()
