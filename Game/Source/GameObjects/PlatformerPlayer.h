@@ -5,14 +5,6 @@ class Mesh;
 class PlayerController;
 #include "GameObjects/GameObject2D.h"
 
-enum EGameState
-{
-	PlayState,
-	WinState,
-	LoseState
-
-};
-
 class PlatformerPlayer : public GameObject2D
 {
 	const float PLAYER_SPEED = 4.5f;   // Units per second

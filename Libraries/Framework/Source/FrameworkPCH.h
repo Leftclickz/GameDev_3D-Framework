@@ -67,6 +67,8 @@ typedef MyMatrix mat4;
 #include "Events/TranslateObjectEvent.h"
 #include "Events/GameStateEvent.h"
 #include "Events/EventManager.h"
+#include "Events/AudioEvent.h"
+#include "events/SceneChangeEvent.h"
 
 #if WIN32
 #include "../Source-Win32/FrameworkMain.h"

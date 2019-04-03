@@ -26,6 +26,9 @@ public:
 	vec3 GetOffset() { return m_Offset; }
 	void SetOffset(vec3 offset) { m_Offset = offset; }
 
+	void SetOrthoSize(vec2 size) { m_OrthoSize = size; }
+	vec2 GetOrthoSize() { return m_OrthoSize; }
+
 	void LERPToTarget(float LERPTimer, GameObject* pObj, vec3 offset);
 
 	void Update(float deltatime);
@@ -43,6 +46,7 @@ protected:
 	vec3 m_LookAtPosition;
 
 	bool m_isOrtho = false;
+	vec2 m_OrthoSize;
 
 	//lerping
 	float m_LERPTimer;

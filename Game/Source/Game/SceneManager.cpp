@@ -21,23 +21,31 @@ void SceneManager::Update(float delta)
 {
 	if (m_ActiveScenes.size() > 0)
 	{
-		unsigned int startingIndex = 0;
-
-		for (unsigned int i = m_ActiveScenes.size() - 1; i >= 0; i--)
+		//Update starting with the topmost scene.
+		for (int i = m_ActiveScenes.size() - 1; i >= 0; i--)
 		{
-			startingIndex = i;
+			m_ActiveScenes[i]->Update(delta);
+
+			//if the last scene told us to stop updating, stop
+ 			if (m_ActiveScenes[i]->DoesPause())
+ 				break;
+
+			//if the last scene we updated was not transparent don't update whats behind it
 			if (!m_ActiveScenes[i]->IsTransparent())
-			{
-				//if this Scene is not transparent we don't need to consider anything behind it
 				break;
-			}
 		}
+	}
 
-		//Update scenes starting with the lowest non-transparent scene
-		for (unsigned int j = startingIndex; j < m_ActiveScenes.size(); j++)
+	if (m_ActiveScenes.size() > 0)
+	{
+		ImGui::Begin("SceneManager");
+		ImGui::PushID(this);
+		for (int i = m_ActiveScenes.size() - 1; i >= 0; i--)
 		{
-			m_ActiveScenes[j]->Update(delta);
+			ImGui::CollapsingHeader(m_ActiveScenes[i]->GetName().c_str());
 		}
+		ImGui::PopID();
+		ImGui::End();
 	}
 }
 
@@ -48,7 +56,7 @@ void SceneManager::Draw()
 	{
 		unsigned int startingIndex = 0;
 
-		for (unsigned int i = m_ActiveScenes.size() - 1; i >= 0; i--)
+		for (int i = m_ActiveScenes.size() - 1; i >= 0; i--)
 		{
 			startingIndex = i;
 			if (!m_ActiveScenes[i]->IsTransparent())
@@ -59,7 +67,7 @@ void SceneManager::Draw()
 		}
 
 		//draw scenes starting with the lowest non-transparent scene
-		for (unsigned int j = startingIndex; j < m_ActiveScenes.size(); j++)
+		for (int j = startingIndex; j < m_ActiveScenes.size(); j++)
 		{
 			m_ActiveScenes[j]->Draw();
 		}
@@ -81,6 +89,7 @@ bool SceneManager::PushScene(std::string sceneName)
 	}
 
 	m_ActiveScenes.push_back(it->second);
+	m_ActiveScenes.back()->HasEnteredFocus();
 	return true;
 }
 
@@ -91,7 +100,7 @@ void SceneManager::Pop()
 
 void SceneManager::PopAllScenes()
 {
-	for (unsigned int i = 0; i < m_ActiveScenes.size(); i++)
+	for (auto i : m_ActiveScenes)
 	{
 		Pop();
 	}
@@ -102,6 +111,7 @@ bool SceneManager::AddScene(std::string name, Scene* pScene)
 	if (m_pScenes.find(name) == m_pScenes.end())
 	{
 		m_pScenes[name] = pScene;
+		pScene->SetSceneManager(this);
 		pScene->LoadContent();
 		return true;
 	}
@@ -109,6 +119,25 @@ bool SceneManager::AddScene(std::string name, Scene* pScene)
 		delete pScene;
 
 	return false;
+}
+
+bool SceneManager::IsSceneAdded(std::string name)
+{
+	if (m_pScenes.find(name) == m_pScenes.end())
+		return false;
+
+	return true;
+}
+
+//returns nullptr if scene not found
+Scene* SceneManager::GetSceneByName(std::string name)
+{
+	if (IsSceneAdded(name))
+		return m_pScenes[name];
+
+	return nullptr;
+
+	
 }
 
 void SceneManager::OnEvent(Event* pEvent)
@@ -128,8 +157,31 @@ void SceneManager::OnEvent(Event* pEvent)
 		}
 	}
 
-	for (auto object : m_ActiveScenes)
+	if (m_ActiveScenes.size() > 0)
 	{
-		object->OnEvent(pEvent);
+		//give the event to the topmost scene and go down if needed
+		for (int i = m_ActiveScenes.size() - 1; i >= 0; i--)
+		{
+			if (m_ActiveScenes[i]->DoesStopEvents())
+			{
+				m_ActiveScenes[i]->OnEvent(pEvent);
+				break;
+			}
+			else
+			{
+				m_ActiveScenes[i]->OnEvent(pEvent);
+			}
+		}
 	}
+}
+
+//fully resets the manager, Popping all Scenes
+void SceneManager::Reset()
+{
+	for (auto i : m_ActiveScenes)
+	{
+		i->Reset();
+	}
+
+	PopAllScenes();
 }

@@ -158,6 +158,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\ShuffleAudioList.cpp">
       <Filter>Audio\AudioList</Filter>
     </ClCompile>
+    <ClCompile Include="Z:\Projects\Repos\19W_GAM1573_Game2\Game\Source\Scenes\PauseScreen.cpp">
+      <Filter>Scene\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="Z:\Projects\Repos\19W_GAM1573_Game2\Game\Source\Scenes\TitleScreen.cpp">
+      <Filter>Scene\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="Z:\Projects\Repos\19W_GAM1573_Game2\Game\Source\Scenes\OptionsScene.cpp">
+      <Filter>Scene\HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GamePCH.h" />
@@ -319,6 +328,15 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\SceneManager.h">
       <Filter>Resource Management\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Z:\Projects\Repos\19W_GAM1573_Game2\Game\Source\Scenes\PauseScreen.h">
+      <Filter>Scene\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="Z:\Projects\Repos\19W_GAM1573_Game2\Game\Source\Scenes\TitleScreen.h">
+      <Filter>Scene\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="Z:\Projects\Repos\19W_GAM1573_Game2\Game\Source\Scenes\OptionsScene.h">
+      <Filter>Scene\HUD</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

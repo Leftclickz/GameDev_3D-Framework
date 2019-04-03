@@ -1,10 +1,8 @@
 #include "GamePCH.h"
-
-#include "../Game/Game.h"
-#include "Game/ResourceManager.h"
-#include "Game/BulletManager.h"
 #include "Scene.h"
-#include "GameObjects/GameObject.h"
+
+#include "Game/BulletManager.h"
+
 #include "GameObjects/Player.h"
 #include "GameObjects/PlatformerPlayer.h"
 #include "GameObjects/PlatformerEnemy.h"
@@ -13,7 +11,6 @@
 #include "../Physics/PhysicsWorld.h"
 
 #include "Mesh/SpriteSheet.h"
-#include "GameObjects/Camera.h"
 #include "../SaveLoad.h"
 
 #include <string.h>
@@ -31,8 +28,6 @@ Scene::Scene(Game* pGame, ResourceManager* pResources)
 	m_BulletManager = nullptr;
 
 	m_Camera = new Camera(this, "Camera", Transform(vec3(0.0f, 5.0f, -5.0f)));
-	m_Camera->CreateProjectionMatrix();
-	m_Camera->CreateViewMatrix();
 	AddGameObject(m_Camera);
 }
 

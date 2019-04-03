@@ -1,6 +1,14 @@
 #pragma once
 
-enum EGameState;
+enum EGameState
+{
+	TitleState,
+	PlayState,
+	PauseState,
+	WinState,
+	LoseState
+
+};
 
 class GameStateEvent : public Event {
 

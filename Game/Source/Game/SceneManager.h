@@ -24,8 +24,12 @@ public:
 	//A scene not first added CANNOT be pushed.
 	//returns true if successful
 	virtual bool AddScene(std::string name, Scene* pScene);
+	virtual bool IsSceneAdded(std::string name);
+	virtual Scene* GetSceneByName(std::string name);
 
 	virtual void OnEvent(Event* pEvent);
+
+	virtual void Reset();
 
 	const std::vector<Scene*> GetActiveScenes() { return m_ActiveScenes; }
 

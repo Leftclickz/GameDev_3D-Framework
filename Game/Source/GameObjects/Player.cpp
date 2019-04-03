@@ -13,6 +13,7 @@ Player::Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh
 	, m_pPlayerController(nullptr)
 	, m_Speed(PLAYER_SPEED)
 	, m_TurningSpeed(PLAYER_SPEED)
+	, m_Health(PLAYER_HEALTH)
 {
 }
 
@@ -127,6 +128,8 @@ void Player::ContactStarted(GameObject3D* pOtherObj)
 		dir *= 50.0f;
 
 		pOtherObj->GetBody()->applyCentralImpulse(btVector3(dir.x, dir.y, dir.z));
+
+		TakeDamage(30.0f);
 	}
 }
 
@@ -151,4 +154,28 @@ void Player::DisplayImguiDebugInfo()
 		ImGui::PopID();
 		ImGui::End();
 	}
+}
+
+void Player::TakeDamage(float amount)
+{
+	m_Health -= amount;
+
+	if (m_Health <= 0)
+	{
+		m_Health = 0;
+		Die();
+	}
+}
+
+void Player::Die()
+{
+	m_pScene->GetGame()->GetEventManager()->QueueEvent(new GameStateEvent(LoseState));
+}
+
+void Player::Reset()
+{
+	GameObject3D::Reset();
+
+	m_Health = PLAYER_HEALTH;
+	m_Speed = PLAYER_SPEED;
 }

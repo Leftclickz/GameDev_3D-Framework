@@ -22,10 +22,18 @@ public:
 
 	virtual std::vector<LightObject*>* GetLightVector() { return &m_pLights; }
 
+	virtual void HasEnteredFocus() override;
+	virtual void HasLeftFocus() override;
+
+	virtual void Reset() override;
+
 protected:
 
 	std::vector<LightObject*> m_pLights;
 	FBODefinition* m_FBO;
 
 	class GameObject3D* m_FBOobject;
+
+	class Audio* m_GameAudio;
+	class AudioList* m_BackgroundChannel;
 };

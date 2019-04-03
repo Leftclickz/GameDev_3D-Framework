@@ -1,30 +1,32 @@
 #include "GamePCH.h"
 #include "BulletScene.h"
 
-#include "../Game/Game.h"
-#include "Game/ResourceManager.h"
-#include "Scene.h"
-#include "GameObjects/GameObject.h"
+#include "Game/BulletManager.h"
+
+#include "Game/AudioManager.h"
+#include "Game/AudioDataStructures.h"
+#include "Game/AudioEngine.h"
+#include "Game/WeightedRandomAudioList.h"
+#include "Game/ShuffleAudioList.h"
+
 #include "GameObjects/Player.h"
 #include "GameObjects/PlayerController.h"
-#include "../Physics/PhysicsWorld.h"
-#include "Mesh/SpriteSheet.h"
-
-#include "DebugDraw.h"
-#include "GameObjects/Camera.h"
 #include "GameObjects/ChaseCameraObject.h"
-#include "Game/BulletManager.h"
 #include "GameObjects/LightObject.h"
 #include "GameObjects/FollowLight.h"
+
+#include "DebugDraw.h"
 #include "Mesh/FBODefinition.h"
-#include "Game/SceneManager.h"
+
 #include "HUD_Scene.h"
-#include "../Framework/Source/Events/SceneChangeEvent.h"
+#include "PauseScreen.h"
+
 
 BulletScene::BulletScene(Game* pGame, ResourceManager* pResources) :
 	Scene(pGame, pResources),
 	m_FBOobject(nullptr)
 {
+	m_Name = "GamePlayScreen";
 	//remove the standard cam
 	GameObject* cam = GetGameObjectByName("Camera");
 	delete cam;
@@ -46,16 +48,39 @@ BulletScene::~BulletScene()
 
 	if(m_FBOobject)
 		delete m_FBOobject;
+
+	delete m_BackgroundChannel;
 }
 
 void BulletScene::LoadContent()
 {
 	Scene::LoadContent();
+
 	m_pResources->AddTexture("White", new Texture("Data/Textures/White.png"));
 
 	m_pResources->AddMaterial("Lighting", new Material(m_pResources->GetShader("LightingShader"), m_pResources->GetTexture("Water")));
 	m_pResources->AddMaterial("Lighting2", new Material(m_pResources->GetShader("LightingShader"), m_pResources->GetTexture("White")));
 
+	//AUDIO
+	m_pResources->LoadWaveData("Main Music", "Floor_1");
+	m_pResources->LoadWaveData("Player Swing 1", "Player_Swing_1");
+	m_pResources->LoadWaveData("Player Swing 2", "Player_Swing_2");
+	m_pResources->LoadWaveData("Player Swing 3", "Player_Swing_3");
+	m_pResources->LoadWaveData("Player Swing 4", "Player_Swing_4");
+
+	//create audio voice
+	m_GameAudio = m_pResources->CreateAudio("Main Music", "Main Music");
+
+	m_BackgroundChannel = new WeightedRandomAudioList();
+
+	AudioManager::GetEngine()->SetDefaultWaveFormat(*m_GameAudio->GetWaveFormat());
+	AudioManager::GetEngine()->CreatePublicAudioChannels();
+
+	m_BackgroundChannel->AddAudio(m_pResources->CreateAudio("Player Swing 1", "Player Swing 1"));
+	m_BackgroundChannel->AddAudio(m_pResources->CreateAudio("Player Swing 2", "Player Swing 2"));
+	m_BackgroundChannel->AddAudio(m_pResources->CreateAudio("Player Swing 3", "Player Swing 3"));
+	m_BackgroundChannel->AddAudio(m_pResources->CreateAudio("Player Swing 4", "Player Swing 4"));
+	m_BackgroundChannel->SetName("Soundboard");
 
 	if (m_FBO->IsFullyLoaded())
 	{
@@ -116,8 +141,12 @@ void BulletScene::LoadContent()
 	m_pLights.push_back(pLight);
 	AddGameObject(pLight);
 
-	m_pGame->GetSceneManager()->AddScene("HUDScene", new HUD_Scene(m_pGame, m_pResources));
+	//Scenes
+	m_pSceneManager->AddScene("HUDScene", new HUD_Scene(m_pGame, m_pResources));
 
+	m_pSceneManager->AddScene("PauseScene", new PauseScreen(m_pGame, m_pResources));
+
+	//Reset();
 }
 
 void BulletScene::OnEvent(Event* pEvent)
@@ -132,15 +161,11 @@ void BulletScene::OnEvent(Event* pEvent)
 			player->GetBody()->applyTorqueImpulse(btVector3(0.0f, 1.0f, 0.0f));
 		}
 
-		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 'H')
-		{
-			m_pGame->GetSceneManager()->PushScene("HUDScene");
-			m_pGame->GetEventManager()->QueueEvent(new SceneChangeEvent(nullptr, m_pGame->GetSceneManager()->GetActiveScenes().back()));
-		}
-
 		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 9)//TAB
 		{
 			//PAUSE Screen
+			m_pGame->GetSceneManager()->PushScene("PauseScene");
+			m_pGame->GetEventManager()->QueueEvent(new SceneChangeEvent(nullptr, m_pGame->GetSceneManager()->GetActiveScenes().back()));
 		}
 	}
 }
@@ -149,7 +174,7 @@ void BulletScene::Update(float deltatime)
 {
 	Scene::Update(deltatime);
 	m_BulletManager->Update(deltatime);
-
+	m_BackgroundChannel->Update(deltatime);
 }
 
 void BulletScene::Draw()
@@ -176,7 +201,6 @@ void BulletScene::Draw()
 
 		m_BulletManager->Draw(m_Camera, m_pResources->GetMaterial("Debug3D"));
 	}
-
 }
 
 void BulletScene::LoadFromSceneFile(std::string filename)
@@ -228,4 +252,26 @@ void BulletScene::LoadFromSceneFile(std::string filename)
 
 	cJSON_Delete(jRoot);
 	delete[] contents;
+}
+
+void BulletScene::HasEnteredFocus()
+{
+	//if (m_BackgroundChannel != nullptr)
+	//{
+	//	m_BackgroundChannel->PlayAudio(0);
+	//}
+	m_pSceneManager->PushScene("HUDScene");
+}
+
+void BulletScene::HasLeftFocus()
+{
+	if (m_BackgroundChannel != nullptr)
+	{
+		m_BackgroundChannel->StopAudio();
+	}
+}
+
+void BulletScene::Reset()
+{
+	Scene::Reset();
 }

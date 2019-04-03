@@ -8,13 +8,16 @@ class PlayerController;
 
 class Player : public GameObject3D
 {
-    const float PLAYER_SPEED        = 2.0f;   // Units per second
+    const float PLAYER_SPEED = 10.0f;   // Units per second
+    const float PLAYER_HEALTH = 100.0f;   
 
 protected:
     PlayerController* m_pPlayerController;
 
     float m_Speed;
     float m_TurningSpeed;
+
+	float m_Health;
 
 public:
 	Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh, Material* pMaterial);
@@ -34,6 +37,11 @@ public:
 	virtual void ContactEnded(GameObject3D* pOtherObj) override;
 
 	virtual void DisplayImguiDebugInfo() override;
+
+	virtual void TakeDamage(float amount);
+
+	virtual void Die();
+	virtual void Reset() override;
 };
 
 #endif //__Player_H__

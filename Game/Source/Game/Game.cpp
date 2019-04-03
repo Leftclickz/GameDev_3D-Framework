@@ -1,26 +1,19 @@
 #include "GamePCH.h"
-
 #include "Game/Game.h"
+
 #include "Mesh/Mesh.h"
 #include "Mesh/Texture.h"
 #include "Mesh/SpriteSheet.h"
-#include "GameObjects/GameObject.h"
-#include "GameObjects/Player.h"
+
 #include "GameObjects/PlayerController.h"
-#include "ResourceManager.h"
-#include "Scenes/Scene.h"
-#include "Scenes/GraphicsScene.h"
-#include "Scenes/PhysicsScene.h"
-#include "Scenes/PoolTestScene.h"
-#include "Scenes/FloatingScene.h"
-#include "Scenes/PlatformerScene.h"
-#include "ImGuiManager.h"
-#include "Scenes/HUD_Scene.h"
-#include "Scenes/BulletScene.h"
-#include "../Framework/Source/Events/SceneChangeEvent.h"
-#include "AudioManager.h"
-#include "AudioEngine.h"
+
 #include "SceneManager.h"
+#include "ResourceManager.h"
+#include "ImGuiManager.h"
+#include "AudioManager.h"
+
+#include "AudioEngine.h"
+#include "Scenes/TitleScreen.h"
 
 Game::Game(Framework* pFramework)
 : GameCore( pFramework, new EventManager() )
@@ -31,7 +24,6 @@ Game::Game(Framework* pFramework)
         m_pControllers[i] = nullptr;
     }
 
-    m_pPlayer = nullptr;
 	m_pResourceManager = nullptr;
 	m_pSceneManager = nullptr;
 	m_pImGuiManager = nullptr;
@@ -39,8 +31,6 @@ Game::Game(Framework* pFramework)
 
 Game::~Game()
 {
-    delete m_pPlayer;
-
     for( int i=0; i<4; i++ )
     {
         delete m_pControllers[i];
@@ -142,9 +132,7 @@ void Game::LoadContent()
     }
 
 	//Scenes
-
-	m_pSceneManager->AddScene("BulletScene", new BulletScene(this, m_pResourceManager));
-	m_pSceneManager->PushScene("BulletScene");
+	m_pSceneManager->AddScene("TitleScene", new TitleScreen(this, m_pResourceManager));
 
 	m_pImGuiManager = new ImGuiManager();
 	m_pImGuiManager->Init();
@@ -173,6 +161,10 @@ void Game::OnEvent(Event* pEvent)
 		// Disable V-Sync.
 		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == VK_F2)
 			wglSwapInterval(0);
+
+		//reset everything
+		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 'R')
+			Reset();
 	}
 #endif //WIN32
 }
@@ -198,6 +190,7 @@ void Game::Update(float deltatime)
 	ImGui::PopID();
 	ImGui::End();
 
+	m_pSceneManager->Update(deltatime);
 }
 
 void Game::Draw()
@@ -214,4 +207,10 @@ void Game::Draw()
 	m_pImGuiManager->EndFrame();
 
     CheckForGLErrors();
+}
+
+void Game::Reset()
+{
+	m_pSceneManager->Reset();
+	m_pSceneManager->PushScene("TitleScene");
 }

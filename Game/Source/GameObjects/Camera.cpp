@@ -11,6 +11,10 @@ Camera::Camera(Scene* pScene, std::string name, Transform transform, vec3 lookat
 	m_Offset = vec3(0);
 	m_LERPCap = 0.0f;
 	m_Target = nullptr;
+	m_OrthoSize = vec2(10.0f, 10.0f);
+
+	CreateViewMatrix();
+	CreateProjectionMatrix();
 }
 
 Camera::~Camera()
@@ -32,7 +36,7 @@ void Camera::CreateProjectionMatrix(float FOV /*= 45.0f*/, float nearZ /*= 0.01f
 	}
 	else
 	{
-		m_ProjectionMatrix.CreateOrtho(0.0f, 10.0f * aspect, 0.0f, 10.0f * aspect, -0.01f, m_Range);
+		m_ProjectionMatrix.CreateOrtho(0.0f, m_OrthoSize.x * aspect, 0.0f, m_OrthoSize.y * aspect, -0.01f, m_Range);
 	}
 }
 

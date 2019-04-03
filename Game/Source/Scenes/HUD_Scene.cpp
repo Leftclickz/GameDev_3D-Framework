@@ -12,6 +12,8 @@ HUD_Scene::HUD_Scene(Game* pGame, ResourceManager* pResources)
 	:Scene(pGame, pResources)
 {
 	m_IsTransparent = true;
+
+	m_Name = "HudScreen";
 }
 
 HUD_Scene::~HUD_Scene()
@@ -104,14 +106,17 @@ void HUD_Scene::OnEvent(Event* pEvent)
 			HUD->SetIsVisible(false);
 			HUD = (HUD_TextObject*)GetGameObjectByName("VictoryDisplay");
 			HUD->SetIsVisible(false);
+			m_DoesPause = false;
 			break;
 		case WinState:
 			HUD = (HUD_TextObject*)GetGameObjectByName("VictoryDisplay");
 			HUD->SetIsVisible(true);
+			m_DoesPause = true;
 			break;
 		case LoseState:
 			HUD = (HUD_TextObject*)GetGameObjectByName("DefeatDisplay");
 			HUD->SetIsVisible(true);
+			m_DoesPause = true;
 			break;
 		default:
 			break;
@@ -138,5 +143,10 @@ void HUD_Scene::SetTextBoxString(std::string text_box_name, std::string text)
 void HUD_Scene::Reset()
 {
 	Scene::Reset();
+
+	((HUD_TextObject*)GetGameObjectByName("DefeatDisplay"))->SetIsVisible(false);
+	((HUD_TextObject*)GetGameObjectByName("VictoryDisplay"))->SetIsVisible(false);
+
+	m_DoesPause = false;
 }
 

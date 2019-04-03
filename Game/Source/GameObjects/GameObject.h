@@ -1,7 +1,6 @@
 #ifndef __GameObject_H__
 #define __GameObject_H__
 
-class Game;
 class Mesh;
 class Scene;
 class Material;
@@ -20,8 +19,6 @@ class GameObject : public Transformable
 {
 protected:
 	std::string m_Name;
-
-    Game* m_pGame;
 
 	Scene* m_pScene;
 

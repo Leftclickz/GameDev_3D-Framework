@@ -16,7 +16,6 @@ class Game : public GameCore
 {
 protected:
     PlayerController* m_pControllers[4];
-    Player* m_pPlayer;
 
 	ResourceManager* m_pResourceManager;
 	ImGuiManager* m_pImGuiManager;
@@ -32,6 +31,8 @@ public:
     virtual void OnEvent(Event* pEvent) override;
     virtual void Update(float deltatime) override;
     virtual void Draw() override;
+
+	virtual void Reset();
 
     PlayerController* GetController(int index) { return m_pControllers[index]; }
 
