@@ -43,7 +43,7 @@ void FollowLight::DisplayImguiDebugInfo()
 			}
 			if (ImGui::TreeNode("Light"))
 			{
-				ImGui::SliderFloat("Attenuation", &m_Light.attenuationFactor, 0.0f, 1.0f);
+				ImGui::SliderFloat("Attenuation", &m_Light.attenuationFactor, 0.0f, 100.0f);
 				ImGui::SliderFloat("Ambience", &m_Light.ambienceCoefficient, 0.0f, 1.0f);
 				ImGui::ColorEdit3("Color", &m_Light.color.x);
 				ImGui::TreePop();

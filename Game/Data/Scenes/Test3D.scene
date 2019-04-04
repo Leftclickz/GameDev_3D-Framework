@@ -3,99 +3,187 @@
 			"Path":	"Data/Textures/Megaman.png"
 		}, {
 			"Path":	"Data/Shaders/Shader_Texture.glsl"
+		}, {
+			"Path":	"Data/Materials/Box.mymaterial"
+		}, {
+			"Path":	"Data/Meshes/cube.obj.mymesh",
+			"SourcePath":	"Data/OBJ/cube.obj"
+		}, {
+			"Path":	"Data/Meshes/sphere.obj.mymesh",
+			"SourcePath":	"Data/OBJ/sphere.obj"
+		}, {
+			"Path":	"Data/Meshes/Table.obj.mymesh",
+			"SourcePath":	"Data/Meshes/Table.obj"
+		}, {
+			"Path":	"Data/Meshes/Teapot.obj.mymesh",
+			"SourcePath":	"Data/Meshes/Teapot.obj"
+		}, {
+			"Path":	"Data/Meshes/Boshy.obj.mymesh",
+			"SourcePath":	"Data/Meshes/Boshy.obj"
+		}, {
+			"Path":	"Data/Meshes/Boshy.obj.mymesh"
+		}, {
+			"Path":	"Data/Shaders/Lighting.frag"
+		}, {
+			"Path":	"Data/Materials/Lighting.mymaterial"
+		}, {
+			"Path":	"Data/Materials/Lighting2.mymaterial"
+		}, {
+			"Path":	"Data/Meshes/Cube.obj.mymesh",
+			"SourcePath":	"Data/Meshes/Cube.obj"
+		}, {
+			"Path":	"Data/Meshes/Sphere.obj.mymesh",
+			"SourcePath":	"Data/Meshes/Sphere.obj"
 		}],
 	"GameObjects":	[{
-			"ID":	1,
-			"Name":	"Main Camera",
-			"Properties":	{
-				"Flags":	["Camera-Main"]
-			}
-		}, {
-			"ID":	2,
-			"Name":	"Hud Camera",
-			"Properties":	{
-				"Flags":	["Camera-HUD"]
-			}
-		}, {
-			"ID":	3,
+			"ID":	5,
 			"Name":	"Player",
 			"Properties":	{
 				"Flags":	["Player"]
 			}
+		}, {
+			"ID":	6,
+			"Name":	"Plane"
+		}, {
+			"ID":	7,
+			"Name":	"Ground"
+		}, {
+			"ID":	10,
+			"Name":	"Sphere"
+		}, {
+			"ID":	11,
+			"Name":	"Point Light",
+			"Properties":	{
+				"Flags":	["5"]
+			}
 		}],
 	"Transforms":	[{
-			"GOID":	1,
+			"GOID":	5,
 			"ID":	0,
 			"PrefabComponentID":	0,
-			"Pos":	[0, 0, -10],
+			"Pos":	[0.57834017276763916, 1.9987211227416992, 0.026042759418487549],
+			"Rot":	[0, 0, 0],
+			"Scale":	[0.4256579577922821, 0.4256579577922821, 0.4256579577922821]
+		}, {
+			"GOID":	6,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[0, -5, 0],
 			"Rot":	[0, 0, 0],
 			"Scale":	[1, 1, 1]
 		}, {
-			"GOID":	2,
+			"GOID":	7,
 			"ID":	0,
 			"PrefabComponentID":	0,
-			"Pos":	[0, 0, 0],
+			"Pos":	[0, 0, 1.347923755645752],
+			"Rot":	[0, 0, 0],
+			"Scale":	[4, 1, 4]
+		}, {
+			"GOID":	10,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[0, 0, -3.8871660232543945],
 			"Rot":	[0, 0, 0],
 			"Scale":	[1, 1, 1]
 		}, {
-			"GOID":	3,
+			"GOID":	11,
 			"ID":	0,
 			"PrefabComponentID":	0,
-			"Pos":	[0, 0, 0],
+			"Pos":	[0, 5.5603752136230469, 3.87756609916687],
 			"Rot":	[0, 0, 0],
 			"Scale":	[1, 1, 1]
 		}],
 	"Components":	[{
 			"Type":	"3D Collision Object",
-			"GOID":	3,
-			"ID":	3,
+			"GOID":	6,
+			"ID":	10,
 			"PrefabComponentID":	0,
-			"Mass":	1,
-			"Primitive":	"Cube",
+			"Mass":	0,
+			"Primitive":	"Static Plane",
 			"Scale":	[1, 1, 1]
 		}, {
-			"Type":	"Camera",
-			"GOID":	1,
-			"ID":	1,
+			"Type":	"3D Collision Object",
+			"GOID":	7,
+			"ID":	11,
 			"PrefabComponentID":	0,
-			"Layers":	["Main view"],
-			"Deferred":	0,
-			"Ortho":	0,
-			"DesiredWidth":	640,
-			"DesiredHeight":	960,
-			"OrthoNearZ":	0,
-			"OrthoFarZ":	1000,
-			"FoV":	45,
-			"PerspectiveNearZ":	1,
-			"PerspectiveFarZ":	10000,
-			"ColorBit":	1,
-			"DepthBit":	1
+			"Mass":	0,
+			"Primitive":	"Cube",
+			"Scale":	[2.2000000476837158, 1, 1]
 		}, {
-			"Type":	"Camera",
-			"GOID":	2,
-			"ID":	2,
+			"Type":	"3D Collision Object",
+			"GOID":	5,
+			"ID":	12,
 			"PrefabComponentID":	0,
-			"Layers":	["HUD"],
-			"Deferred":	0,
-			"Ortho":	1,
-			"DesiredWidth":	640,
-			"DesiredHeight":	960,
-			"OrthoNearZ":	0,
-			"OrthoFarZ":	1000,
-			"FoV":	45,
-			"PerspectiveNearZ":	1,
-			"PerspectiveFarZ":	10000,
-			"ColorBit":	0,
-			"DepthBit":	0
+			"Mass":	1,
+			"Primitive":	"Convex Hull",
+			"Scale":	[1, 1, 1],
+			"OBJ":	"Data/Meshes/Boshy.obj.mymesh"
 		}, {
-			"Type":	"Sprite",
-			"GOID":	3,
-			"ID":	5,
+			"Type":	"3D Collision Object",
+			"GOID":	10,
+			"ID":	21,
+			"PrefabComponentID":	0,
+			"Mass":	1,
+			"Primitive":	"Sphere",
+			"Scale":	[1, 1, 1]
+		}, {
+			"Type":	"Light",
+			"GOID":	11,
+			"ID":	30,
+			"PrefabComponentID":	0,
+			"LightType":	"Point",
+			"Color":	[0.79901957511901855, 0.05875144898891449, 0.05875144898891449, 1],
+			"Atten":	[8, 0, 0.090000003576278687]
+		}, {
+			"Type":	"Mesh-OBJ",
+			"GOID":	5,
+			"ID":	9,
 			"PrefabComponentID":	0,
 			"Visible":	1,
 			"Layers":	["Main view"],
-			"Tint":	[255, 255, 255, 255],
-			"Size":	[1, 1],
-			"Material":	"Data/Materials/Box.mymaterial"
+			"PrimitiveType":	"Triangles",
+			"PointSize":	1,
+			"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+			"Materials":	["Data/Materials/Lighting2.mymaterial"]
+		}, {
+			"Type":	"Mesh-OBJ",
+			"GOID":	7,
+			"ID":	13,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"PrimitiveType":	"Triangles",
+			"PointSize":	1,
+			"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+			"Materials":	["Data/Materials/Lighting2.mymaterial"]
+		}, {
+			"Type":	"Mesh-Primitive",
+			"GOID":	6,
+			"ID":	14,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"PrimitiveType":	"Triangles",
+			"PointSize":	1,
+			"MPType":	"Plane",
+			"PlaneSize":	[10, 10],
+			"PlaneVertCountx":	10,
+			"PlaneVertCounty":	10,
+			"UVs per Quad":	0,
+			"PlaneUVStart":	[0, 0],
+			"PlaneUVRange":	[1, 1],
+			"SphereRadius":	1,
+			"Materials":	["Data/Materials/Lighting.mymaterial"]
+		}, {
+			"Type":	"Mesh-OBJ",
+			"GOID":	10,
+			"ID":	20,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"PrimitiveType":	"Triangles",
+			"PointSize":	1,
+			"OBJ":	"Data/Meshes/Sphere.obj.mymesh",
+			"Materials":	["Data/Materials/Lighting2.mymaterial"]
 		}]
 }

@@ -16,7 +16,7 @@ class GameObject3D : public GameObject
 public:
 	GameObject3D(Scene* pScene, std::string name, Transform transform, Mesh* pMesh, Material* pMaterial);
 
-    virtual ~GameObject3D();
+	virtual ~GameObject3D();
 
 	virtual void OnEvent(Event* pEvent) override;
 	virtual void Update(float deltatime)  override;
@@ -36,6 +36,9 @@ public:
 	virtual void ContactEnded(GameObject3D* pOtherObj);
 
 	virtual void LoadFromcJSON(cJSON* obj, ResourceManager* manager) override;
+	virtual void HandleComponents(cJSON* obj, ResourceManager* manager);
+	virtual void HandleMeshLoad(cJSON* obj, const char* type, ResourceManager* manager);
+	virtual void HandleCollisionLoad(cJSON* obj);
 
 protected:
 	virtual void CreateBody(btCollisionShape* shape, float mass);

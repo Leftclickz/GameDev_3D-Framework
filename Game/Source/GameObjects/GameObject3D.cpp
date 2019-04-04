@@ -95,16 +95,9 @@ void GameObject3D::Reset()
 {
 	if (m_WasLoadedFromJSON)
 	{
-		m_Position = cJSONpos;
-		m_Rotation = cJSONrot;
-		float rotation = atan2f(m_Rotation.z, m_Rotation.x);
-
-		//m_pBody->SetTransform(b2Vec2(m_Position.x, m_Position.y), -m_Rotation.z / 180.0f * PI);
-		//m_pBody->SetLinearVelocity(b2Vec2(0.f, 0.f));
-
 		SetRotation(cJSONrot);
 		SetPosition(cJSONpos);
-		SetScale(cJSONscale);
+		//SetScale(cJSONscale);
 	}
 
 	GameObject::Reset();
@@ -228,50 +221,110 @@ void GameObject3D::LoadFromcJSON(cJSON* obj, ResourceManager* manager)
 	vec3 scale(0);
 	cJSONExt_GetFloatArray(obj, "Scale", &scale.x, 3);
 	cJSONscale = scale;
-	SetScale(scale);
+	// 	SetScale(scale);
 
 	cJSON* jComponents = cJSON_GetObjectItem(obj, "Components");
+	HandleComponents(jComponents, manager);
+}
 
-	int numComponents = cJSON_GetArraySize(jComponents);
+void GameObject3D::HandleComponents(cJSON * obj, ResourceManager * manager)
+{
+	int numComponents = cJSON_GetArraySize(obj);
 
-// 	cJSON* Component;
-// 	char* type = new char[50];
-// 	for (int i = 0; i < numComponents; i++)
-// 	{
-// 		Component = cJSON_GetArrayItem(jComponents, i);
-// 
-// 		cJSONExt_GetString(Component, "Type", type, 50);
-// 
-// 		//if this string is within the type string (== 0 means success in finding it)
-// 		//Only worry about collision and sprites. Joints are an entire different function.
-// 		if (strcmp(type, "3D Collision Object") == 0)
-// 		{
-// 			bool isStatic = false;
-// 			cJSONExt_GetBool(Component, "Static", &isStatic);
-// 			CreateBody(isStatic);
-// 
-// 			char* primitiveType = new char[50];
-// 			cJSONExt_GetString(Component, "PrimitiveType", primitiveType, 50);
-// 
-// 			if (strcmp(primitiveType, "Box") == 0)
-// 			{
-// 				AddBox(Component);
-// 			}
-// 			else if (strcmp(primitiveType, "Circle") == 0)
-// 			{
-// 				AddCircle(Component);
-// 			}
-// 
-// 			delete[] primitiveType;
-// 		}
-// 		else if (strcmp(type, "Sprite") == 0)
-// 		{
-// 			char* mat = new char[50];
-// 			cJSONExt_GetString(Component, "Material", mat, 50);
-// 			SetMaterial(manager->GetMaterial(mat));
-// 			SetMesh(manager->GetMesh("Box")); //manually just set the standard 2D Texture Mesh
-// 			delete[] mat;
-// 		}
-// 	}
-// 	delete[] type;
+	cJSON* Component;
+	char* type = new char[50];
+	int collisionIndex = -1;
+	for (int i = 0; i < numComponents; i++)
+	{
+		Component = cJSON_GetArrayItem(obj, i);
+
+		cJSONExt_GetString(Component, "Type", type, 50);
+
+		//if this string is within the type string (== 0 means success in finding it)
+		//Only worry about collision and sprites. Joints are an entire different function.
+		if (strcmp(type, "3D Collision Object") == 0)
+		{
+			if (m_pMesh == nullptr)
+			{
+				//store the location of this element and handle it after we definitely have a mesh
+				collisionIndex = i;
+				continue;
+			}
+			//if we do have a mesh then handle it now
+			HandleCollisionLoad(Component);
+		}
+		std::string stringtype(type);
+		if (stringtype.find("Mesh") != std::string::npos)
+		{
+			HandleMeshLoad(Component, type, manager);
+		}
+	}
+	delete[] type;
+
+	//if we didn't have a mesh when we checked earlier we should now so handle collision now
+	if (collisionIndex != -1)
+	{
+		Component = cJSON_GetArrayItem(obj, collisionIndex);
+		HandleCollisionLoad(Component);
+	}
+}
+
+void GameObject3D::HandleMeshLoad(cJSON * obj, const char * type, ResourceManager * manager)
+{
+	if (strcmp(type, "Mesh-Primitive") == 0)
+	{
+		char* mat = new char[50];
+		cJSONExt_GetString(obj, "Material", mat, 50);
+
+		SetMaterial(manager->GetMaterial(mat));
+		SetMesh(manager->GetMesh("Plane"));
+
+		delete[] mat;
+	}
+	else if (strcmp(type, "Mesh-OBJ") == 0)
+	{
+		char* mat = new char[50];
+		cJSONExt_GetString(obj, "Material", mat, 50);
+		char* OBJ = new char[50];
+		cJSONExt_GetString(obj, "OBJFilename", OBJ, 50);
+
+		std::string name(OBJ);
+		name.erase(name.end() - 4, name.end());
+
+		SetMaterial(manager->GetMaterial(mat));
+
+		SetMesh(manager->GetMesh(name));
+
+		delete[] mat;
+		delete[] OBJ;
+	}
+}
+
+void GameObject3D::HandleCollisionLoad(cJSON * obj)
+{
+	assert(m_pMesh != nullptr);
+
+	char* primitiveType = new char[50];
+	cJSONExt_GetString(obj, "Primitive", primitiveType, 50);
+
+	float mass;
+	cJSONExt_GetFloat(obj, "Mass", &mass);
+
+	if (strcmp(primitiveType, "Sphere") == 0)
+	{
+		CreateSphereBody(cJSONscale.x, mass);
+	}
+	else if (strcmp(primitiveType, "Cube") == 0)
+	{
+		CreateBoxBody(cJSONscale, mass);
+	}
+	else if (strcmp(primitiveType, "Static Plane") == 0)
+	{
+		CreatePlane();
+	}
+	else if (strcmp(primitiveType, "Convex Hull") == 0)
+	{
+		CreateConvexHullBody(mass);
+	}
+	delete[] primitiveType;
 }

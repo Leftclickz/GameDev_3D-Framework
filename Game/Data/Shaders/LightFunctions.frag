@@ -32,9 +32,8 @@ vec3 GLImplementation(vec3 objectpos, vec3 objectnormal, vec3 campos, vec4 matco
 	vec3 ambientLight = light.ambientCoefficient * matcolor.rgb * light.color.rgb;
 
 	//attenuation
-	float attenuation = 1.0 / (1.0 + (light.attenuationFactor) * pow(dist, 2));
-	if (attenuation < 0.01)
-		attenuation = 0.0;
+	float attenuation = clamp(1.0 - dist*dist/(light.attenuationFactor*light.attenuationFactor), 0.0, 1.0);
+    attenuation *= attenuation;
 
 	//linear color before gamma
 	vec3 linearcolor = ambientLight + attenuation * (diffuseLight + specularLight);

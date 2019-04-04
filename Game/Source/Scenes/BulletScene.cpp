@@ -3,6 +3,12 @@
 
 #include "Game/BulletManager.h"
 
+#include "Game/AudioManager.h"
+#include "Game/AudioDataStructures.h"
+#include "Game/AudioEngine.h"
+#include "Game/WeightedRandomAudioList.h"
+#include "Game/ShuffleAudioList.h"
+
 #include "GameObjects/Player.h"
 #include "GameObjects/PlayerController.h"
 #include "GameObjects/ChaseCameraObject.h"
@@ -86,65 +92,24 @@ void BulletScene::LoadContent()
 		m_FBOobject = new GameObject3D(this, "TV", Transform(vec3(0), vec3(90, 0, 0)), m_pResources->GetMesh("ObjCube"), m_pResources->GetMaterial("FBO"));
 	}
 
-	//LoadFromSceneFile("Data/Scenes/Test3D.box2dscene");
+	//File Loading Time
+	LoadFromSceneFile("Data/Scenes/Test3D.box2dscene");
 
-	Player* player = new Player(this, "Player", Transform(vec3(0, 5, 0), vec3(0), vec3(1)), m_pResources->GetMesh("Sphere"), m_pResources->GetMaterial("Lighting2"));
-	player->SetPlayerController(m_pGame->GetController(0));
-	//player->CreateBoxBody(vec3(0.5f, 0.5f, 0.5f), 1.0f);
-	player->CreateSphereBody(1.0f, 1.0f);
-
-	//player->AddTween(TweenType_Scale, vec3(2.0f), 2.0f, TweenFunc_Linear);
-	player->AddTween(TweenType_Translation, vec3(15,0,0), 5.0f, TweenFunc_Linear);
-
-	//player->CreateConvexHullBody(1.0f);
-	AddGameObject(player);
-
-	((ChaseCameraObject*)m_Camera)->SetObjectToFollow(player, 10.0f);
-
-	GameObject3D* Floor = new GameObject3D(this, "Floor", Transform(vec3(0, 0, 0), vec3(0), vec3(1)), m_pResources->GetMesh("Plane"), m_pResources->GetMaterial("Lighting"));
-	Floor->CreatePlane();
-	AddGameObject(Floor);
-	//Floor->GetBody()->setFriction(100);
-
-	for (int x = 0; x < 10; x++)
-	{
-		GameObject3D* box = new GameObject3D(this, "Box" + std::to_string(x), Transform(vec3((float)x * 2.0f, 4, 4), vec3(0), vec3(1)), m_pResources->GetMesh("Cube"), m_pResources->GetMaterial("Lighting2"));
-		box->CreateBoxBody(vec3(0.5f, 0.5f, 0.5f), 5);
-		AddGameObject(box);
-	}
-
-	LightObject* light = new LightObject(this, "Red", Transform(vec3(-6, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);
-	light->AssignLightColor(vec4(1.0f, 0.0f, 0.0f, 1.0f));
-	m_pLights.push_back(light);
-	AddGameObject(light);
-
-
-	light = new LightObject(this, "Green", Transform(vec3(6, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);
-	light->AssignLightColor(vec4(0.0f, 1.0f, 0.0f, 1.0f));
-	m_pLights.push_back(light);
-	AddGameObject(light);
-
-
-	light = new LightObject(this, "Blue", Transform(vec3(0, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);
-	light->AssignLightColor(vec4(0.0f, 0.0f, 1.0f, 1.0f));
-	m_pLights.push_back(light);
-	AddGameObject(light);
-
+	((ChaseCameraObject*)m_Camera)->SetObjectToFollow(GetGameObjectByName("Player"), 10.0f);
+	Player * player = (Player*)GetGameObjectByName("Player");
+	player->GetBody()->setAngularFactor(btVector3(0, 0, 0));
 
 	FollowLight* pLight = new FollowLight(this, "PlayerLight", Transform(vec3(0, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);
 	pLight->SetObjectAttachment(player);
-	pLight->SetFollowOffset(vec3(0, 2, 0));
-	pLight->SetAttenuationFactor(0.15f);
+	pLight->SetFollowOffset(vec3(0, 5, -5));
+	pLight->SetAttenuationFactor(8.0f);
 	pLight->AssignLightColor(vec4(1.0f, 1.0f, 1.0f, 1.0f));
 	m_pLights.push_back(pLight);
 	AddGameObject(pLight);
 
 	//Scenes
 	m_pSceneManager->AddScene("HUDScene", new HUD_Scene(m_pGame, m_pResources));
-
 	m_pSceneManager->AddScene("PauseScene", new PauseScreen(m_pGame, m_pResources));
-
-	//Reset();
 }
 
 void BulletScene::OnEvent(Event* pEvent)
@@ -159,7 +124,7 @@ void BulletScene::OnEvent(Event* pEvent)
 			player->GetBody()->applyTorqueImpulse(btVector3(0.0f, 1.0f, 0.0f));
 		}
 
-		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 9)//TAB
+		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 9 && pInput->GetInputState() == InputState_Pressed)//TAB
 		{
 			//PAUSE Screen
 			m_pGame->GetSceneManager()->PushScene("PauseScene");
@@ -238,13 +203,16 @@ void BulletScene::LoadFromSceneFile(std::string filename)
 		}
 		else if (flag == "GameObject")
 		{
-			GameObject3D* gameobject = new GameObject3D(this, "Object", Transform(), m_pResources->GetMesh("Box"), nullptr);
+			GameObject3D* gameobject = new GameObject3D(this, "Object", Transform(), nullptr, nullptr);
 			gameobject->LoadFromcJSON(jGameObject, m_pResources);
 			AddGameObject(gameobject);
 		}
-		else if (flag == "Light")
+		else if (flag == "5")
 		{
-			//lights
+			LightObject* light = new LightObject(this, "Light", Transform(), nullptr, nullptr);
+			light->LoadFromcJSON(jGameObject, m_pResources);
+			m_pLights.push_back(light);
+			AddGameObject(light);
 		}
 	}
 

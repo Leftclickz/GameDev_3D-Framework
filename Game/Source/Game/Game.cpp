@@ -82,16 +82,19 @@ void Game::LoadContent()
 		m_pResourceManager->GetMesh("Plane")->CreatePlane(vec2(100.0f, 100.0f), ivec2(600, 300));
 
 		m_pResourceManager->AddMesh("ObjCube", new Mesh());
-		m_pResourceManager->GetMesh("ObjCube")->GenerateOBJ("Data/OBJ/cube.obj");
+		m_pResourceManager->GetMesh("ObjCube")->GenerateOBJ("Data/OBJ/Cube.obj");
 
 		m_pResourceManager->AddMesh("Sphere", new Mesh());
-		m_pResourceManager->GetMesh("Sphere")->GenerateOBJ("Data/OBJ/sphere.obj");
+		m_pResourceManager->GetMesh("Sphere")->GenerateOBJ("Data/OBJ/Sphere.obj");
 
 		m_pResourceManager->AddMesh("Table", new Mesh());
 		m_pResourceManager->GetMesh("Table")->GenerateOBJ("Data/OBJ/Table.obj", 0.01f);
 
 		m_pResourceManager->AddMesh("Teapot", new Mesh());
 		m_pResourceManager->GetMesh("Teapot")->GenerateOBJ("Data/OBJ/Teapot.obj", 0.03f);
+
+		m_pResourceManager->AddMesh("Boshy", new Mesh());
+		m_pResourceManager->GetMesh("Boshy")->GenerateOBJ("Data/OBJ/Boshy.obj");
 	}
 
     // Create our shaders.

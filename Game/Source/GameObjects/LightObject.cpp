@@ -18,6 +18,45 @@ StandardLight LightObject::GetLight()
 	return m_Light;
 }
 
+void LightObject::HandleComponents(cJSON * obj, ResourceManager * manager)
+{
+	int numComponents = cJSON_GetArraySize(obj);
+
+	cJSON* Component;
+	char* type = new char[50];
+	int collisionIndex = -1;
+	for (int i = 0; i < numComponents; i++)
+	{
+		Component = cJSON_GetArrayItem(obj, i);
+
+		cJSONExt_GetString(Component, "Type", type, 50);
+
+		//if this string is within the type string (== 0 means success in finding it)
+		//Only worry about collision and sprites. Joints are an entire different function.
+		if (strcmp(type, "Light") == 0)
+		{
+			vec4 color(0, 0, 0, 0);
+			cJSONExt_GetFloatArray(Component, "Color", &color.x, 4);
+			cJSONcolor = color;
+			AssignLightColor(color);
+
+			vec3 attenuation(0);
+			cJSONExt_GetFloatArray(Component, "Atten", &attenuation.x, 4);
+			cJSONatten = attenuation;
+			SetAttenuationFactor(attenuation.x);
+		}
+	}
+	delete[] type;
+}
+
+void LightObject::Reset()
+{
+	GameObject3D::Reset();
+
+	AssignLightColor(cJSONcolor);
+	SetAttenuationFactor(cJSONatten.x);
+}
+
 void LightObject::DisplayImguiDebugInfo()
 {
 
@@ -39,7 +78,7 @@ void LightObject::DisplayImguiDebugInfo()
 			}
 			if (ImGui::TreeNode("Light"))
 			{
-				ImGui::SliderFloat("Attenuation", &m_Light.attenuationFactor, 0.0f, 1.0f);
+				ImGui::SliderFloat("Attenuation", &m_Light.attenuationFactor, 0.0f, 100.0f);
 				ImGui::SliderFloat("Ambience", &m_Light.ambienceCoefficient, 0.0f, 1.0f);
 				ImGui::ColorEdit3("Color", &m_Light.color.x);
 				ImGui::TreePop();
