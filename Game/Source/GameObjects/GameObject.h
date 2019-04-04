@@ -6,8 +6,22 @@ class Scene;
 class Material;
 class Camera;
 class ResourceManager;
+class GameObject;
+class TweenObject;
+
 #include "Transformable.h"
 #include "../Game/PooledObject.h"
+#include "../Game/TweenFuncs.h"
+
+typedef void(GameObject::*ExitFunction) (TweenObject* obj);
+//using ExitFunction = void (GameObject::*)(TweenObject* tween);
+enum TweenType
+{
+	TweenType_Default,
+	TweenType_Scale,
+	TweenType_Rotation,
+	TweenType_Translation
+};
 
 enum EDirection
 {
@@ -24,7 +38,7 @@ protected:
 
     Mesh* m_pMesh;
 	Material* m_pMaterial;
-
+	std::vector<TweenObject*> m_Tweens;
 
 	bool isEnabled = true;
 
@@ -50,7 +64,11 @@ public:
 
 	virtual void LoadFromcJSON(cJSON* obj, ResourceManager* manager) {}
 
+	virtual void AddTween(TweenType type, vec3 endgoal, float duration, TweenFunc TweenFunction);
+	virtual void OnTweenEnded(TweenObject* obj);
+
 	virtual void Reset();
 };
+
 
 #endif //__GameObject_H__

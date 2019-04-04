@@ -161,6 +161,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\OptionsScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\PauseScreen.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\TitleScreen.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\TweenFuncs.cpp">
+      <Filter>Game Objects\Tweens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GamePCH.h" />
@@ -326,6 +329,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\OptionsScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\PauseScreen.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\TitleScreen.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\TweenFuncs.h">
+      <Filter>Game Objects\Tweens</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\TweenObject.h">
+      <Filter>Game Objects\Tweens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug3D.vert">
@@ -458,6 +467,9 @@
     </Filter>
     <Filter Include="Audio\Data Structures">
       <UniqueIdentifier>{654975d3-c385-4142-972d-80028b64b8e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\Tweens">
+      <UniqueIdentifier>{dc83eae1-6519-4b8a-aa9d-88ffb8008a1d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -5,6 +5,8 @@ struct IXAudio2;
 struct IXAudio2MasteringVoice;
 class AudioVoice;
 
+typedef void(*TweenFunction) (vec3 scale, vec3 endscale, float duration);
+
 
 class AudioEngine
 {
