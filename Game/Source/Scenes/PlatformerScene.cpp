@@ -21,11 +21,6 @@
 #include "GameObjects/GameObject2D.h"
 #include "GameObjects/Shootable.h"
 #include "GameObjects/PlatformerEnemy.h"
-#include "Game/AudioDataStructures.h"
-#include "Game/AudioManager.h"
-#include "Game/AudioEngine.h"
-#include "Game/WeightedRandomAudioList.h"
-#include "Game/ShuffleAudioList.h"
 
 PlatformerScene::PlatformerScene(Game* pGame, ResourceManager* pResources) :
 	Scene(pGame, pResources)

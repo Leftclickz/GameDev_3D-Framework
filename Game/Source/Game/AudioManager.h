@@ -1,11 +1,15 @@
 #pragma once
 
-struct WaveData;
-class Audio;
-class AudioEngine;
+//PCH audio includes
+#include "AudioEngine.h"
+#include "AudioDataStructures.h"
+#include "AudioList.h"
+#include "ShuffleAudioList.h"
+#include "WeightedRandomAudioList.h"
 
 
-//A class that provides convenience methods to load WAV audio data and store them
+//A class that handles all Audio related objects as well as loading WAV data files.
+//Include this file to also have access to all audio-related objects.
 class AudioManager
 {
 public:

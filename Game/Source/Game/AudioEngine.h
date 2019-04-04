@@ -6,8 +6,6 @@ struct IXAudio2MasteringVoice;
 class AudioVoice;
 
 
-
-
 class AudioEngine
 {
 	public:

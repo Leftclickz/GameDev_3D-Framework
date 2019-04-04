@@ -158,15 +158,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\ShuffleAudioList.cpp">
       <Filter>Audio\AudioList</Filter>
     </ClCompile>
-    <ClCompile Include="Z:\Projects\Repos\19W_GAM1573_Game2\Game\Source\Scenes\PauseScreen.cpp">
-      <Filter>Scene\HUD</Filter>
-    </ClCompile>
-    <ClCompile Include="Z:\Projects\Repos\19W_GAM1573_Game2\Game\Source\Scenes\TitleScreen.cpp">
-      <Filter>Scene\HUD</Filter>
-    </ClCompile>
-    <ClCompile Include="Z:\Projects\Repos\19W_GAM1573_Game2\Game\Source\Scenes\OptionsScene.cpp">
-      <Filter>Scene\HUD</Filter>
-    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\OptionsScene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\PauseScreen.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\TitleScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GamePCH.h" />
@@ -329,15 +323,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\SceneManager.h">
       <Filter>Resource Management\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Z:\Projects\Repos\19W_GAM1573_Game2\Game\Source\Scenes\PauseScreen.h">
-      <Filter>Scene\HUD</Filter>
-    </ClInclude>
-    <ClInclude Include="Z:\Projects\Repos\19W_GAM1573_Game2\Game\Source\Scenes\TitleScreen.h">
-      <Filter>Scene\HUD</Filter>
-    </ClInclude>
-    <ClInclude Include="Z:\Projects\Repos\19W_GAM1573_Game2\Game\Source\Scenes\OptionsScene.h">
-      <Filter>Scene\HUD</Filter>
-    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\OptionsScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\PauseScreen.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\TitleScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Data\Shaders\Debug3D.vert">

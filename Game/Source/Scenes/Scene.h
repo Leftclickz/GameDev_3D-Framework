@@ -15,6 +15,7 @@ class HUD_Scene;
 #include "Game/SceneManager.h"
 #include "Game/Game.h"
 #include "Game/ResourceManager.h"
+#include "Game/AudioManager.h"
 #include "GameObjects/Camera.h"
 
 class Scene
