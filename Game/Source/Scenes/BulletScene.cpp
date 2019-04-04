@@ -93,8 +93,8 @@ void BulletScene::LoadContent()
 	//player->CreateBoxBody(vec3(0.5f, 0.5f, 0.5f), 1.0f);
 	player->CreateSphereBody(1.0f, 1.0f);
 
-	player->AddTween(TweenType_Scale, vec3(2.0f), 2.0f, TweenFunc_Linear);
-	player->AddTween(TweenType_Translation, vec3(5.0f), 5.0f, TweenFunc_Linear);
+	//player->AddTween(TweenType_Scale, vec3(2.0f), 2.0f, TweenFunc_Linear);
+	player->AddTween(TweenType_Translation, vec3(15,0,0), 5.0f, TweenFunc_Linear);
 
 	//player->CreateConvexHullBody(1.0f);
 	AddGameObject(player);

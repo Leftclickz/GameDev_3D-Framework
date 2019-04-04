@@ -7,6 +7,7 @@
 #include "Mesh/SpriteSheet.h"
 #include "../Scenes/Scene.h"
 #include "../Physics/PhysicsWorld.h"
+#include "Physics/BulletMotionState.h"
 
 Player::Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh, Material* pMaterial)
 	: GameObject3D(pScene, name, transform, pMesh, pMaterial)
@@ -23,6 +24,8 @@ Player::~Player()
 
 void Player::Update(float deltatime)
 {
+
+
 	GameObject3D::Update( deltatime );
 
 	btVector3 dir( 0, 0, 0 );
@@ -97,6 +100,7 @@ void Player::Update(float deltatime)
  
 		m_Body->activate(true);
  		m_Body->applyCentralForce(force);
+
  	}
 }
 

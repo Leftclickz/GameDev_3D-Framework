@@ -44,7 +44,23 @@ void GameObject3D::OnEvent(Event* pEvent)
 
 void GameObject3D::Update(float deltatime)
 {
+	//sync motionstate to body
+	if (m_Body)
+	{
+		btTransform transform = m_Body->getWorldTransform();
+		m_MotionState->setWorldTransform(transform);
+	}
+
 	GameObject::Update(deltatime);
+
+	//synchronize body to motionstate
+	if (m_Body)
+	{
+		btTransform transformTwo;
+		m_MotionState->getWorldTransform(transformTwo);
+
+		m_Body->setWorldTransform(transformTwo);
+	}
 
 	DisplayImguiDebugInfo();
 }

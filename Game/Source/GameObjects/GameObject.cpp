@@ -77,7 +77,7 @@ void GameObject::AddTween(TweenType type, vec3 endgoal, float duration, TweenFun
 		object_to_tween = &m_Rotation;
 		break;
 	case TweenType_Translation:
-		object_to_tween = &m_Scale;
+		object_to_tween = &m_Position;
 		break;
 	default:
 		return;
