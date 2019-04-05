@@ -97,13 +97,21 @@ void GameObject3D::Reset()
 	{
 		SetRotation(cJSONrot);
 		SetPosition(cJSONpos);
-		//SetScale(cJSONscale);
+
+		//fully resets the body to its initial loaded state
+		if (m_Body)
+		{
+			btTransform transform = m_Body->getWorldTransform();
+			transform.setOrigin(btVector3(cJSONpos.x, cJSONpos.y, cJSONpos.z));
+			m_Body->setLinearVelocity(btVector3(0, 0, 0));
+			m_Body->setWorldTransform(transform);
+		}
 	}
 
 	GameObject::Reset();
 }
 
-void GameObject3D::ContactStarted(GameObject3D * pOtherObj)
+void GameObject3D::ContactStarted(GameObject3D * pOtherObj, vec3 normal)
 {
 }
 
@@ -190,11 +198,15 @@ void GameObject3D::CreateConvexHullBody(float mass /*= 0.0f*/)
 	CreateBody(hullShape, mass);
 }
 
-//creates an infinite plane for a floor at 0,0,0
-void GameObject3D::CreatePlane()
+//creates an infinite plane
+//@param normal is the direction, by default up
+// @param planeconatant is how displaced the plane is in that direction. 0 is usually good.
+void GameObject3D::CreatePlane(vec3 normal /*= vec3(0, 1, 0)*/, float planeconatant /*= 0.0f*/)
 {
-	btVector3 normal(0, 1, 0);
-	btCollisionShape* plane = new btStaticPlaneShape(normal, btScalar(0.0f));
+	//no empty vectors
+	assert(normal != vec3(0, 0, 0));
+
+	btCollisionShape* plane = new btStaticPlaneShape(btVector3(normal.x, normal.y, normal.z), btScalar(planeconatant));
 
 	CreateBody(plane, 0.0f);
 }
@@ -312,10 +324,12 @@ void GameObject3D::HandleCollisionLoad(cJSON * obj)
 
 	if (strcmp(primitiveType, "Sphere") == 0)
 	{
+		GetMesh()->Rescale(cJSONscale);
 		CreateSphereBody(cJSONscale.x, mass);
 	}
 	else if (strcmp(primitiveType, "Cube") == 0)
 	{
+		GetMesh()->Rescale(cJSONscale);
 		CreateBoxBody(cJSONscale, mass);
 	}
 	else if (strcmp(primitiveType, "Static Plane") == 0)

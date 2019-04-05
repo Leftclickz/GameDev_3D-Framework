@@ -99,14 +99,6 @@ void BulletScene::LoadContent()
 	Player * player = (Player*)GetGameObjectByName("Player");
 	player->GetBody()->setAngularFactor(btVector3(0, 0, 0));
 
-	FollowLight* pLight = new FollowLight(this, "PlayerLight", Transform(vec3(0, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);
-	pLight->SetObjectAttachment(player);
-	pLight->SetFollowOffset(vec3(0, 5, -5));
-	pLight->SetAttenuationFactor(8.0f);
-	pLight->AssignLightColor(vec4(1.0f, 1.0f, 1.0f, 1.0f));
-	m_pLights.push_back(pLight);
-	AddGameObject(pLight);
-
 	//Scenes
 	m_pSceneManager->AddScene("HUDScene", new HUD_Scene(m_pGame, m_pResources));
 	m_pSceneManager->AddScene("PauseScene", new PauseScreen(m_pGame, m_pResources));
@@ -211,8 +203,7 @@ void BulletScene::LoadFromSceneFile(std::string filename)
 		{
 			LightObject* light = new LightObject(this, "Light", Transform(), nullptr, nullptr);
 			light->LoadFromcJSON(jGameObject, m_pResources);
-			m_pLights.push_back(light);
-			AddGameObject(light);
+			AddLightObject(light);
 		}
 	}
 

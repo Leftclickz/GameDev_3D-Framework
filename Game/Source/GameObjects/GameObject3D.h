@@ -26,13 +26,13 @@ public:
 	virtual void CreateSphereBody(float radius, float mass = 0.0f);
 	virtual void CreateConvexHullBody(float mass = 0.0f);
 
-	virtual void CreatePlane();
+	virtual void CreatePlane(vec3 normal = vec3(0, 1, 0), float planeconatant = 0.0f);
 
 	virtual void Reset() override;
 
 	btRigidBody* GetBody() { return m_Body; }
 
-	virtual void ContactStarted(GameObject3D* pOtherObj);
+	virtual void ContactStarted(GameObject3D* pOtherObj, vec3 normal);
 	virtual void ContactEnded(GameObject3D* pOtherObj);
 
 	virtual void LoadFromcJSON(cJSON* obj, ResourceManager* manager) override;

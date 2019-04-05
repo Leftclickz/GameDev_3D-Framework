@@ -191,8 +191,6 @@ void Mesh::GenerateOBJ(const char* objfilename, float scale /*= 1.0f*/, vec3 ver
 		line = strtok_s(0, "\n", &next_token);
 	}
 
-	m_NumVerts = verts.size();
-	m_OBJVerts = verts;
-	Init(&vertexAttributes[0], vertexAttributes.size(), GL_TRIANGLES, GL_STATIC_DRAW);
+	Init(vertexAttributes, vertexAttributes.size(), GL_TRIANGLES, GL_STATIC_DRAW);
 	delete[] buffer;
 }

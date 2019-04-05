@@ -69,8 +69,8 @@ void Game::LoadContent()
 	//MESHES
 	{
 		//Add things to resource manager.
-		m_pResourceManager->AddMesh("Cube", new Mesh());
-		m_pResourceManager->GetMesh("Cube")->CreateCube(vec3(1, 1, 1), vec3(0, 0, 0));
+		//m_pResourceManager->AddMesh("Cube", new Mesh());
+		//m_pResourceManager->GetMesh("Cube")->CreateCube(vec3(1, 1, 1), vec3(0, 0, 0));
 
 		m_pResourceManager->AddMesh("Box", new Mesh());
 		m_pResourceManager->GetMesh("Box")->CreateBox(vec2(1.0f, 1.0f), vec2(0.0f, 0.0f));
@@ -81,8 +81,8 @@ void Game::LoadContent()
 		m_pResourceManager->AddMesh("Plane", new Mesh());
 		m_pResourceManager->GetMesh("Plane")->CreatePlane(vec2(100.0f, 100.0f), ivec2(600, 300));
 
-		m_pResourceManager->AddMesh("ObjCube", new Mesh());
-		m_pResourceManager->GetMesh("ObjCube")->GenerateOBJ("Data/OBJ/Cube.obj");
+		m_pResourceManager->AddMesh("Cube", new Mesh());
+		m_pResourceManager->GetMesh("Cube")->GenerateOBJ("Data/OBJ/Cube.obj");
 
 		m_pResourceManager->AddMesh("Sphere", new Mesh());
 		m_pResourceManager->GetMesh("Sphere")->GenerateOBJ("Data/OBJ/Sphere.obj");

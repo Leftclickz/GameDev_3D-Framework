@@ -26,6 +26,7 @@ protected:
 	SceneManager* m_pSceneManager;
 
     std::vector<GameObject*> m_pGameObjects;
+	std::vector<LightObject*> m_pLights;
     std::vector<btRigidBody*> m_pBodies3D;
 
 	PhysicsWorld* m_pPhysicsWorld;
@@ -66,6 +67,14 @@ public:
 	void TempRemoveGameObject(GameObject* pObj);
 	bool HideGameObject(GameObject * pObject);
 	GameObject* GetGameObjectByName(std::string name);
+
+	bool AddLightObject(LightObject* pObject);
+	bool RemoveLightObject(LightObject* pObject);
+	void TempRemoveLightObject(LightObject* pObj);
+	bool HideLightObject(LightObject * pObject);
+	LightObject* GetLightObjectByName(std::string name);
+
+	virtual std::vector<LightObject*>* GetLightVector() { return &m_pLights; }
 
 	void Add3DBody(btRigidBody* pObject);
 	bool Remove3DBody(btRigidBody* pObject);

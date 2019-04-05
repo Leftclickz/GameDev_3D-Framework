@@ -67,7 +67,7 @@ void SceneManager::Draw()
 		}
 
 		//draw scenes starting with the lowest non-transparent scene
-		for (int j = startingIndex; j < m_ActiveScenes.size(); j++)
+		for (unsigned int j = startingIndex; j < m_ActiveScenes.size(); j++)
 		{
 			m_ActiveScenes[j]->Draw();
 		}

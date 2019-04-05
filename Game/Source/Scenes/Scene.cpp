@@ -15,6 +15,7 @@
 
 #include <string.h>
 #include "HUD_Scene.h"
+#include "GameObjects/LightObject.h"
 
 Scene::Scene(Game* pGame, ResourceManager* pResources)
 {
@@ -37,6 +38,11 @@ Scene::~Scene()
     {
         delete pObject;
     }
+
+	for (auto pObject : m_pLights)
+	{
+		delete pObject;
+	}
 
 	if (m_pPhysicsWorld)
 	{
@@ -78,6 +84,11 @@ void Scene::Update(float deltatime)
 		m_pPhysicsWorld->Update(deltatime);
 	}
 
+	for (unsigned int i = 0; i < m_pLights.size(); i++)
+	{
+		m_pLights.at(i)->Update(deltatime);
+	}
+
 	for (unsigned int i = 0; i < m_pGameObjects.size(); i++)
 	{
 		m_pGameObjects.at(i)->Update(deltatime);
@@ -94,6 +105,11 @@ void Scene::Draw()
 	else
 	{
 		glPolygonMode(GL_FRONT, GL_FILL);
+	}
+
+	for (unsigned int i = 0; i < m_pLights.size(); i++)
+	{
+		m_pLights.at(i)->Draw(m_Camera);
 	}
 
 	for (unsigned int i = 0; i < m_pGameObjects.size(); i++)
@@ -160,7 +176,6 @@ bool Scene::HideGameObject(GameObject * pObject)
 		}
 		return false;
 	}
-
 	return false;
 }
 
@@ -174,6 +189,73 @@ GameObject * Scene::GetGameObjectByName(std::string name)
 		}
 	}
 
+	return nullptr;
+}
+
+
+bool Scene::AddLightObject(LightObject * pObject)
+{
+	auto iteratorForObject = std::find(m_pLights.begin(), m_pLights.end(), pObject);
+
+	if (iteratorForObject == m_pLights.end())
+	{
+		m_pLights.push_back(pObject);
+		return true;
+	}
+	return false;
+}
+
+bool Scene::RemoveLightObject(LightObject * pObject)
+{
+	auto iteratorForObject = std::find(m_pLights.begin(), m_pLights.end(), pObject);
+
+	if (iteratorForObject != m_pLights.end())
+	{
+		m_pLights.erase(iteratorForObject);
+		return true;
+	}
+
+	return false;
+}
+
+void Scene::TempRemoveLightObject(LightObject * pObj)
+{
+	auto iteratorForObject = std::find(m_pLights.begin(), m_pLights.end(), pObj);
+
+	if (iteratorForObject != m_pLights.end())
+	{
+		m_RemovedPool.AddObjectToPool(pObj);
+		m_pLights.erase(iteratorForObject);
+	}
+}
+
+bool Scene::HideLightObject(LightObject * pObject)
+{
+	auto iteratorForObject = std::find(m_pLights.begin(), m_pLights.end(), pObject);
+
+	if (iteratorForObject != m_pLights.end())
+	{
+		unsigned int index = std::distance(m_pLights.begin(), iteratorForObject);
+
+		if (index < m_pLights.size())
+		{
+			m_pLights.at(index)->SetEnabled(false);
+			return true;
+		}
+		return false;
+	}
+	return false;
+}
+
+LightObject * Scene::GetLightObjectByName(std::string name)
+{
+	for (auto pObject : m_pLights)
+	{
+		if (pObject->GetName() == name)
+		{
+			return pObject;
+		}
+	}
 	return nullptr;
 }
 
@@ -234,5 +316,11 @@ void Scene::Reset()
 	{
 		m_pGameObjects[i]->Reset();
 		m_pGameObjects[i]->SetEnabled(true);
+	}
+
+	for (unsigned int i = 0; i < m_pLights.size(); i++)
+	{
+		m_pLights[i]->Reset();
+		m_pLights[i]->SetEnabled(true);
 	}
 }

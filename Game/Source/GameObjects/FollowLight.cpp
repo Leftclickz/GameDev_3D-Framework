@@ -10,6 +10,8 @@ FollowLight::FollowLight(Scene* pScene, std::string name, Transform transform, M
 
 StandardLight FollowLight::GetLight()
 {
+	//TODO: Make the light follow the player's rotation.
+	//Keep its relative offset based on the player rotating
 	if (m_ObjectToFollow != nullptr)
 		SetPosition(m_ObjectToFollow->GetPosition() + m_FollowOffset);
 

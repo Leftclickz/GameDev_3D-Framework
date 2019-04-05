@@ -58,6 +58,7 @@ protected:
     unsigned int m_NumIndices;
 
 	std::vector<vec3> m_OBJVerts;
+	std::vector<VertexFormat> m_OBJvertexAttributes;
 
     GLenum m_PrimitiveType;
 
@@ -66,7 +67,9 @@ public:
     virtual ~Mesh();
 
     void Init(VertexFormat* verts, int numVerts, unsigned int* indices, int numIndices, GLenum primitiveType, GLenum usage);
-    void Init(const void* verts, int numVerts, GLenum primitiveType, GLenum usage);
+    void Init(std::vector<VertexFormat> verts, int numVerts, GLenum primitiveType, GLenum usage);
+
+	void Rescale(vec3 scale);
 
     void SetupAttributes(ShaderProgram* pShaderProgram);
     static void SetupUniforms(mat4 matrix, mat4 normalmatrix, Camera* camera, Material* material, std::vector<LightObject*> *Lights = nullptr);
@@ -75,8 +78,8 @@ public:
     void Draw(ShaderProgram* pShaderProgram);
 
     // The following functions are defined in MeshShapes.cpp:
-    void CreateBox(vec2 size, vec2 offset);
-	void CreateCube(vec3 size, vec3 offset);
+    void CreateBox(vec2 size, vec2 offset = vec2(0));
+	void CreateCube(vec3 size, vec3 offset = vec3(0));
 	void CreatePlane(vec2 worldsize, ivec2 vertcount);
 	void GenerateOBJ(const char* objfilename, float scale = 1.0f, vec3 vertoffset = vec3(0));
 

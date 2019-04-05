@@ -50,19 +50,38 @@ void Mesh::Init(VertexFormat* verts, int numVerts, unsigned int* indices, int nu
     CheckForGLErrors();
 }
 
-void Mesh::Init(const void* verts, int numVerts, GLenum primitiveType, GLenum usage)
+void Mesh::Init(std::vector<VertexFormat> verts, int numVerts, GLenum primitiveType, GLenum usage)
 {
     m_NumVerts = numVerts;
     m_NumIndices = 0;
     m_PrimitiveType = primitiveType;
 
+	m_OBJvertexAttributes = verts;
+
+	for (auto i : verts)
+	{
+		m_OBJVerts.push_back(i.m_Pos);
+	}
+
     // Generate and fill buffer with our vertex attributes.
     if( m_VBO == 0 )
         glGenBuffers( 1, &m_VBO );
     glBindBuffer( GL_ARRAY_BUFFER, m_VBO );
-    glBufferData( GL_ARRAY_BUFFER, sizeof(VertexFormat) * numVerts, verts, usage );
+    glBufferData( GL_ARRAY_BUFFER, sizeof(VertexFormat) * numVerts, &verts[0], usage );
 
     CheckForGLErrors();
+}
+
+//VERY COSTLY. Try not to always use
+void Mesh::Rescale(vec3 scale)
+{
+	for (unsigned int i = 0; i < m_OBJvertexAttributes.size(); i++)
+	{
+		m_OBJvertexAttributes[i].m_Pos *=  scale;
+	}
+
+	m_VBO = 0;
+	Init(m_OBJvertexAttributes, m_OBJvertexAttributes.size(), GL_TRIANGLES, GL_STATIC_DRAW);
 }
 
 void SetUniform1f(GLuint shader, const char* uniformName, float value)

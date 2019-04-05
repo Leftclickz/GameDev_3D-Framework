@@ -10,6 +10,9 @@ class Player : public GameObject3D
 {
     const float PLAYER_SPEED = 10.0f;   // Units per second
     const float PLAYER_HEALTH = 100.0f;   
+	const char MAX_JUMPS = 2;
+	const float PLAYER_JUMP_HEIGHT = 10.0f;
+	const vec3 FOLLOW_LIGHT_OFFSET = vec3(0, 5, 5);
 
 protected:
     PlayerController* m_pPlayerController;
@@ -18,6 +21,11 @@ protected:
     float m_TurningSpeed;
 
 	float m_Health;
+
+	float m_JumpHeight = PLAYER_JUMP_HEIGHT;
+	unsigned char m_JumpCount = MAX_JUMPS;
+
+	class FollowLight* m_Followlight;
 
 public:
 	Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh, Material* pMaterial);
@@ -33,7 +41,7 @@ public:
 
 	void Jump();
 
-	virtual void ContactStarted(GameObject3D* pOtherObj) override;
+	virtual void ContactStarted(GameObject3D* pOtherObj, vec3 normal) override;
 	virtual void ContactEnded(GameObject3D* pOtherObj) override;
 
 	virtual void DisplayImguiDebugInfo() override;

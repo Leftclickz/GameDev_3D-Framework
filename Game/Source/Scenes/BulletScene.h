@@ -20,8 +20,6 @@ public:
 
 	virtual void LoadFromSceneFile(std::string filename) override;
 
-	virtual std::vector<LightObject*>* GetLightVector() { return &m_pLights; }
-
 	virtual void HasEnteredFocus() override;
 	virtual void HasLeftFocus() override;
 
@@ -29,7 +27,6 @@ public:
 
 protected:
 
-	std::vector<LightObject*> m_pLights;
 	FBODefinition* m_FBO;
 
 	class GameObject3D* m_FBOobject;

@@ -83,7 +83,7 @@ void ChaseCameraObject::Update(float deltaTime)
         //       The camera should be looking at the player.
         //       The player should move relative to the camera.
 
-		if (m_pScene->GetGame()->GetFramework()->IsKeyDown('I'))
+		if (m_pScene->GetGame()->GetFramework()->IsKeyDown(VK_UP))
 		{
 			float radianangle = (m_Rotation.x - 1.0f) / 180 * PI;
 			float x = cosf(radianangle) * m_Position.x;
@@ -98,7 +98,7 @@ void ChaseCameraObject::Update(float deltaTime)
 			m_ViewMatrix.CreateSRT(m_Scale, m_Rotation, m_Position);
 			m_ViewMatrix.Inverse();
 		}
-		else if (m_pScene->GetGame()->GetFramework()->IsKeyDown('J'))
+		else if (m_pScene->GetGame()->GetFramework()->IsKeyDown(VK_RIGHT))
 		{
 			float radianangle = (m_Rotation.y - 1.0f) / 180 * PI;
 			float x = cosf(radianangle) * m_Position.x;
@@ -113,7 +113,7 @@ void ChaseCameraObject::Update(float deltaTime)
 			m_ViewMatrix.CreateSRT(m_Scale, m_Rotation, m_Position);
 			m_ViewMatrix.Inverse();
 		}
-		else if (m_pScene->GetGame()->GetFramework()->IsKeyDown('K'))
+		else if (m_pScene->GetGame()->GetFramework()->IsKeyDown(VK_DOWN))
 		{
 			float radianangle = (m_Rotation.x + 1.0f) / 180 * PI;
 			float x = cosf(radianangle) * m_Position.x;
@@ -128,7 +128,7 @@ void ChaseCameraObject::Update(float deltaTime)
 			m_ViewMatrix.CreateSRT(m_Scale, m_Rotation, m_Position);
 			m_ViewMatrix.Inverse();
 		}
-		else if (m_pScene->GetGame()->GetFramework()->IsKeyDown('L'))
+		else if (m_pScene->GetGame()->GetFramework()->IsKeyDown(VK_LEFT))
 		{
 			float radianangle = (m_Rotation.y + 1.0f) / 180 * PI;
 			float x = cosf(radianangle) * m_Position.x;

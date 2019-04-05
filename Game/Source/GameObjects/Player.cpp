@@ -8,6 +8,7 @@
 #include "../Scenes/Scene.h"
 #include "../Physics/PhysicsWorld.h"
 #include "Physics/BulletMotionState.h"
+#include "FollowLight.h"
 
 Player::Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh, Material* pMaterial)
 	: GameObject3D(pScene, name, transform, pMesh, pMaterial)
@@ -16,6 +17,12 @@ Player::Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh
 	, m_TurningSpeed(PLAYER_SPEED)
 	, m_Health(PLAYER_HEALTH)
 {
+	m_Followlight = new FollowLight(m_pScene, "PlayerLight", Transform(vec3(0, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);
+	m_Followlight->SetObjectAttachment(this);
+	m_Followlight->SetFollowOffset(FOLLOW_LIGHT_OFFSET);
+	m_Followlight->SetAttenuationFactor(8.0f);
+	m_Followlight->AssignLightColor(vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	m_pScene->AddLightObject(m_Followlight);
 }
 
 Player::~Player()
@@ -24,8 +31,6 @@ Player::~Player()
 
 void Player::Update(float deltatime)
 {
-
-
 	GameObject3D::Update( deltatime );
 
 	btVector3 dir( 0, 0, 0 );
@@ -57,22 +62,15 @@ void Player::Update(float deltatime)
 			dir.setX(1);
         }
 
-		if (m_pPlayerController->IsHeld_In())
-		{
-			dir.setY(-1);
-		}
-
-		if (m_pPlayerController->IsHeld_Out())
-		{
-			dir.setY(1);
-		}
-
 		GameObject* cam = m_pScene->GetGameObjectByName("ChaseCamera");
 		if (cam)
 		{
 			vec3 camrot = cam->GetRotation() / 180.0f * PI;
 			vec3 radpos = m_Position / 180 * PI;
 			m_Rotation.y = camrot.y / PI * 180;
+
+			if (m_Rotation.y > 360)
+				m_Rotation.y = 0;
 
 			if (dir.x() != 0 || dir.z() != 0)
 			{
@@ -85,9 +83,9 @@ void Player::Update(float deltatime)
 
  	if (m_Body)
  	{
+		//Movement
  		float mass = 1 / m_Body->getInvMass();
  		btVector3 currentVel = m_Body->getLinearVelocity();
-		//currentVel.setY(currentVel.y() - m_Body->getGravity().y());
  
 		btVector3 VelDiff = (dir * m_Speed) - currentVel;
 
@@ -101,6 +99,27 @@ void Player::Update(float deltatime)
 		m_Body->activate(true);
  		m_Body->applyCentralForce(force);
 
+		//Rotate to Camera
+		btTransform transform;
+		btQuaternion quat;
+		m_MotionState->getWorldTransform(transform);
+		quat = transform.getRotation();
+		quat.setRotation(btVector3(0, 1, 0), -btScalar(m_Rotation.y / 180.0f * PI));
+		transform.setRotation(quat);
+		m_Body->setWorldTransform(transform);
+
+
+// 		float radianangle = (-m_Rotation.y) / 180 * PI;
+// 
+// 		float x = cosf(radianangle) * m_Position.x + FOLLOW_LIGHT_OFFSET.x;
+// 		float z = sinf(radianangle) * m_Position.z + FOLLOW_LIGHT_OFFSET.z;
+// 		float y = m_Position.y + FOLLOW_LIGHT_OFFSET.y;
+// 
+// 		vec3 newpos = vec3(x, y, z);
+// 		m_Followlight->SetPosition(newpos);
+
+		
+
  	}
 }
 
@@ -111,29 +130,23 @@ void Player::Draw(Camera* cam)
 
 void Player::Jump()
 {
-	if (m_Body)
+	if (m_Body && m_JumpCount > 0)
 	{
-		m_Body->applyCentralImpulse(btVector3(0.0f, 10.0f, 0.0f));
+		m_Body->applyCentralImpulse(btVector3(0.0f, m_JumpHeight, 0.0f));
 		m_pPlayerController->RemoveJumpInput();
+		m_JumpCount--;
 	}
 }
 
-void Player::ContactStarted(GameObject3D* pOtherObj)
+void Player::ContactStarted(GameObject3D* pOtherObj, vec3 normal)
 {
-	GameObject3D::ContactStarted(pOtherObj);
+	GameObject3D::ContactStarted(pOtherObj, normal);
 
-	std::string stringtype(pOtherObj->GetName());
-	//Push boxes
-	if (stringtype.find("Box") != std::string::npos)
+	//TODO: Figure out why normals are wrong half the time
+	//Hit something from on top
+	if (normal.y == -1.0f || normal.y == 1.0f)
 	{
-		vec3 dir = pOtherObj->GetPosition() - m_Position;
-		dir.Normalize();
-
-		dir *= 50.0f;
-
-		pOtherObj->GetBody()->applyCentralImpulse(btVector3(dir.x, dir.y, dir.z));
-
-		TakeDamage(30.0f);
+		m_JumpCount = MAX_JUMPS;
 	}
 }
 
@@ -182,4 +195,5 @@ void Player::Reset()
 
 	m_Health = PLAYER_HEALTH;
 	m_Speed = PLAYER_SPEED;
+	m_JumpCount = MAX_JUMPS;
 }
