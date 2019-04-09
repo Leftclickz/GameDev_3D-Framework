@@ -172,3 +172,9 @@ void ChaseCameraObject::Update(float deltaTime)
 		m_ViewMatrix.CreateLookAtView(m_Position, vec3(0, 1, 0), followedObjectPosition);
     }
 }
+
+void ChaseCameraObject::Reset()
+{
+	m_Rotation = vec3(0);
+	m_Rotation.x -= 30.0f;
+}

@@ -53,8 +53,11 @@ void LightObject::Reset()
 {
 	GameObject3D::Reset();
 
-	AssignLightColor(cJSONcolor);
-	SetAttenuationFactor(cJSONatten.x);
+	if (m_WasLoadedFromJSON)
+	{
+		AssignLightColor(cJSONcolor);
+		SetAttenuationFactor(cJSONatten.x);
+	}
 }
 
 void LightObject::DisplayImguiDebugInfo()

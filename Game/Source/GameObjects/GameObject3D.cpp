@@ -103,6 +103,7 @@ void GameObject3D::Reset()
 		{
 			btTransform transform = m_Body->getWorldTransform();
 			transform.setOrigin(btVector3(cJSONpos.x, cJSONpos.y, cJSONpos.z));
+			transform.setRotation(btQuaternion(cJSONrot.y, cJSONrot.x, cJSONrot.z));
 			m_Body->setLinearVelocity(btVector3(0, 0, 0));
 			m_Body->setWorldTransform(transform);
 		}

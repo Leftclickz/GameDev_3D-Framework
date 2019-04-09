@@ -38,12 +38,13 @@ public:
 	virtual void StopAudio();
 
 	//Set display name
-	virtual void SetName(std::string name) { m_Name = name; }
+	virtual void SetName(std::string name);
 
 	//The type of list this is. Used for IMGUI and other things.
 	virtual AudioListType GetType() { return AudioListType_Default; }
 
 	virtual void DisplayImGuiPanel();
+	std::string GetDisplayString() { return imgui_display_string; }
 
 
 protected:

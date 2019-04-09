@@ -31,6 +31,5 @@ protected:
 
 	class GameObject3D* m_FBOobject;
 
-	class Audio* m_GameAudio;
 	class AudioList* m_BackgroundChannel;
 };

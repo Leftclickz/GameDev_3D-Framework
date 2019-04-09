@@ -48,8 +48,6 @@ BulletScene::~BulletScene()
 
 	if(m_FBOobject)
 		delete m_FBOobject;
-
-	delete m_BackgroundChannel;
 }
 
 void BulletScene::LoadContent()
@@ -62,25 +60,49 @@ void BulletScene::LoadContent()
 	m_pResources->AddMaterial("Lighting2", new Material(m_pResources->GetShader("LightingShader"), m_pResources->GetTexture("White")));
 
 	//AUDIO
-	m_pResources->LoadWaveData("Main Music", "Floor_1");
-	m_pResources->LoadWaveData("Player Swing 1", "Player_Swing_1");
-	m_pResources->LoadWaveData("Player Swing 2", "Player_Swing_2");
-	m_pResources->LoadWaveData("Player Swing 3", "Player_Swing_3");
-	m_pResources->LoadWaveData("Player Swing 4", "Player_Swing_4");
+	{
+		//Load Wav data
+		m_pResources->LoadWaveData("Background Music - 1", "Background_1");
+		m_pResources->LoadWaveData("Background Music - 2", "Background_2");
+		m_pResources->LoadWaveData("Background Music - 3", "Background_3");
+		m_pResources->LoadWaveData("Background Music - 4", "Background_4");
+		m_pResources->LoadWaveData("Player Death 1", "Player_Death_1");
+		m_pResources->LoadWaveData("Player Death 2", "Player_Death_2");
+		m_pResources->LoadWaveData("Player Death 3", "Player_Death_3");
+		m_pResources->LoadWaveData("Player Spawn 1", "Player_Spawn_1");
+		m_pResources->LoadWaveData("Player Spawn 2", "Player_Spawn_2");
+		m_pResources->LoadWaveData("Player Spawn 3", "Player_Spawn_3");
+		m_pResources->LoadWaveData("Player Spawn 4", "Player_Spawn_4");
+		m_pResources->LoadWaveData("Player Spawn 5", "Player_Spawn_5");
 
-	//create audio voice
-	m_GameAudio = m_pResources->CreateAudio("Main Music", "Main Music");
+		//Create audio objects
+		Audio* sample = m_pResources->CreateAudio("Apex and Bones", "Background Music - 1");
+		m_pResources->CreateAudio("Tesla Coil", "Background Music - 2");
+		m_pResources->CreateAudio("Trial of Thunder", "Background Music - 3");
+		m_pResources->CreateAudio("A Shadow to Prevail", "Background Music - 4");
+		m_pResources->CreateAudio("Player Spawn 1", "Player Spawn 1");
+		m_pResources->CreateAudio("Player Spawn 2", "Player Spawn 2");
+		m_pResources->CreateAudio("Player Spawn 3", "Player Spawn 3");
+		m_pResources->CreateAudio("Player Spawn 4", "Player Spawn 4");
+		m_pResources->CreateAudio("Player Spawn 5", "Player Spawn 5");
+		m_pResources->CreateAudio("Player Death 1", "Player Death 1");
+		m_pResources->CreateAudio("Player Death 2", "Player Death 2");
+		m_pResources->CreateAudio("Player Death 3", "Player Death 3");
 
-	m_BackgroundChannel = new WeightedRandomAudioList();
 
-	AudioManager::GetEngine()->SetDefaultWaveFormat(*m_GameAudio->GetWaveFormat());
-	AudioManager::GetEngine()->CreatePublicAudioChannels();
+		//create background audio channel
+		m_BackgroundChannel = m_pResources->AddAudioList("Music Soundboard", new ShuffleAudioList(sample->GetWaveFormat()));
 
-	m_BackgroundChannel->AddAudio(m_pResources->CreateAudio("Player Swing 1", "Player Swing 1"));
-	m_BackgroundChannel->AddAudio(m_pResources->CreateAudio("Player Swing 2", "Player Swing 2"));
-	m_BackgroundChannel->AddAudio(m_pResources->CreateAudio("Player Swing 3", "Player Swing 3"));
-	m_BackgroundChannel->AddAudio(m_pResources->CreateAudio("Player Swing 4", "Player Swing 4"));
-	m_BackgroundChannel->SetName("Soundboard");
+		//set default public channels
+		AudioManager::GetEngine()->SetDefaultWaveFormat(*sample->GetWaveFormat());
+		AudioManager::GetEngine()->CreatePublicAudioChannels();
+
+		//music channel population
+		m_BackgroundChannel->AddAudio(m_pResources->GetAudio("Apex and Bones"));
+		m_BackgroundChannel->AddAudio(m_pResources->GetAudio("Tesla Coil"));
+		m_BackgroundChannel->AddAudio(m_pResources->GetAudio("Trial of Thunder"));
+		m_BackgroundChannel->AddAudio(m_pResources->GetAudio("A Shadow to Prevail"));
+	}
 
 	if (m_FBO->IsFullyLoaded())
 	{
@@ -121,6 +143,11 @@ void BulletScene::OnEvent(Event* pEvent)
 			//PAUSE Screen
 			m_pGame->GetSceneManager()->PushScene("PauseScene");
 			m_pGame->GetEventManager()->QueueEvent(new SceneChangeEvent(nullptr, m_pGame->GetSceneManager()->GetActiveScenes().back()));
+		}
+
+		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 'R' && pInput->GetInputState() == InputState_Pressed)//Reset
+		{
+			Reset();
 		}
 	}
 }

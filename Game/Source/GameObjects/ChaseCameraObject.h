@@ -23,6 +23,8 @@ public:
     virtual void Update(float deltaTime);
 
     void SetObjectToFollow(GameObject* pObject, float dist) { m_ObjectFollowing = pObject; m_Distance = dist; }
+
+	virtual void Reset() override;
 };
 
 #endif //__ChaseCameraObject_H__

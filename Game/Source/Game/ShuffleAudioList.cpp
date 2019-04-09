@@ -1,6 +1,7 @@
 #include "GamePCH.h"
 #include "ShuffleAudioList.h"
 #include "AudioDataStructures.h"
+#include "AudioVoice.h"
 
 void ShuffleAudioList::AddAudio(Audio* audio)
 {
@@ -27,43 +28,45 @@ void ShuffleAudioList::Shuffle()
 
 void ShuffleAudioList::DisplayImGuiPanel()
 {
-	ImGui::Begin("Sound");
-	ImGui::PushID(this);
 
-	if (ImGui::CollapsingHeader(imgui_display_string.c_str()))
+	ImGui::Checkbox("Enabled", &isEnabled);
+
+	if (isEnabled == true)
 	{
-		ImGui::Checkbox("Enabled", &isEnabled);
+		if (ImGui::Button("Shuffle"))
+			Shuffle();
+		if (ImGui::Button("Play Next"))
+			PlayAudio();
 
-		if (isEnabled == true)
+		std::string last_display;
+		if (m_LastPlayed != nullptr)
+			last_display = "Last Audio Played: " + std::string(m_LastPlayed->GetName());
+		else
+			last_display = "Last Audio Played: NONE";
+
+		if (IsUsingPublicChannels() == false)
 		{
-			if (ImGui::Button("Shuffle"))
-				Shuffle();
-			if (ImGui::Button("Play Next"))
-				PlayAudio();
-			
-			std::string last_display;
-			if (m_LastPlayed != nullptr)
-				last_display = "Last Audio Played: " + std::string(m_LastPlayed->GetName());
-			else
-				last_display = "Last Audio Played: NONE";
+			if (ImGui::Button("Stop"))
+				StopAudio();
 
-			ImGui::Text(last_display.c_str());
+			ImGui::SliderFloat("Volume", m_Voice->GetVolumePointer(), 0.0f, 1.0f);
+			m_Voice->SetVolume(*m_Voice->GetVolumePointer());
+		}
 
-			for (unsigned int i = 0; i < m_Audios.size(); i++)
+		ImGui::Text(last_display.c_str());
+
+		for (unsigned int i = 0; i < m_Audios.size(); i++)
+		{
+			if (ImGui::TreeNode(m_Audios[i]->GetName()))
 			{
-				if (ImGui::TreeNode(m_Audios[i]->GetName()))
-				{
-					if (ImGui::Button("Play"))
-						AudioList::PlayAudio(i);
-					if (ImGui::Button("Stop"))
-						StopAudio();
-					ImGui::TreePop();
-				}
+				if (ImGui::Button("Play"))
+					AudioList::PlayAudio(i);
+				if (ImGui::Button("Stop"))
+					StopAudio();
 
+				ImGui::TreePop();
 			}
+
 		}
 	}
-
-	ImGui::PopID();
-	ImGui::End();
 }

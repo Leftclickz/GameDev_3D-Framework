@@ -166,7 +166,7 @@ void Game::OnEvent(Event* pEvent)
 			wglSwapInterval(0);
 
 		//reset everything
-		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 'R')
+		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 'P')
 			Reset();
 	}
 #endif //WIN32
@@ -180,18 +180,9 @@ void Game::Update(float deltatime)
 		deltatime = 0.1f;
 	}
 	m_pImGuiManager->StartFrame((float)m_pFramework->GetWindowWidth(), (float)m_pFramework->GetWindowHeight(), deltatime);
-
-	ImGui::Begin("Sound");
-	ImGui::PushID(this);
-	if (ImGui::CollapsingHeader("Public Channels"))
-	{
-		if (ImGui::Button("Stop All Public Channels"))
-		{
-			AudioManager::GetEngine()->StopAllPublicAudioChannels();
-		}
-	}
-	ImGui::PopID();
-	ImGui::End();
+	
+	AudioManager::GetEngine()->ImGuiDisplayChannels();
+	m_pResourceManager->ImGuiDisplayAudioLists();
 
 	m_pSceneManager->Update(deltatime);
 }
@@ -217,3 +208,4 @@ void Game::Reset()
 	m_pSceneManager->Reset();
 	m_pSceneManager->PushScene("TitleScene");
 }
+

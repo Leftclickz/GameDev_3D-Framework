@@ -13,6 +13,9 @@ ResourceManager::ResourceManager(Game* game)
 
 ResourceManager::~ResourceManager()
 {
+	for (auto object : m_AudioLists)
+		delete object.second;
+
 	for (auto object : m_pMeshes)
 		delete object.second;
 
@@ -67,6 +70,16 @@ void ResourceManager::AddSpriteSheet(std::string name, SpriteSheet* pSheet)
 	assert(m_pSheets.find(name) == m_pSheets.end());
 
 	m_pSheets[name] = pSheet;
+}
+
+AudioList* ResourceManager::AddAudioList(const char* ListName, AudioList* list)
+{
+	assert(m_AudioLists.find(ListName) == m_AudioLists.end());
+
+	list->SetName(ListName);
+	m_AudioLists[ListName] = list;
+
+	return list;
 }
 
 Audio* ResourceManager::CreateAudio(const char* AudioName, const char* FilePath)
@@ -131,6 +144,15 @@ Audio* ResourceManager::GetAudio(const std::string name)
 	return AudioManager::GetAudio(name.c_str());
 }
 
+AudioList* ResourceManager::GetAudioList(const std::string name)
+{
+	auto it = m_AudioLists.find(name);
+	if (it == m_AudioLists.end())
+		return nullptr;
+
+	return it->second;
+}
+
 void ResourceManager::HandleEvent(Event* pEvent)
 {
 	if (pEvent->GetEventType() == EventType_Audio)
@@ -158,5 +180,31 @@ void ResourceManager::HandleEvent(Event* pEvent)
 			}
 		}
 	}
+}
+
+void ResourceManager::ImGuiDisplayAudioLists()
+{
+	ImGui::Begin("Sound");
+	ImGui::PushID(this);
+
+	//create a soundboard treenode
+	if (ImGui::TreeNode("Soundboards"))
+	{
+		for (std::pair<std::string, AudioList*> object : m_AudioLists)
+		{
+			//create a header for every audio list
+			if (ImGui::CollapsingHeader(object.second->GetDisplayString().c_str()))
+			{
+				ImGui::PushID(object.second);
+				object.second->DisplayImGuiPanel();
+				ImGui::PopID();
+			}
+		}
+
+		ImGui::TreePop();
+	}
+
+	ImGui::PopID();
+	ImGui::End();
 }
 

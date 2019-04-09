@@ -21,13 +21,8 @@ AudioList::AudioList(const WAVEFORMATEX *WaveFormat)
 
 void AudioList::Update(float deltatime)
 {
-	if (imgui_display_string == "")
-		GenerateImguiDisplayString();
-
 	if (isEnabled == false)
 		StopAudio();
-
-	DisplayImGuiPanel();
 }
 
 AudioList::~AudioList()
@@ -92,42 +87,50 @@ void AudioList::StopAudio()
 	}
 }
 
+void AudioList::SetName(std::string name)
+{
+	m_Name = name;
+	GenerateImguiDisplayString();
+}
+
 void AudioList::DisplayImGuiPanel()
 {
-	ImGui::Begin("Sound");
-	ImGui::PushID(this);
 
-	if (ImGui::CollapsingHeader(imgui_display_string.c_str()))
+	ImGui::Checkbox("Enabled", &isEnabled);
+
+	if (isEnabled == true)
 	{
-		ImGui::Checkbox("Enabled", &isEnabled);
+		std::string last_display;
+		if (m_LastPlayed != nullptr)
+			last_display = "Last Audio Played: " + std::string(m_LastPlayed->GetName());
+		else
+			last_display = "Last Audio Played: NONE";
 
-		if (isEnabled == true)
+		if (IsUsingPublicChannels() == false)
 		{
-			std::string last_display;
-			if (m_LastPlayed != nullptr)
-				last_display = "Last Audio Played: " + std::string(m_LastPlayed->GetName());
-			else
-				last_display = "Last Audio Played: NONE";
+			if (ImGui::Button("Stop"))
+				StopAudio();
 
-			ImGui::Text(last_display.c_str());
+			ImGui::SliderFloat("Volume", m_Voice->GetVolumePointer(), 0.0f, 1.0f);
+			m_Voice->SetVolume(*m_Voice->GetVolumePointer());
+		}
 
-			for (unsigned int i = 0; i < m_Audios.size(); i++)
+		ImGui::Text(last_display.c_str());
+
+		for (unsigned int i = 0; i < m_Audios.size(); i++)
+		{
+			if (ImGui::TreeNode(m_Audios[i]->GetName()))
 			{
-				if (ImGui::TreeNode(m_Audios[i]->GetName()))
-				{
-					if (ImGui::Button("Play"))
-						PlayAudio(i);
-					if (ImGui::Button("Stop"))
-						StopAudio();
-					ImGui::TreePop();
-				}
-
+				if (ImGui::Button("Play"))
+					PlayAudio(i);
+				if (ImGui::Button("Stop"))
+					StopAudio();
+				ImGui::TreePop();
 			}
+
 		}
 	}
 
-	ImGui::PopID();
-	ImGui::End();
 }
 
 void AudioList::GenerateImguiDisplayString()
@@ -154,10 +157,10 @@ void AudioList::GenerateImguiDisplayString()
 	switch (IsUsingPublicChannels())
 	{
 	case true:
-		channel = "CHANNEL - Public Multiple";
+		channel = "CHANNEL - Public";
 		break;
 	case false:
-		channel = "CHANNEL - Shared Singular";
+		channel = "CHANNEL - Shared";
 		break;
 	}
 

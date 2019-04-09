@@ -32,6 +32,10 @@ public:
 
 	WAVEFORMATEX GetFormat() { return m_Format; }
 
+	Audio* GetCurrentAudioPlaying() { return m_LastAudio; }
+
+	void ImGuiGenerateVolumeSlider();
+	float* GetVolumePointer() { return &m_Volume; }
 
 protected:
 
@@ -39,4 +43,6 @@ protected:
 	WAVEFORMATEX m_Format;
 	VoiceType m_Type;
 	bool m_IsPlaying;
+	Audio* m_LastAudio;
+	float m_Volume;
 };

@@ -23,6 +23,23 @@ Player::Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh
 	m_Followlight->SetAttenuationFactor(8.0f);
 	m_Followlight->AssignLightColor(vec4(1.0f, 1.0f, 1.0f, 1.0f));
 	m_pScene->AddLightObject(m_Followlight);
+
+	ResourceManager* resources = pScene->GetResourceManager();
+
+	AudioList* deathAudio = resources->AddAudioList("Death Sounds", new WeightedRandomAudioList());
+	deathAudio->AddAudio(resources->GetAudio("Player Death 1"));
+	deathAudio->AddAudio(resources->GetAudio("Player Death 2"));
+	deathAudio->AddAudio(resources->GetAudio("Player Death 3"));
+	m_PlayerSounds["Death"] = deathAudio;
+
+	AudioList* spawnAudio = resources->AddAudioList("Spawn Sounds", new WeightedRandomAudioList());
+	spawnAudio->AddAudio(resources->GetAudio("Player Spawn 1"));
+	spawnAudio->AddAudio(resources->GetAudio("Player Spawn 2"));
+	spawnAudio->AddAudio(resources->GetAudio("Player Spawn 3"));
+	spawnAudio->AddAudio(resources->GetAudio("Player Spawn 4"));
+	spawnAudio->AddAudio(resources->GetAudio("Player Spawn 5"));
+	m_PlayerSounds["Spawn"] = spawnAudio;
+	
 }
 
 Player::~Player()
@@ -32,6 +49,9 @@ Player::~Player()
 void Player::Update(float deltatime)
 {
 	GameObject3D::Update( deltatime );
+
+	for each(std::pair<std::string, AudioList*> list in m_PlayerSounds)
+		list.second->Update(deltatime);
 
 	btVector3 dir( 0, 0, 0 );
 
@@ -101,25 +121,13 @@ void Player::Update(float deltatime)
 
 		//Rotate to Camera
 		btTransform transform;
-		btQuaternion quat;
 		m_MotionState->getWorldTransform(transform);
-		quat = transform.getRotation();
-		quat.setRotation(btVector3(0, 1, 0), -btScalar(m_Rotation.y / 180.0f * PI));
-		transform.setRotation(quat);
+		transform.setRotation(btQuaternion(btVector3(0, 1, 0), -btScalar(m_Rotation.y / 180.0f * PI)));
 		m_Body->setWorldTransform(transform);
 
-
-// 		float radianangle = (-m_Rotation.y) / 180 * PI;
-// 
-// 		float x = cosf(radianangle) * m_Position.x + FOLLOW_LIGHT_OFFSET.x;
-// 		float z = sinf(radianangle) * m_Position.z + FOLLOW_LIGHT_OFFSET.z;
-// 		float y = m_Position.y + FOLLOW_LIGHT_OFFSET.y;
-// 
-// 		vec3 newpos = vec3(x, y, z);
-// 		m_Followlight->SetPosition(newpos);
-
-		
-
+		//rotate light to player
+ 		float radianangle = (-m_Rotation.y) / 180.0f * PI;
+ 		m_Followlight->SetFollowOffset(vec3(sinf(radianangle) * FOLLOW_LIGHT_OFFSET.z, FOLLOW_LIGHT_OFFSET.y, cosf(radianangle) * FOLLOW_LIGHT_OFFSET.z));
  	}
 }
 

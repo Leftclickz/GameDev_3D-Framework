@@ -8,10 +8,12 @@ AudioVoice::AudioVoice(WAVEFORMATEX format, VoiceType type)
 	m_Format = format;
 	m_Type = type;
 	m_IsPlaying = false;
+	m_LastAudio = nullptr;
+	m_Volume = 0.05f;
 
 	AudioManager::GetEngine()->CreateAudioVoice(this);
 
-	m_Source->SetVolume(0.05f);
+	m_Source->SetVolume(m_Volume);
 }
 
 AudioVoice::~AudioVoice()
@@ -22,7 +24,10 @@ AudioVoice::~AudioVoice()
 void AudioVoice::SetVolume(float aVolume)
 {
 	if (m_Source != nullptr)
-		m_Source->SetVolume(aVolume);
+	{
+		m_Volume = aVolume;
+		m_Source->SetVolume(m_Volume);
+	}
 }
 
 float AudioVoice::GetVolume()
@@ -61,6 +66,7 @@ void AudioVoice::PlayAudio(Audio* audio)
 
 		//Set the is playing flag to true
 		m_IsPlaying = true;
+		m_LastAudio = audio;
 	}
 }
 
@@ -74,5 +80,12 @@ void AudioVoice::StopAudio()
 
 		//Set the is playing flag to false
 		m_IsPlaying = false;
+		m_LastAudio = nullptr;
 	}
+}
+
+void AudioVoice::ImGuiGenerateVolumeSlider()
+{
+	ImGui::SliderFloat("Volume", &m_Volume, 0.0f, 1.0f);
+	SetVolume(m_Volume);
 }

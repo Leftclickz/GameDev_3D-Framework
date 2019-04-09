@@ -47,10 +47,11 @@ protected:
 	BulletMotionState* m_MotionState;
 	btRigidBody* m_Body;
 
+	bool m_WasLoadedFromJSON = false;
+
 private:
+
 	vec3 cJSONpos;
 	vec3 cJSONrot;
-	vec3 cJSONscale;
-
-	bool m_WasLoadedFromJSON = false;
+	vec3 cJSONscale;	
 };

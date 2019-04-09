@@ -118,16 +118,128 @@ const unsigned int AudioEngine::MAX_PUBLIC_AUDIO_CHANNELS = 10;
 		for (unsigned int i = 0; i < MAX_PUBLIC_AUDIO_CHANNELS; i++)
 		{
 			AudioVoice* voice = new AudioVoice(DEFAULT_WAVE_FORMAT, VoiceType_Public);
+			voice->SetVolume(0.3f);
 		}
 	}
 
-	void AudioEngine::StopAllPublicAudioChannels()
+	void AudioEngine::StopChannelsOfType(enum VoiceType type = VoiceType_Default)
 	{
+		//if its default then stop everything
+		if (type == VoiceType_Default)
+		{
+			for (unsigned int i = 0; i < m_Channels.size(); i++)
+				m_Channels[i]->StopAudio();
+
+			return;
+		}
+
 		for (unsigned int i = 0; i < m_Channels.size(); i++)
 		{
-			if (m_Channels[i]->GetVoiceType() == VoiceType_Public)
+			if (m_Channels[i]->GetVoiceType() == type)
 			{
 				m_Channels[i]->StopAudio();
+			}
+		}
+	}
+
+	void AudioEngine::ImGuiDisplayChannels()
+	{
+		ImGui::Begin("Sound");
+		ImGui::PushID(this);
+
+		if (ImGui::TreeNode("Sound Channels"))
+		{
+			if (ImGui::Button("Stop All Channels"))
+				StopChannelsOfType();
+
+			if (ImGui::CollapsingHeader("Public Channels"))
+			{
+				if (ImGui::Button("Stop Channels"))
+					StopChannelsOfType(VoiceType_Public);
+				GenerateImGuiChannelTreeNodes(VoiceType_Public);
+			}
+
+			if (ImGui::CollapsingHeader("Shared Audio Channels"))
+			{
+				if (ImGui::Button("Stop Channels"))
+					StopChannelsOfType(VoiceType_Shared);
+				GenerateImGuiChannelTreeNodes(VoiceType_Shared);
+			}
+
+			if (ImGui::CollapsingHeader("Dedicated Audio Channels"))
+			{
+				if (ImGui::Button("Stop Channels"))
+					StopChannelsOfType(VoiceType_Dedicated);
+				GenerateImGuiChannelTreeNodes(VoiceType_Dedicated);
+			}
+
+			ImGui::TreePop();
+		}
+
+		ImGui::PopID();
+		ImGui::End();
+	}
+
+	void AudioEngine::GenerateImGuiChannelTreeNodes(enum VoiceType type)
+	{
+		int index = 1;
+		std::string voice_type_string;
+
+		//enum to string
+		switch (type)
+		{
+		case VoiceType_Default:
+			voice_type_string = "DEFAULT - ";
+			break;
+		case VoiceType_Dedicated:
+			voice_type_string = "Dedicated - ";
+			break;
+		case VoiceType_Shared:
+			voice_type_string = "Shared - ";
+			break;
+		case VoiceType_Public:
+			voice_type_string = "Public - ";
+			break;
+		default:
+			break;
+
+		}
+
+		//print all nodes of the selected channel type
+		for (unsigned int i = 0; i < m_Channels.size(); i++)
+		{
+			if (m_Channels[i]->GetVoiceType() == type)
+			{
+				//generate a display name
+				std::string display = voice_type_string + std::to_string(index);
+				index++;
+
+				if (ImGui::TreeNode(display.c_str()))
+				{
+					//display last played audio if there is one
+					{
+						std::string current_audio_playing_string;
+						if (m_Channels[i]->GetCurrentAudioPlaying() != nullptr)
+							current_audio_playing_string = m_Channels[i]->GetCurrentAudioPlaying()->GetName();
+						else
+							current_audio_playing_string = "NONE";
+
+						std::string audio_display = "Current Audio Playing - " + current_audio_playing_string;
+
+						ImGui::Text(audio_display.c_str());
+					}
+
+					//generate a volume slider 
+					m_Channels[i]->ImGuiGenerateVolumeSlider();
+
+					//stop active audio
+					if (ImGui::Button("Stop"))
+					{
+						m_Channels[i]->StopAudio();
+					}
+
+					ImGui::TreePop();
+				}
 			}
 		}
 	}

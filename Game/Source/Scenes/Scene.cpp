@@ -323,4 +323,6 @@ void Scene::Reset()
 		m_pLights[i]->Reset();
 		m_pLights[i]->SetEnabled(true);
 	}
+
+	m_Camera->Reset();
 }

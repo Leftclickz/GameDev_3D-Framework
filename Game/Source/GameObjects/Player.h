@@ -26,6 +26,7 @@ protected:
 	unsigned char m_JumpCount = MAX_JUMPS;
 
 	class FollowLight* m_Followlight;
+	std::map<std::string, class AudioList*> m_PlayerSounds;
 
 public:
 	Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh, Material* pMaterial);

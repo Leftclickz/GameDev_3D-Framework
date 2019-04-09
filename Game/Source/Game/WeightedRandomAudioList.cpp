@@ -1,6 +1,7 @@
 #include "GamePCH.h"
 #include "WeightedRandomAudioList.h"
 #include "AudioDataStructures.h"
+#include "AudioVoice.h"
 
 
 
@@ -91,47 +92,48 @@ void WeightedRandomAudioList::PlayAudio()
 
 void WeightedRandomAudioList::DisplayImGuiPanel()
 {
-	ImGui::Begin("Sound");
-	ImGui::PushID(this);
+	ImGui::Checkbox("Enabled", &isEnabled);
 
-	if (ImGui::CollapsingHeader(imgui_display_string.c_str()))
+	if (isEnabled == true)
 	{
-		ImGui::Checkbox("Enabled", &isEnabled);
+		if (ImGui::Button("Play Next"))
+			PlayAudio();
 
-		if (isEnabled == true)
+		std::string last_display;
+		if (m_LastPlayed != nullptr)
+			last_display = "Last Audio Played: " + std::string(m_LastPlayed->GetName());
+		else
+			last_display = "Last Audio Played: NONE";
+
+		if (IsUsingPublicChannels() == false)
 		{
-			if (ImGui::Button("Play Next"))
-				PlayAudio();
+			if (ImGui::Button("Stop"))
+				StopAudio();
 
-			std::string last_display;
-			if (m_LastPlayed != nullptr)
-				last_display = "Last Audio Played: " + std::string(m_LastPlayed->GetName());
-			else
-				last_display = "Last Audio Played: NONE";
+			ImGui::SliderFloat("Volume", m_Voice->GetVolumePointer(), 0.0f, 1.0f);
+			m_Voice->SetVolume(*m_Voice->GetVolumePointer());
+		}
 
-			ImGui::Text(last_display.c_str());
+		ImGui::Text(last_display.c_str());
 
-			for (unsigned int i = 0; i < m_Audios.size(); i++)
+		for (unsigned int i = 0; i < m_Audios.size(); i++)
+		{
+
+			std::string display = std::string(m_Audios[i]->GetName()) + " - Weight - " + std::to_string(m_AudioWeights[i]);
+
+			if (ImGui::TreeNode(display.c_str()))
 			{
+				if (ImGui::Button("Play"))
+					AudioList::PlayAudio(i);
+				if (ImGui::Button("Stop"))
+					StopAudio();
 
-				std::string display = std::string(m_Audios[i]->GetName()) + " - Weight - " + std::to_string(m_AudioWeights[i]);
-
-				if (ImGui::TreeNode(display.c_str()))
-				{
-					if (ImGui::Button("Play"))
-						AudioList::PlayAudio(i);
-					if (ImGui::Button("Stop"))
-						StopAudio();
-					ImGui::SliderInt("Weight", &m_AudioWeights[i], 0, 100);
-					ImGui::TreePop();
-				}
-
+				ImGui::SliderInt("Weight", &m_AudioWeights[i], 0, 100);
+				ImGui::TreePop();
 			}
+
 		}
 	}
-
-	ImGui::PopID();
-	ImGui::End();
 }
 
 int WeightedRandomAudioList::GetWeightCount()

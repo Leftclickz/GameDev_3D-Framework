@@ -35,9 +35,11 @@ public:
 protected:
 
 	virtual void DisplayImguiDebugInfo() override;
+	StandardLight m_Light;
+
+private:
 
 	vec4 cJSONcolor;
 	vec3 cJSONatten;
-	StandardLight m_Light;
 
 };
