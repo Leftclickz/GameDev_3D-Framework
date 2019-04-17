@@ -152,9 +152,9 @@ void Player::ContactStarted(GameObject3D* pOtherObj, vec3 normal)
 
 	//TODO: Figure out why normals are wrong half the time
 	//Hit something from on top
-	if (normal.y == -1.0f || normal.y == 1.0f)
+	if (normal.y == -1.0f)
 	{
-		m_JumpCount = MAX_JUMPS;
+  		m_JumpCount = MAX_JUMPS;
 	}
 }
 

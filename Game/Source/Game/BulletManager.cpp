@@ -115,6 +115,9 @@ void BulletManager::ContactStartedCallback(btPersistentManifold* const& manifold
 	GameObject3D* pObjA =  (GameObject3D*)manifold->getBody0()->getUserPointer();
 	GameObject3D* pObjB =  (GameObject3D*)manifold->getBody1()->getUserPointer();
 
+	btVector3 avel = pObjA->GetBody()->getLinearVelocity();
+	btVector3 bvel = pObjB->GetBody()->getLinearVelocity();
+
 	vec3 normal = vec3(0);
 
 	int numContacts = manifold->getNumContacts();
@@ -129,10 +132,28 @@ void BulletManager::ContactStartedCallback(btPersistentManifold* const& manifold
 
 		normal += vec3(dir.getX(), dir.getY(), dir.getZ());
 	}
-	normal.Normalize();
+	if(normal != vec3(0))
+		normal.Normalize();
 
-	pObjA->ContactStarted(pObjB, normal);
-	pObjB->ContactStarted(pObjA, normal);
+	if (avel.getY() < 0 && normal.y >0)
+	{
+		normal.y *= -1;
+		pObjA->ContactStarted(pObjB, normal);
+	}
+	else
+	{
+		pObjA->ContactStarted(pObjB, normal);
+	}
+
+	if (bvel.getY() < 0 && normal.y > 0)
+	{
+		normal.y *= -1;
+		pObjB->ContactStarted(pObjA, normal);
+	}
+	else
+	{
+		pObjB->ContactStarted(pObjA, normal);
+	}
 }
 
 void BulletManager::ContactEndedCallback(btPersistentManifold* const& manifold)
