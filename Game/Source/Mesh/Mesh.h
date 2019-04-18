@@ -69,8 +69,6 @@ public:
     void Init(VertexFormat* verts, int numVerts, unsigned int* indices, int numIndices, GLenum primitiveType, GLenum usage);
     void Init(std::vector<VertexFormat> verts, int numVerts, GLenum primitiveType, GLenum usage);
 
-	void Rescale(vec3 scale);
-
     void SetupAttributes(ShaderProgram* pShaderProgram);
     static void SetupUniforms(mat4 matrix, mat4 normalmatrix, Camera* camera, Material* material, std::vector<LightObject*> *Lights = nullptr);
 

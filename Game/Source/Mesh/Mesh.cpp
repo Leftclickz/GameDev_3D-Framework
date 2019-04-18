@@ -72,18 +72,6 @@ void Mesh::Init(std::vector<VertexFormat> verts, int numVerts, GLenum primitiveT
     CheckForGLErrors();
 }
 
-//VERY COSTLY. Try not to always use
-void Mesh::Rescale(vec3 scale)
-{
-	for (unsigned int i = 0; i < m_OBJvertexAttributes.size(); i++)
-	{
-		m_OBJvertexAttributes[i].m_Pos *=  scale;
-	}
-
-	m_VBO = 0;
-	Init(m_OBJvertexAttributes, m_OBJvertexAttributes.size(), GL_TRIANGLES, GL_STATIC_DRAW);
-}
-
 void SetUniform1f(GLuint shader, const char* uniformName, float value)
 {
 	GLint loc = glGetUniformLocation(shader, uniformName);

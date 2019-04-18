@@ -233,7 +233,7 @@ void GameObject3D::LoadFromcJSON(cJSON* obj, ResourceManager* manager)
 	vec3 scale(0);
 	cJSONExt_GetFloatArray(obj, "Scale", &scale.x, 3);
 	cJSONscale = scale;
-	// 	SetScale(scale);
+	SetScale(scale);
 
 	cJSON* jComponents = cJSON_GetObjectItem(obj, "Components");
 	HandleComponents(jComponents, manager);
@@ -324,12 +324,10 @@ void GameObject3D::HandleCollisionLoad(cJSON * obj)
 
 	if (strcmp(primitiveType, "Sphere") == 0)
 	{
-		GetMesh()->Rescale(cJSONscale);
 		CreateSphereBody(cJSONscale.x, mass);
 	}
 	else if (strcmp(primitiveType, "Cube") == 0)
 	{
-		GetMesh()->Rescale(cJSONscale);
 		CreateBoxBody(cJSONscale, mass);
 	}
 	else if (strcmp(primitiveType, "Static Plane") == 0)
