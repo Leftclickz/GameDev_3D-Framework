@@ -23,7 +23,7 @@ BulletManager::BulletManager()
 
 	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
 
-	dynamicsWorld->setGravity(btVector3(0, -10, 0));
+	dynamicsWorld->setGravity(btVector3(0, -30, 0));
 
 	gContactStartedCallback = ContactStartedCallback;
 	gContactEndedCallback = ContactEndedCallback;
@@ -47,7 +47,7 @@ BulletManager::~BulletManager()
 void BulletManager::Update(float delta)
 {
 	///-----stepsimulation_start-----
-	dynamicsWorld->stepSimulation(1.f / 60.f, 10);
+	dynamicsWorld->stepSimulation(1.f / 60.f, 60);
 
 	//print positions of all objects
 	for (int j = dynamicsWorld->getNumCollisionObjects() - 1; j >= 0; j--)

@@ -129,6 +129,7 @@ void BulletScene::LoadContent()
 void BulletScene::OnEvent(Event* pEvent)
 {
 	Scene::OnEvent(pEvent);
+	m_Camera->OnEvent(pEvent);
 	if (pEvent->GetEventType() == EventType_Input)
 	{
 		InputEvent* pInput = (InputEvent*)pEvent;

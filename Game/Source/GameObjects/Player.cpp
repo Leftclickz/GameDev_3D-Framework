@@ -39,7 +39,6 @@ Player::Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh
 	spawnAudio->AddAudio(resources->GetAudio("Player Spawn 4"));
 	spawnAudio->AddAudio(resources->GetAudio("Player Spawn 5"));
 	m_PlayerSounds["Spawn"] = spawnAudio;
-	
 }
 
 Player::~Player()
@@ -140,7 +139,15 @@ void Player::Jump()
 {
 	if (m_Body && m_JumpCount > 0)
 	{
-		m_Body->applyCentralImpulse(btVector3(0.0f, m_JumpHeight, 0.0f));
+		btVector3 force = btVector3(0.0f, m_JumpHeight, 0.0f);
+		force.setY(force.getY() - m_Body->getLinearVelocity().getY());
+
+		if (force.getY() < m_JumpHeight)
+		{
+			force.setY(m_JumpHeight);
+		}
+
+		m_Body->applyCentralImpulse(force);
 		m_pPlayerController->RemoveJumpInput();
 		m_JumpCount--;
 	}

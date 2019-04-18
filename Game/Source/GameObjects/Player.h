@@ -11,7 +11,7 @@ class Player : public GameObject3D
     const float PLAYER_SPEED = 10.0f;   // Units per second
     const float PLAYER_HEALTH = 100.0f;   
 	const char MAX_JUMPS = 2;
-	const float PLAYER_JUMP_HEIGHT = 10.0f;
+	const float PLAYER_JUMP_HEIGHT = 20.0f;
 	const vec3 FOLLOW_LIGHT_OFFSET = vec3(0, 5, 5);
 
 protected:
