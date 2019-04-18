@@ -9,12 +9,12 @@
 #include "../Physics/PhysicsWorld.h"
 #include "Physics/BulletMotionState.h"
 #include "FollowLight.h"
+#include "Gun.h"
 
 Player::Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh, Material* pMaterial)
 	: GameObject3D(pScene, name, transform, pMesh, pMaterial)
 	, m_pPlayerController(nullptr)
 	, m_Speed(PLAYER_SPEED)
-	, m_TurningSpeed(PLAYER_SPEED)
 	, m_Health(PLAYER_HEALTH)
 {
 	m_Followlight = new FollowLight(m_pScene, "PlayerLight", Transform(vec3(0, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);
@@ -39,15 +39,20 @@ Player::Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh
 	spawnAudio->AddAudio(resources->GetAudio("Player Spawn 4"));
 	spawnAudio->AddAudio(resources->GetAudio("Player Spawn 5"));
 	m_PlayerSounds["Spawn"] = spawnAudio;
+
+	m_Gun = new Gun(pScene, "Gun");
+	m_Gun->SetOwner(this);
 }
 
 Player::~Player()
 {
+	delete m_Gun;
 }
 
 void Player::Update(float deltatime)
 {
 	GameObject3D::Update( deltatime );
+	m_Gun->Update(deltatime);
 
 	for each(std::pair<std::string, AudioList*> list in m_PlayerSounds)
 		list.second->Update(deltatime);
@@ -59,6 +64,11 @@ void Player::Update(float deltatime)
 		if (m_pPlayerController->IsPressed_Jump())
 		{
 			Jump();
+		}
+		if (m_pPlayerController->IsPressed_Shoot())
+		{
+			m_Gun->Shoot();
+			m_pPlayerController->RemoveShootInput();
 		}
 
         if( m_pPlayerController->IsHeld_Up() )
@@ -133,6 +143,8 @@ void Player::Update(float deltatime)
 void Player::Draw(Camera* cam)
 {
 	GameObject3D::Draw(cam);
+
+	m_Gun->Draw(cam);
 }
 
 void Player::Jump()

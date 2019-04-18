@@ -170,6 +170,21 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\TitleScreen.cpp">
       <Filter>Scene\HUD</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Enemy.cpp">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\SavePoint.cpp">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\BoshyBullet.cpp">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Gun.cpp">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObjectComponent.cpp">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GamePCH.h" />
@@ -346,6 +361,21 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\PauseScreen.h">
       <Filter>Scene\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Enemy.h">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\SavePoint.h">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\BoshyBullet.h">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Gun.h">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObjectComponent.h">
+      <Filter>Game Objects\Game Object 3D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

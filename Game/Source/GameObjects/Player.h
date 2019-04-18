@@ -18,8 +18,6 @@ protected:
     PlayerController* m_pPlayerController;
 
     float m_Speed;
-    float m_TurningSpeed;
-
 	float m_Health;
 
 	float m_JumpHeight = PLAYER_JUMP_HEIGHT;
@@ -27,6 +25,8 @@ protected:
 
 	class FollowLight* m_Followlight;
 	std::map<std::string, class AudioList*> m_PlayerSounds;
+
+	class Gun* m_Gun;
 
 public:
 	Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh, Material* pMaterial);
@@ -38,7 +38,6 @@ public:
 
     void SetPlayerController(PlayerController* controller) { m_pPlayerController = controller; }
     void SetSpeed(float speed) { m_Speed = speed; }
-    void SetTurningSpeed(float speed) { m_TurningSpeed = speed; }
 
 	void Jump();
 

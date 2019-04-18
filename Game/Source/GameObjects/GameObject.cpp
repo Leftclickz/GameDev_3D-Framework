@@ -5,7 +5,6 @@
 #include "../Scenes/Scene.h"
 #include "../Game/Game.h"
 #include "Mesh/SpriteSheet.h"
-#include "GameObject.h"
 #include "Mesh/Material.h"
 #include "Camera.h"
 #include "Transformable.h"

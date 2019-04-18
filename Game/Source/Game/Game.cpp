@@ -76,7 +76,7 @@ void Game::LoadContent()
 		m_pResourceManager->GetMesh("Box")->CreateBox(vec2(1.0f, 1.0f), vec2(0.0f, 0.0f));
 
 		m_pResourceManager->AddMesh("Bullet", new Mesh());
-		m_pResourceManager->GetMesh("Bullet")->CreateBox(vec2(0.25f, 0.25f), vec2(0.0f, 0.0f));
+		m_pResourceManager->GetMesh("Bullet")->GenerateOBJ("Data/OBJ/Cube.obj", 0.1f);
 
 		m_pResourceManager->AddMesh("Plane", new Mesh());
 		m_pResourceManager->GetMesh("Plane")->CreatePlane(vec2(100.0f, 100.0f), ivec2(600, 300));

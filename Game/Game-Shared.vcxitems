@@ -15,6 +15,11 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\BoshyBullet.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Enemy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObjectComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Gun.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\SavePoint.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\TweenObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\TweenFuncs.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\OptionsScene.h" />
@@ -76,6 +81,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\TitleScreen.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\BoshyBullet.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Enemy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\GameObjectComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Gun.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\SavePoint.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\TweenFuncs.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\OptionsScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\PauseScreen.cpp" />

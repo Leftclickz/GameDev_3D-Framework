@@ -20,7 +20,6 @@ GameObject3D::GameObject3D(Scene* pScene, std::string name, Transform transform,
 {
 	m_MotionState = nullptr;
 	m_Body = nullptr;
-	//m_pScene->AddGameObject(this);
 }
 
 GameObject3D::~GameObject3D()
@@ -342,4 +341,13 @@ void GameObject3D::HandleCollisionLoad(cJSON * obj)
 		CreateConvexHullBody(mass);
 	}
 	delete[] primitiveType;
+}
+
+vec3 GameObject3D::GetDirection()
+{
+	vec3 dir = m_Rotation / 180.0f * PI;
+
+	//TODO Make this function lol
+
+	return dir;
 }

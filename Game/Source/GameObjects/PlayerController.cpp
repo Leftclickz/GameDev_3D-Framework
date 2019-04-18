@@ -53,6 +53,20 @@ void PlayerController::OnEvent(Event* pEvent)
 				if (keyID == 'X') { m_Directions &= ~DIR_SHOOT; isShooting = false; }
             }
         }
+		if (pInput->GetInputDeviceType() == InputDeviceType_Mouse)
+		{
+			int keyID = pInput->GetID();
+
+			if (pInput->GetInputState() == InputState_Pressed)
+			{
+				if (keyID == 0 && !isShooting) { m_Directions |= DIR_SHOOT; isShooting = true; }
+			}
+
+			if (pInput->GetInputState() == InputState_Released)
+			{
+				if (keyID == 0) { m_Directions &= ~DIR_SHOOT; isShooting = false; }
+			}
+		}
 #endif
     }
 }

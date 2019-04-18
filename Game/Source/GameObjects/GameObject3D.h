@@ -40,6 +40,11 @@ public:
 	virtual void HandleMeshLoad(cJSON* obj, const char* type, ResourceManager* manager);
 	virtual void HandleCollisionLoad(cJSON* obj);
 
+	virtual void TakeDamage(float amount) {}
+	virtual void Die() {}
+
+	virtual vec3 GetDirection();
+
 protected:
 	virtual void CreateBody(btCollisionShape* shape, float mass);
 	virtual void DisplayImguiDebugInfo();

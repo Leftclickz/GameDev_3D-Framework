@@ -11,9 +11,12 @@
 
 #include "GameObjects/Player.h"
 #include "GameObjects/PlayerController.h"
+#include "GameObjects/Enemy.h"
 #include "GameObjects/ChaseCameraObject.h"
 #include "GameObjects/LightObject.h"
 #include "GameObjects/FollowLight.h"
+#include "GameObjects/BoshyBullet.h"
+#include "GameObjects/SavePoint.h"
 
 #include "DebugDraw.h"
 #include "Mesh/FBODefinition.h"
@@ -111,7 +114,7 @@ void BulletScene::LoadContent()
 
 		m_pResources->AddMaterial("FBO", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("FBO")));
 
-		m_FBOobject = new GameObject3D(this, "TV", Transform(vec3(0), vec3(90, 0, 0)), m_pResources->GetMesh("ObjCube"), m_pResources->GetMaterial("FBO"));
+		m_FBOobject = new GameObject3D(this, "TV", Transform(vec3(0), vec3(90, 0, 0)), m_pResources->GetMesh("Cube"), m_pResources->GetMaterial("FBO"));
 	}
 
 	//File Loading Time
@@ -221,17 +224,29 @@ void BulletScene::LoadFromSceneFile(std::string filename)
 			player->LoadFromcJSON(jGameObject, m_pResources);
 			AddGameObject(player);
 		}
-		else if (flag == "GameObject")
+		else if (flag == "Enemy")
 		{
-			GameObject3D* gameobject = new GameObject3D(this, "Object", Transform(), nullptr, nullptr);
-			gameobject->LoadFromcJSON(jGameObject, m_pResources);
-			AddGameObject(gameobject);
+			Enemy* enemy = new Enemy(this, "Enemy", Transform(), nullptr, nullptr);
+			enemy->LoadFromcJSON(jGameObject, m_pResources);
+			AddGameObject(enemy);
 		}
 		else if (flag == "5")
 		{
 			LightObject* light = new LightObject(this, "Light", Transform(), nullptr, nullptr);
 			light->LoadFromcJSON(jGameObject, m_pResources);
 			AddLightObject(light);
+		}
+		else if (flag == "6")
+		{
+			SavePoint* savePoint = new SavePoint(this, "SavePoint", Transform(), nullptr, nullptr);
+			savePoint->LoadFromcJSON(jGameObject, m_pResources);
+			AddGameObject(savePoint);
+		}
+		else if (flag == "GameObject")
+		{
+			GameObject3D* gameobject = new GameObject3D(this, "Object", Transform(), nullptr, nullptr);
+			gameobject->LoadFromcJSON(jGameObject, m_pResources);
+			AddGameObject(gameobject);
 		}
 	}
 

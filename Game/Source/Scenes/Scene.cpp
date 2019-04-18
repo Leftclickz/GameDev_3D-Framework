@@ -114,7 +114,10 @@ void Scene::Draw()
 
 	for (unsigned int i = 0; i < m_pGameObjects.size(); i++)
 	{
-		m_pGameObjects.at(i)->Draw(m_Camera);
+		if (m_pGameObjects[i]->GetEnabled())
+		{
+			m_pGameObjects.at(i)->Draw(m_Camera);
+		}
 	}
 
 	if (m_DebugDraw)
