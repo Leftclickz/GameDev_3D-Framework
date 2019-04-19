@@ -11,7 +11,7 @@ DebugDraw3D::DebugDraw3D()
 	m_pCamera = nullptr;
 }
 
-void    DebugDraw3D::setDebugMode(int debugMode)
+void DebugDraw3D::setDebugMode(int debugMode)
 {
 	m_debugMode = debugMode;
 }
@@ -41,10 +41,8 @@ void DebugDraw3D::drawLine(const btVector3& from, const btVector3& to, const btV
 
 	mat4 matrix;
 	matrix.SetIdentity();
-	mat4 matrix2;
-	matrix2.SetIdentity();
 
-	Mesh::SetupUniforms(matrix, matrix2, m_pCamera, m_pMaterial);
+	Mesh::SetupUniforms(matrix, matrix, m_pCamera, m_pMaterial);
 
 	//draw lines
 	glLineWidth(3); //fat lines

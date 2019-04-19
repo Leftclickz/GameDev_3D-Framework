@@ -32,10 +32,13 @@ void Gun::Shoot()
 {
 	BoshyBullet* bullet = (BoshyBullet*)m_AmmoPool->GetObjectFromPool();
 
-	m_ActiveBullets.push_back(bullet);
+	if (bullet)
+	{
+		m_ActiveBullets.push_back(bullet);
 
-	bullet->SetOwner(this);
-	bullet->Fire();
+		bullet->SetOwner(this);
+		bullet->Fire();
+	}
 }
 
 void Gun::ReturnToMag(BoshyBullet* bullet)
@@ -80,7 +83,7 @@ void Gun::Reset()
 		m_ActiveBullets.pop_back();
 	}
 
-	m_AmmoPool->Reset();
+	//m_AmmoPool->Reset();
 
 	GameObjectComponent::Reset();
 }

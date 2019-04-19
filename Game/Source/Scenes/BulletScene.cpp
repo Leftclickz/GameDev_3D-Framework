@@ -126,7 +126,7 @@ void BulletScene::LoadContent()
 	//File Loading Time
 	LoadFromSceneFile("Data/Scenes/Test3D.box2dscene");
 
-	((ChaseCameraObject*)m_Camera)->SetObjectToFollow(GetGameObjectByName("Player"), 10.0f);
+	((ChaseCameraObject*)m_Camera)->SetObjectToFollow(GetGameObjectByName("Player"), 25.0f);
 	Player * player = (Player*)GetGameObjectByName("Player");
 	player->GetBody()->setAngularFactor(btVector3(0, 0, 0));
 

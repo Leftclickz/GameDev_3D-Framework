@@ -3,7 +3,7 @@
 
 class Gun : public GameObjectComponent
 {
-	const unsigned int NUM_BULLETS = 100;
+	const unsigned int NUM_BULLETS = 5;
 
 public:
 	Gun(Scene * pScene, std::string name);
