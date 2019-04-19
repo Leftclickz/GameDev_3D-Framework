@@ -100,6 +100,8 @@ void GameObject3D::Reset()
 		//fully resets the body to its initial loaded state
 		if (m_Body)
 		{
+			m_Body->activate(true);
+
 			btTransform transform = m_Body->getWorldTransform();
 			transform.setOrigin(btVector3(cJSONpos.x, cJSONpos.y, cJSONpos.z));
 			transform.setRotation(btQuaternion(cJSONrot.y, cJSONrot.x, cJSONrot.z));
@@ -192,7 +194,7 @@ void GameObject3D::CreateConvexHullBody(float mass /*= 0.0f*/)
 
 	for (unsigned int i = 0; i < points.size(); i++)
 	{
-		((btConvexHullShape*)hullShape)->addPoint(btVector3(points[i].x, points[i].y, points[i].z));
+		((btConvexHullShape*)hullShape)->addPoint(btVector3(points[i].x * m_Scale.x, points[i].y * m_Scale.y, points[i].z * m_Scale.z));
 	}
 
 	CreateBody(hullShape, mass);
@@ -343,7 +345,8 @@ void GameObject3D::HandleCollisionLoad(cJSON * obj)
 
 vec3 GameObject3D::GetDirection()
 {
-	vec3 dir = m_Rotation / 180.0f * PI;
+	vec3 dir = m_Rotation;
+	//dir = vec3(m_Rotation.x, 0, 0);
 
 	//TODO Make this function lol
 

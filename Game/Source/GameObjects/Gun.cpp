@@ -71,3 +71,16 @@ void Gun::Draw(Camera* cam)
 		i->Draw(cam);
 	}
 }
+
+void Gun::Reset()
+{
+	while (!m_ActiveBullets.empty())
+	{
+		m_AmmoPool->AddObjectToPool(m_ActiveBullets.back());
+		m_ActiveBullets.pop_back();
+	}
+
+	m_AmmoPool->Reset();
+
+	GameObjectComponent::Reset();
+}

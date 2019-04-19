@@ -64,8 +64,22 @@ void BoshyBullet::ContactStarted(GameObject3D* pOtherObj, vec3 normal)
 	}
 }
 
+void BoshyBullet::Reset()
+{
+	SetEnabled(false);
+	m_LifeTime = LIFETIME;
+
+	btTransform transform;
+	m_MotionState->getWorldTransform(transform);
+	transform.setOrigin(btVector3(0, 500000, 0));
+	m_Body->setWorldTransform(transform);
+	SetPosition(vec3(0, 500000, 0));
+}
+
 void BoshyBullet::Fire()
 {
+	vec3 dir = GetOwner()->GetOwner()->GetDirection();
+
 	vec3 pos = GetOwner()->GetOwner()->GetPosition();
 	SetPosition(pos);
 	Activate();
@@ -79,7 +93,8 @@ void BoshyBullet::Fire()
 	}
 
 	//TODO actually fire it using the owner's forward vector
-	//m_Body->applyCentralImpulse()
+	btVector3 force = btVector3(dir.x * m_Speed, dir.y * m_Speed, dir.z * m_Speed);
+	//m_Body->applyCentralImpulse(force);
 }
 
 void BoshyBullet::Deactivate()
@@ -92,6 +107,7 @@ void BoshyBullet::Deactivate()
 	m_MotionState->getWorldTransform(transform);
 	transform.setOrigin(btVector3(0,500000,0));
 	m_Body->setWorldTransform(transform);
+	SetPosition(vec3(0, 500000, 0));
 }
 
 void BoshyBullet::Activate()

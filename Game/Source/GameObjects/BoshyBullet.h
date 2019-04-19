@@ -22,6 +22,8 @@ public:
 
 	virtual void ContactStarted(GameObject3D* pOtherObj, vec3 normal) override;
 
+	virtual void Reset() override;
+
 	void Fire();
 
 protected:

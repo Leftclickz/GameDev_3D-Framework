@@ -17,6 +17,7 @@
 #include "GameObjects/FollowLight.h"
 #include "GameObjects/BoshyBullet.h"
 #include "GameObjects/SavePoint.h"
+#include "GameObjects/Objective.h"
 
 #include "DebugDraw.h"
 #include "Mesh/FBODefinition.h"
@@ -58,9 +59,14 @@ void BulletScene::LoadContent()
 	Scene::LoadContent();
 
 	m_pResources->AddTexture("White", new Texture("Data/Textures/White.png"));
+	m_pResources->AddTexture("Spike", new Texture("Data/Textures/Spike.png"));
+	m_pResources->AddTexture("Door", new Texture("Data/Textures/Door.png"));
 
 	m_pResources->AddMaterial("Lighting", new Material(m_pResources->GetShader("LightingShader"), m_pResources->GetTexture("Water")));
 	m_pResources->AddMaterial("Lighting2", new Material(m_pResources->GetShader("LightingShader"), m_pResources->GetTexture("White")));
+	m_pResources->AddMaterial("SavePoint", new Material(m_pResources->GetShader("LightingShader"), m_pResources->GetTexture("Dice")));
+	m_pResources->AddMaterial("Spikes", new Material(m_pResources->GetShader("LightingShader"), m_pResources->GetTexture("Spike")));
+	m_pResources->AddMaterial("Objective", new Material(m_pResources->GetShader("LightingShader"), m_pResources->GetTexture("Door")));
 
 	//AUDIO
 	{
@@ -241,6 +247,12 @@ void BulletScene::LoadFromSceneFile(std::string filename)
 			SavePoint* savePoint = new SavePoint(this, "SavePoint", Transform(), nullptr, nullptr);
 			savePoint->LoadFromcJSON(jGameObject, m_pResources);
 			AddGameObject(savePoint);
+		}
+		else if (flag == "7")
+		{
+			Objective* objective = new Objective(this, "Objective", Transform(), nullptr, nullptr);
+			objective->LoadFromcJSON(jGameObject, m_pResources);
+			AddGameObject(objective);
 		}
 		else if (flag == "GameObject")
 		{

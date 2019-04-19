@@ -37,6 +37,14 @@ public:
 		return pObject;
 	}
 
+	void Reset()
+	{
+		for (auto i : m_Objects)
+		{
+			i->Reset();
+		}
+	}
+
 	void ReturnObjectToPool(TYPE obj)
 	{
 		m_Objects.push_back(obj);

@@ -28,6 +28,9 @@ protected:
 
 	class Gun* m_Gun;
 
+	vec3 m_RespawnPoint;
+	vec3 m_RespawnRot;
+
 public:
 	Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh, Material* pMaterial);
 
@@ -38,6 +41,8 @@ public:
 
     void SetPlayerController(PlayerController* controller) { m_pPlayerController = controller; }
     void SetSpeed(float speed) { m_Speed = speed; }
+
+	void SetRespawnData(vec3 pos, vec3 rot) { m_RespawnPoint = pos; m_RespawnRot = rot; }
 
 	void Jump();
 

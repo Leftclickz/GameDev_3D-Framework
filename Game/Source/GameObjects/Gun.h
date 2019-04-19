@@ -15,6 +15,8 @@ public:
 	virtual void Update(float delta) override;
 	virtual void Draw(Camera* cam) override;
 
+	virtual void Reset() override;
+
 protected:
 	class Pool<class BoshyBullet*>* m_AmmoPool;
 	std::vector<BoshyBullet*> m_ActiveBullets;

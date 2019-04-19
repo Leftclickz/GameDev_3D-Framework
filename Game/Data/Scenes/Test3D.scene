@@ -21,8 +21,6 @@
 			"Path":	"Data/Meshes/Boshy.obj.mymesh",
 			"SourcePath":	"Data/Meshes/Boshy.obj"
 		}, {
-			"Path":	"Data/Meshes/Boshy.obj.mymesh"
-		}, {
 			"Path":	"Data/Shaders/Lighting.frag"
 		}, {
 			"Path":	"Data/Materials/Lighting.mymaterial"
@@ -34,6 +32,18 @@
 		}, {
 			"Path":	"Data/Meshes/Sphere.obj.mymesh",
 			"SourcePath":	"Data/Meshes/Sphere.obj"
+		}, {
+			"Path":	"Data/Materials/SavePoint.mymaterial"
+		}, {
+			"Path":	"Data/Textures/Dice.png"
+		}, {
+			"Path":	"Data/Textures/Spike.png"
+		}, {
+			"Path":	"Data/Materials/Spikes.mymaterial"
+		}, {
+			"Path":	"Data/Materials/Objective.mymaterial"
+		}, {
+			"Path":	"Data/Textures/Door.png"
 		}],
 	"GameObjects":	[{
 			"ID":	5,
@@ -49,12 +59,51 @@
 			"Name":	"Ground"
 		}, {
 			"ID":	10,
-			"Name":	"Sphere"
+			"Name":	"Sphere",
+			"Properties":	{
+				"Flags":	["Enemy"]
+			}
 		}, {
 			"ID":	11,
 			"Name":	"Point Light",
 			"Properties":	{
 				"Flags":	["5"]
+			}
+		}, {
+			"ID":	12,
+			"Name":	"Ground1"
+		}, {
+			"ID":	13,
+			"Name":	"Point Light1",
+			"Properties":	{
+				"Flags":	["5"]
+			}
+		}, {
+			"ID":	14,
+			"Name":	"SavePoint",
+			"Properties":	{
+				"Flags":	["6"]
+			}
+		}, {
+			"ID":	15,
+			"Name":	"Player1",
+			"Properties":	{
+				"Flags":	["Enemy"]
+			}
+		}, {
+			"ID":	16,
+			"Name":	"Ground2"
+		}, {
+			"ID":	17,
+			"Name":	"Point Light2",
+			"Properties":	{
+				"Flags":	["5"]
+			}
+		}, {
+			"ID":	18,
+			"Name":	"SavePoint1",
+			"Properties":	{
+				"Flags":	["7"]
 			}
 		}],
 	"Transforms":	[{
@@ -63,12 +112,12 @@
 			"PrefabComponentID":	0,
 			"Pos":	[0.57834017276763916, 1.9987211227416992, 0.026042759418487549],
 			"Rot":	[0, 0, 0],
-			"Scale":	[0.4256579577922821, 0.4256579577922821, 0.4256579577922821]
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436]
 		}, {
 			"GOID":	6,
 			"ID":	0,
 			"PrefabComponentID":	0,
-			"Pos":	[0, -5, 0],
+			"Pos":	[0, -16.082927703857422, 0],
 			"Rot":	[0, 0, 0],
 			"Scale":	[1, 1, 1]
 		}, {
@@ -77,21 +126,70 @@
 			"PrefabComponentID":	0,
 			"Pos":	[0, 0, 1.347923755645752],
 			"Rot":	[0, 0, 0],
-			"Scale":	[4, 1, 4]
+			"Scale":	[18.958995819091797, 1, 17.315441131591797]
 		}, {
 			"GOID":	10,
 			"ID":	0,
 			"PrefabComponentID":	0,
-			"Pos":	[0, 0, -3.8871660232543945],
+			"Pos":	[-9.2039737701416016, 7.8711352348327637, -3.8871660232543945],
 			"Rot":	[0, 0, 0],
 			"Scale":	[1, 1, 1]
 		}, {
 			"GOID":	11,
 			"ID":	0,
 			"PrefabComponentID":	0,
-			"Pos":	[0, 5.5603752136230469, 3.87756609916687],
+			"Pos":	[0, 26.757976531982422, 3.87756609916687],
 			"Rot":	[0, 0, 0],
 			"Scale":	[1, 1, 1]
+		}, {
+			"GOID":	12,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[0, 6.0175027847290039, -41.679672241210937],
+			"Rot":	[0, 0, 0],
+			"Scale":	[18.958995819091797, 1, 17.315441131591797]
+		}, {
+			"GOID":	13,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[0, 31.943647384643555, -44.261367797851562],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1]
+		}, {
+			"GOID":	14,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[0, 12.973968505859375, -52.023056030273437],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1]
+		}, {
+			"GOID":	15,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[6.5377764701843262, 7.3977575302124023, -45.562061309814453],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436]
+		}, {
+			"GOID":	16,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[44.759880065917969, 6.0175027847290039, -41.679672241210937],
+			"Rot":	[0, 0, 0],
+			"Scale":	[18.958995819091797, 1, 17.315441131591797]
+		}, {
+			"GOID":	17,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[45.300708770751953, 31.943647384643555, -44.261367797851562],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1]
+		}, {
+			"GOID":	18,
+			"ID":	0,
+			"PrefabComponentID":	0,
+			"Pos":	[52.870868682861328, 10.462478637695312, -52.023056030273437],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 2.3518533706665039, 1]
 		}],
 	"Components":	[{
 			"Type":	"3D Collision Object",
@@ -133,7 +231,64 @@
 			"PrefabComponentID":	0,
 			"LightType":	"Point",
 			"Color":	[0.79901957511901855, 0.05875144898891449, 0.05875144898891449, 1],
-			"Atten":	[8, 0, 0.090000003576278687]
+			"Atten":	[90, 0, 0.090000003576278687]
+		}, {
+			"Type":	"3D Collision Object",
+			"GOID":	12,
+			"ID":	35,
+			"PrefabComponentID":	0,
+			"Mass":	0,
+			"Primitive":	"Cube",
+			"Scale":	[2.2000000476837158, 1, 1]
+		}, {
+			"Type":	"Light",
+			"GOID":	13,
+			"ID":	37,
+			"PrefabComponentID":	0,
+			"LightType":	"Point",
+			"Color":	[0.029400825500488281, 0, 1, 1],
+			"Atten":	[90, 0, 0.090000003576278687]
+		}, {
+			"Type":	"3D Collision Object",
+			"GOID":	14,
+			"ID":	38,
+			"PrefabComponentID":	0,
+			"Mass":	0,
+			"Primitive":	"Cube",
+			"Scale":	[2.2000000476837158, 1, 1]
+		}, {
+			"Type":	"3D Collision Object",
+			"GOID":	15,
+			"ID":	40,
+			"PrefabComponentID":	0,
+			"Mass":	1,
+			"Primitive":	"Convex Hull",
+			"Scale":	[1, 1, 1],
+			"OBJ":	"Data/Meshes/Boshy.obj.mymesh"
+		}, {
+			"Type":	"3D Collision Object",
+			"GOID":	16,
+			"ID":	48,
+			"PrefabComponentID":	0,
+			"Mass":	0,
+			"Primitive":	"Cube",
+			"Scale":	[2.2000000476837158, 1, 1]
+		}, {
+			"Type":	"Light",
+			"GOID":	17,
+			"ID":	50,
+			"PrefabComponentID":	0,
+			"LightType":	"Point",
+			"Color":	[0.072231858968734741, 0.81862747669219971, 0.26980701088905334, 1],
+			"Atten":	[90, 0, 0.090000003576278687]
+		}, {
+			"Type":	"3D Collision Object",
+			"GOID":	18,
+			"ID":	51,
+			"PrefabComponentID":	0,
+			"Mass":	500000,
+			"Primitive":	"Cube",
+			"Scale":	[2.2000000476837158, 1, 1]
 		}, {
 			"Type":	"Mesh-OBJ",
 			"GOID":	5,
@@ -185,5 +340,60 @@
 			"PointSize":	1,
 			"OBJ":	"Data/Meshes/Sphere.obj.mymesh",
 			"Materials":	["Data/Materials/Lighting2.mymaterial"]
+		}, {
+			"Type":	"Mesh-OBJ",
+			"GOID":	12,
+			"ID":	36,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"PrimitiveType":	"Triangles",
+			"PointSize":	1,
+			"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+			"Materials":	["Data/Materials/Lighting2.mymaterial"]
+		}, {
+			"Type":	"Mesh-OBJ",
+			"GOID":	14,
+			"ID":	39,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"PrimitiveType":	"Triangles",
+			"PointSize":	1,
+			"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+			"Materials":	["Data/Materials/SavePoint.mymaterial"]
+		}, {
+			"Type":	"Mesh-OBJ",
+			"GOID":	15,
+			"ID":	41,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"PrimitiveType":	"Triangles",
+			"PointSize":	1,
+			"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+			"Materials":	["Data/Materials/Spikes.mymaterial"]
+		}, {
+			"Type":	"Mesh-OBJ",
+			"GOID":	16,
+			"ID":	49,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"PrimitiveType":	"Triangles",
+			"PointSize":	1,
+			"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+			"Materials":	["Data/Materials/Lighting2.mymaterial"]
+		}, {
+			"Type":	"Mesh-OBJ",
+			"GOID":	18,
+			"ID":	52,
+			"PrefabComponentID":	0,
+			"Visible":	1,
+			"Layers":	["Main view"],
+			"PrimitiveType":	"Triangles",
+			"PointSize":	1,
+			"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+			"Materials":	["Data/Materials/Objective.mymaterial"]
 		}]
 }

@@ -16,6 +16,7 @@ Player::Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh
 	, m_pPlayerController(nullptr)
 	, m_Speed(PLAYER_SPEED)
 	, m_Health(PLAYER_HEALTH)
+	, m_RespawnPoint(vec3(0))
 {
 	m_Followlight = new FollowLight(m_pScene, "PlayerLight", Transform(vec3(0, 8, 0), vec3(0), vec3(1)), nullptr, nullptr);
 	m_Followlight->SetObjectAttachment(this);
@@ -219,8 +220,24 @@ void Player::Die()
 void Player::Reset()
 {
 	GameObject3D::Reset();
+	m_Gun->Reset();
+
+	m_pScene->GetGame()->GetEventManager()->QueueEvent(new GameStateEvent(PlayState));
 
 	m_Health = PLAYER_HEALTH;
 	m_Speed = PLAYER_SPEED;
 	m_JumpCount = MAX_JUMPS;
+
+	if (m_Body)
+	{
+		SetRotation(m_RespawnRot);
+		SetPosition(m_RespawnPoint);
+
+		//respawn at the actual respawnpoint
+		btTransform transform;
+		m_MotionState->getWorldTransform(transform);
+		transform.setOrigin(btVector3(m_RespawnPoint.x, m_RespawnPoint.y, m_RespawnPoint.z));
+		transform.setRotation(btQuaternion(m_RespawnRot.y, m_RespawnRot.x, m_RespawnRot.z));
+		m_Body->setWorldTransform(transform);
+	}
 }
