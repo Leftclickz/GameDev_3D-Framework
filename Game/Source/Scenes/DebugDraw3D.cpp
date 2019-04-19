@@ -67,15 +67,32 @@ void    DebugDraw3D::reportErrorWarning(const char* warningString)
 void    DebugDraw3D::drawContactPoint(const btVector3& pointOnB, const btVector3& normalOnB, btScalar distance, int lifeTime, const btVector3& color)
 {
 	{
-		//btVector3 to=pointOnB+normalOnB*distance;
-		//const btVector3&from = pointOnB;
-		//glColor4f(color.getX(), color.getY(), color.getZ(), 1.0f);   
+		GLuint shader = m_pMaterial->GetShader()->GetProgram();
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-		//GLDebugDrawer::drawLine(from, to, color);
+		vec3 vertices[2];
+		vertices[0] = vec3(pointOnB.x(), pointOnB.y(), pointOnB.z());
+		vertices[1] = vec3(normalOnB.x(), normalOnB.y(), normalOnB.z());
 
-		//glRasterPos3f(from.x(),  from.y(),  from.z());
-		//char buf[12];
-		//sprintf(buf," %d",lifeTime);
-		//BMF_DrawString(BMF_GetFont(BMF_kHelvetica10),buf);
+		GLint loc = glGetAttribLocation(shader, "a_Position");
+		if (loc != -1)
+		{
+			glVertexAttribPointer(loc, 3, GL_FLOAT, GL_FALSE, 12, &vertices[0].x);
+			glEnableVertexAttribArray(loc);
+		}
+
+		glDisable(GL_DEPTH_TEST);
+
+		mat4 matrix;
+		matrix.SetIdentity();
+
+		Mesh::SetupUniforms(matrix, matrix, m_pCamera, m_pMaterial);
+
+		//draw lines
+		glPointSize(8.0f); //fat lines
+		glColor4f(color.x(), color.y(), color.z(), 1);
+		glDrawArrays(GL_POINTS, 0, 2);
+
+		glEnable(GL_DEPTH_TEST);
 	}
 }
