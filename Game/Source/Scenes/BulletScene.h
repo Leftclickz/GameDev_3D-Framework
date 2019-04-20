@@ -30,6 +30,7 @@ public:
 protected:
 
 	FBODefinition* m_FBO;
+	bool m_DisplayPostEffect = false;
 
 	class GameObject3D* m_FBOobject;
 

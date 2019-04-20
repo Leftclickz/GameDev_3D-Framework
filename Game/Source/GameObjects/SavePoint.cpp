@@ -32,6 +32,8 @@ void SavePoint::ContactStarted(GameObject3D * pOtherObj, vec3 normal)
 		{
 			//Trigger save of locations
 			SetRespawnValues();
+			m_Saves++;
+			m_pScene->GetGame()->GetEventManager()->QueueEvent(new HUD_ValueAdjustEvent(Value_Saves, m_Saves));
 		}
 	}
 }

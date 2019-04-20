@@ -208,6 +208,12 @@ void Player::ContactStarted(GameObject3D* pOtherObj, vec3 normal)
 	{
   		m_JumpCount = MAX_JUMPS;
 	}
+
+	//killplanes
+	if (pOtherObj->GetName().find("Plane") != std::string::npos)
+	{
+		Die();
+	}
 }
 
 void Player::ContactEnded(GameObject3D* pOtherObj)
@@ -226,7 +232,7 @@ void Player::ImGuiDisplayDebugInfo()
 			ImGui::Text("PositionX: %.3f", m_Position.x);
 			ImGui::Text("PositionY: %.3f", m_Position.y);
 			ImGui::Text("PositionZ: %.3f", m_Position.z);
-			ImGui::SliderFloat("Speed", &m_Speed, 0.0f, 20.0f);
+			ImGui::SliderFloat("Speed", &m_Speed, 0.0f, 200.0f);
 
 			ImGui::Text("RotationX: %.3f", m_Rotation.x);
 			ImGui::Text("RotationY: %.3f", m_Rotation.y);
@@ -282,8 +288,9 @@ void Player::Reset()
 
 vec3 Player::GetDirection()
 {
+	GameObject* cam = m_pScene->GetGameObjectByName("ChaseCamera");
 	mat4 rotationMatrix;
-	rotationMatrix.CreateRotation(m_Rotation);
+	rotationMatrix.CreateRotation(cam->GetRotation());
 
 	return rotationMatrix.GetAt();
 }

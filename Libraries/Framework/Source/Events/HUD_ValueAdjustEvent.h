@@ -4,7 +4,8 @@
 enum ValueToAdjust
 {
 	Value_Score,
-	Value_Life
+	Value_Life,
+	Value_Saves
 };
 
 class HUD_ValueAdjustEvent : public Event

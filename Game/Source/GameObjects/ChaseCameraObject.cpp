@@ -16,7 +16,7 @@ ChaseCameraObject::ChaseCameraObject(Scene* pScene, std::string name, Transform 
     m_LastMousePosition.Set( 0, 0 );
 	m_Rotation.x -= 30.0f;
 
-	m_RespawnRotation = vec3(-30.0f, 0.0, 0.0);
+	m_RespawnRotation = vec3(-30.0f, 180.0, 0.0);
 }
 
 ChaseCameraObject::~ChaseCameraObject()

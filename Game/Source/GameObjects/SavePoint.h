@@ -8,6 +8,7 @@ class SavePoint : public GameObject3D
 {
 protected:
 	std::map<std::string, class AudioList*> m_PlayerSounds;
+	int m_Saves = 0;
 
 public:
 	SavePoint(Scene* pScene, std::string name, Transform transform, Mesh* pMesh, Material* pMaterial);

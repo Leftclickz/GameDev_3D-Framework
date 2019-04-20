@@ -1,8 +1,8 @@
 {
 	"GameObjects":	[{
 			"Name":	"Player",
-			"Pos":	[0.57834017276763916, 1.9987211227416992, 0.026042759418487549],
-			"Rot":	[0, 0, 0],
+			"Pos":	[0, 0, 0],
+			"Rot":	[0, 180, -0],
 			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
 			"Flags":	["Player"],
 			"Components":	[{
@@ -20,6 +20,1661 @@
 					"PointSize":	1,
 					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
 					"OBJFilename":	"Boshy.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Objective",
+			"Pos":	[88.4096908569336, 31.417520523071289, -107.63236999511719],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 2.3518533706665039, 1],
+			"Flags":	["7"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Objective",
+					"Texture":	"Data/Textures/Door.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Point Light",
+			"Pos":	[0, 26.757976531982422, 3.87756609916687],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["5"],
+			"Components":	[{
+					"Type":	"Light",
+					"PrefabComponentID":	0,
+					"LightType":	"Point",
+					"Color":	[0.79901957511901855, 0.05875144898891449, 0.05875144898891449, 1],
+					"Atten":	[90, 0, 0.090000003576278687]
+				}]
+		}, {
+			"Name":	"Point Light1",
+			"Pos":	[0, 31.943647384643555, -44.261367797851562],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["5"],
+			"Components":	[{
+					"Type":	"Light",
+					"PrefabComponentID":	0,
+					"LightType":	"Point",
+					"Color":	[0.029400825500488281, 0, 1, 1],
+					"Atten":	[90, 0, 0.090000003576278687]
+				}]
+		}, {
+			"Name":	"Point Light2",
+			"Pos":	[28.1549015045166, 48.5340576171875, -127.66410064697266],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["5"],
+			"Components":	[{
+					"Type":	"Light",
+					"PrefabComponentID":	0,
+					"LightType":	"Point",
+					"Color":	[0.072231858968734741, 0.81862747669219971, 0.26980701088905334, 1],
+					"Atten":	[90, 0, 0.090000003576278687]
+				}]
+		}, {
+			"Name":	"Point Light3",
+			"Pos":	[72.986320495605469, 48.5340576171875, -167.17822265625],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["5"],
+			"Components":	[{
+					"Type":	"Light",
+					"PrefabComponentID":	0,
+					"LightType":	"Point",
+					"Color":	[0.99019604921340942, 0.019415607675909996, 0.961643636226654, 1],
+					"Atten":	[90, 0, 0.090000003576278687]
+				}]
+		}, {
+			"Name":	"Point Light4",
+			"Pos":	[90.472732543945313, 38.566692352294922, -109.94719696044922],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["5"],
+			"Components":	[{
+					"Type":	"Light",
+					"PrefabComponentID":	0,
+					"LightType":	"Point",
+					"Color":	[0.84803920984268188, 0.75071519613265991, 0.020785260945558548, 1],
+					"Atten":	[90, 0, 0.090000003576278687]
+				}]
+		}, {
+			"Name":	"Point Light5",
+			"Pos":	[2.0487508773803711, 50.947860717773437, -240.82643127441406],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["5"],
+			"Components":	[{
+					"Type":	"Light",
+					"PrefabComponentID":	0,
+					"LightType":	"Point",
+					"Color":	[0.62352573871612549, 0.031117850914597511, 0.906862735748291, 1],
+					"Atten":	[90, 0, 0.090000003576278687]
+				}]
+		}, {
+			"Name":	"Point Light6",
+			"Pos":	[2.0487508773803711, 50.947860717773437, -316.12509155273437],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["5"],
+			"Components":	[{
+					"Type":	"Light",
+					"PrefabComponentID":	0,
+					"LightType":	"Point",
+					"Color":	[0.62352573871612549, 0.031117850914597511, 0.906862735748291, 1],
+					"Atten":	[90, 0, 0.090000003576278687]
+				}]
+		}, {
+			"Name":	"SphereEnemy",
+			"Pos":	[16.4853515625, 39.884075164794922, -104.42174530029297],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	1,
+					"Primitive":	"Sphere",
+					"Scale":	[1, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Sphere.obj.mymesh",
+					"OBJFilename":	"Sphere.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy",
+			"Pos":	[-0.037560947239398956, 5.801539421081543, -26.45728874206543],
+			"Rot":	[0, 90.1124038696289, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy1",
+			"Pos":	[6.5377764701843262, 0.99750876426696777, 4.2518100738525391],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy2",
+			"Pos":	[6.5377764701843262, 0.99750876426696777, 8.4469051361083984],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy3",
+			"Pos":	[4.703150749206543, 0.99750876426696777, 10.376950263977051],
+			"Rot":	[0, 90.621612548828125, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy4",
+			"Pos":	[0.54390829801559448, 0.99750876426696777, 10.331825256347656],
+			"Rot":	[0, 90.621612548828125, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy5",
+			"Pos":	[-3.6607000827789307, 0.99750876426696777, 10.28620433807373],
+			"Rot":	[0, 90.621612548828125, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy6",
+			"Pos":	[-6.569908618927002, 0.99750876426696777, 10.189509391784668],
+			"Rot":	[0, 177.59197998046875, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy7",
+			"Pos":	[-6.7588696479797363, 0.99750876426696777, 5.6960721015930176],
+			"Rot":	[0, 177.59197998046875, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy8",
+			"Pos":	[-6.94905948638916, 0.99750876426696777, 1.1733766794204712],
+			"Rot":	[0, 177.59197998046875, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy9",
+			"Pos":	[-7.1458539962768555, 0.99750876426696777, -3.5063230991363525],
+			"Rot":	[0, 177.59197998046875, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy10",
+			"Pos":	[-7.3173599243164062, 0.99750876426696777, -7.5847043991088867],
+			"Rot":	[0, 177.59197998046875, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy11",
+			"Pos":	[6.5377764701843262, 0.99750876426696777, 0.080334305763244629],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy12",
+			"Pos":	[6.5377764701843262, 0.99750876426696777, -4.1634607315063477],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy13",
+			"Pos":	[6.5377764701843262, 0.99750876426696777, -8.5869998931884766],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy14",
+			"Pos":	[5.2592072486877441, 5.801539421081543, -26.446895599365234],
+			"Rot":	[0, 90.1124038696289, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy16",
+			"Pos":	[-6.2681760787963867, 0.99750876426696777, -11.048532485961914],
+			"Rot":	[0, -91.0192642211914, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy17",
+			"Pos":	[-6.2681727409362793, 0.99750876426696777, -11.048531532287598],
+			"Rot":	[0, -91.0192642211914, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy18",
+			"Pos":	[-1.6685805320739746, 0.99750876426696777, -11.130364418029785],
+			"Rot":	[0, -91.0192642211914, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy19",
+			"Pos":	[0.998354434967041, 3.1881752014160156, -18.229095458984375],
+			"Rot":	[0, 90.1124038696289, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy20",
+			"Pos":	[12.348191261291504, 10.224842071533203, -41.121536254882812],
+			"Rot":	[0, -179.17155456542969, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy21",
+			"Pos":	[12.281399726867676, 10.224842071533203, -36.502738952636719],
+			"Rot":	[0, -179.17155456542969, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy22",
+			"Pos":	[12.412216186523438, 10.224842071533203, -45.549545288085937],
+			"Rot":	[0, -179.17155456542969, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SphereEnemy1",
+			"Pos":	[18.736312866210938, 39.884075164794922, -104.42174530029297],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	1,
+					"Primitive":	"Sphere",
+					"Scale":	[1, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Sphere.obj.mymesh",
+					"OBJFilename":	"Sphere.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SphereEnemy2",
+			"Pos":	[21.461681365966797, 39.884075164794922, -104.42174530029297],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	1,
+					"Primitive":	"Sphere",
+					"Scale":	[1, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Sphere.obj.mymesh",
+					"OBJFilename":	"Sphere.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy23",
+			"Pos":	[12.587764739990234, 9.51413631439209, -57.689998626708984],
+			"Rot":	[0, -179.17155456542969, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy24",
+			"Pos":	[12.648937225341797, 9.51413631439209, -61.920307159423828],
+			"Rot":	[0, -179.17155456542969, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy25",
+			"Pos":	[12.709968566894531, 9.51413631439209, -66.141044616699219],
+			"Rot":	[0, -179.17155456542969, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy26",
+			"Pos":	[12.771764755249023, 9.51413631439209, -70.414619445800781],
+			"Rot":	[0, -179.17155456542969, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy27",
+			"Pos":	[12.848353385925293, 9.51413631439209, -73.766838073730469],
+			"Rot":	[0, -91.6167221069336, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy28",
+			"Pos":	[23.946571350097656, 9.51413631439209, -74.080078125],
+			"Rot":	[0, -91.6167221069336, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy29",
+			"Pos":	[26.043659210205078, 9.51413631439209, -70.414619445800781],
+			"Rot":	[0, -179.17155456542969, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy30",
+			"Pos":	[25.981863021850586, 9.51413631439209, -66.141044616699219],
+			"Rot":	[0, -179.17155456542969, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy31",
+			"Pos":	[25.920831680297852, 9.51413631439209, -61.920307159423828],
+			"Rot":	[0, -179.17155456542969, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy32",
+			"Pos":	[25.859659194946289, 9.51413631439209, -57.689998626708984],
+			"Rot":	[0, -179.17155456542969, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy33",
+			"Pos":	[68.080322265625, 40.323966979980469, -172.24700927734375],
+			"Rot":	[0, -124.02358245849609, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy34",
+			"Pos":	[79.399398803710937, 40.323966979980469, -133.57839965820312],
+			"Rot":	[0, 0, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy35",
+			"Pos":	[72.839607238769531, 40.323966979980469, -133.57839965820312],
+			"Rot":	[0, 0, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy36",
+			"Pos":	[76.23736572265625, 40.323966979980469, -129.53890991210937],
+			"Rot":	[0, -90.552932739257813, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy37",
+			"Pos":	[73.563934326171875, 40.323966979980469, -172.56562805175781],
+			"Rot":	[0, 0, -0],
+			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SpikeEnemy38",
+			"Pos":	[82.478263854980469, 35.846405029296875, -116.88416290283203],
+			"Rot":	[0, -90.552932739257813, -0],
+			"Scale":	[5, 5, 5],
+			"Flags":	["Enemy"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Convex Hull",
+					"Scale":	[1, 1, 1],
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj"
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
+					"OBJFilename":	"Boshy.obj",
+					"Material":	"Spikes",
+					"Texture":	"Data/Textures/Spike.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SavePoint",
+			"Pos":	[21.224494934082031, 11.0905122756958, -42.926933288574219],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["6"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"SavePoint",
+					"Texture":	"Data/Textures/Dice.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SavePoint1",
+			"Pos":	[54.801174163818359, 41.555828094482422, -184.923583984375],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["6"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"SavePoint",
+					"Texture":	"Data/Textures/Dice.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SavePoint2",
+			"Pos":	[1.0867385864257812, 41.555828094482422, -234.83358764648437],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["6"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"SavePoint",
+					"Texture":	"Data/Textures/Dice.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SavePoint3",
+			"Pos":	[1.0867385864257812, 46.147537231445313, -278.51956176757812],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["6"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"SavePoint",
+					"Texture":	"Data/Textures/Dice.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"SavePoint4",
+			"Pos":	[1.0867385864257812, 43.132320404052734, -346.41766357421875],
+			"Rot":	[0, 0, 0],
+			"Scale":	[1, 1, 1],
+			"Flags":	["6"],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"SavePoint",
+					"Texture":	"Data/Textures/Dice.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground",
+			"Pos":	[0, 0, -0.091221094131469727],
+			"Rot":	[0, 0, 0],
+			"Scale":	[9.7024135589599609, 1, 12.537014007568359],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground1",
+			"Pos":	[0, 4.8068380355834961, -33.192245483398438],
+			"Rot":	[0, 0, 0],
+			"Scale":	[7.9575719833374023, 1, 8.27169132232666],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground2",
+			"Pos":	[18.864253997802734, 8.5733041763305664, -44.137004852294922],
+			"Rot":	[0, 0, 0],
+			"Scale":	[3.8303864002227783, 1, 3.2045719623565674],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground3",
+			"Pos":	[18.864253997802734, 8.5733041763305664, -66.109443664550781],
+			"Rot":	[0, 0, 0],
+			"Scale":	[7.5717926025390625, 1, 9.9771261215209961],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground4",
+			"Pos":	[18.864253997802734, 24.936809539794922, -90.169548034667969],
+			"Rot":	[-38.828342437744141, -0, -0],
+			"Scale":	[3.8303864002227783, 1, 21.333122253417969],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground5",
+			"Pos":	[18.235797882080078, 39.872257232666016, -109.99021148681641],
+			"Rot":	[0, 0, 0],
+			"Scale":	[0.5, 0.5, 0.5],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground6",
+			"Pos":	[18.235797882080078, 39.872257232666016, -134.53752136230469],
+			"Rot":	[0, 0, 0],
+			"Scale":	[0.5, 0.5, 0.5],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground7",
+			"Pos":	[21.667509078979492, 39.872257232666016, -165.88534545898437],
+			"Rot":	[0, 0, 0],
+			"Scale":	[0.5, 0.5, 0.5],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground8",
+			"Pos":	[14.515438079833984, 39.872257232666016, -193.06283569335937],
+			"Rot":	[0, 0, 0],
+			"Scale":	[0.5, 0.5, 0.5],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground9",
+			"Pos":	[43.846138000488281, 39.872257232666016, -202.69245910644531],
+			"Rot":	[0, 0, 0],
+			"Scale":	[0.5, 0.5, 0.5],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground10",
+			"Pos":	[51.638671875, 39.872257232666016, -187.33412170410156],
+			"Rot":	[0, 0, 0],
+			"Scale":	[4.3190202713012695, 0.5, 3.1992676258087158],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground11",
+			"Pos":	[70.842086791992187, 39.872257232666016, -171.16944885253906],
+			"Rot":	[0, 0, 0],
+			"Scale":	[4.3190202713012695, 0.5, 3.1992676258087158],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground12",
+			"Pos":	[76.188835144042969, 39.872257232666016, -132.08763122558594],
+			"Rot":	[0, 0, 0],
+			"Scale":	[4.3190202713012695, 0.5, 3.1992676258087158],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground13",
+			"Pos":	[88.328498840332031, 28.576517105102539, -107.75327301025391],
+			"Rot":	[0, 0, 0],
+			"Scale":	[4.3190202713012695, 0.5, 3.1992676258087158],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
+					"Material":	"Lighting2",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
+				}]
+		}, {
+			"Name":	"Ground14",
+			"Pos":	[-0.056554794311523438, 32.574672698974609, -358.78912353515625],
+			"Rot":	[0, 0, 0],
+			"Scale":	[4.3190202713012695, 0.5, 3.1992676258087158],
+			"Flags":	[],
+			"Components":	[{
+					"Type":	"3D Collision Object",
+					"PrefabComponentID":	0,
+					"Mass":	0,
+					"Primitive":	"Cube",
+					"Scale":	[2.2000000476837158, 1, 1]
+				}, {
+					"Type":	"Mesh-OBJ",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
+					"OBJFilename":	"Cube.obj",
 					"Material":	"Lighting2",
 					"Texture":	"Data/Textures/Megaman.png",
 					"Shader":	"Shader_Texture",
@@ -56,200 +1711,151 @@
 					"Color":	[255, 255, 255, 255]
 				}]
 		}, {
-			"Name":	"Ground",
-			"Pos":	[0, 0, 1.347923755645752],
-			"Rot":	[0, 0, 0],
-			"Scale":	[18.958995819091797, 1, 17.315441131591797],
+			"Name":	"Plane1",
+			"Pos":	[-53.649856567382813, -16.082927703857422, 0],
+			"Rot":	[0, -0, 90],
+			"Scale":	[1, 1, 1],
 			"Flags":	[],
 			"Components":	[{
 					"Type":	"3D Collision Object",
 					"PrefabComponentID":	0,
 					"Mass":	0,
-					"Primitive":	"Cube",
-					"Scale":	[2.2000000476837158, 1, 1]
-				}, {
-					"Type":	"Mesh-OBJ",
-					"PrefabComponentID":	0,
-					"PrimitiveType":	"Triangles",
-					"PointSize":	1,
-					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
-					"OBJFilename":	"Cube.obj",
-					"Material":	"Lighting2",
-					"Texture":	"Data/Textures/Megaman.png",
-					"Shader":	"Shader_Texture",
-					"Color":	[255, 255, 255, 255]
-				}]
-		}, {
-			"Name":	"Sphere",
-			"Pos":	[-9.2039737701416016, 7.8711352348327637, -3.8871660232543945],
-			"Rot":	[0, 0, 0],
-			"Scale":	[1, 1, 1],
-			"Flags":	["Enemy"],
-			"Components":	[{
-					"Type":	"3D Collision Object",
-					"PrefabComponentID":	0,
-					"Mass":	1,
-					"Primitive":	"Sphere",
+					"Primitive":	"Static Plane",
 					"Scale":	[1, 1, 1]
 				}, {
-					"Type":	"Mesh-OBJ",
+					"Type":	"Mesh-Primitive",
 					"PrefabComponentID":	0,
 					"PrimitiveType":	"Triangles",
 					"PointSize":	1,
-					"OBJ":	"Data/Meshes/Sphere.obj.mymesh",
-					"OBJFilename":	"Sphere.obj",
-					"Material":	"Lighting2",
+					"MPType":	4,
+					"PlaneSize":	[10, 10],
+					"PlaneVertCountx":	10,
+					"PlaneVertCounty":	10,
+					"UVs per Quad":	0,
+					"PlaneUVStart":	[0, 0],
+					"PlaneUVRange":	[1, 1],
+					"SphereRadius":	1,
+					"OtherMeshPrimitive":	{
+						"GOID":	6,
+						"ComponentID":	14
+					},
+					"Material":	"Lighting",
 					"Texture":	"Data/Textures/Megaman.png",
 					"Shader":	"Shader_Texture",
 					"Color":	[255, 255, 255, 255]
 				}]
 		}, {
-			"Name":	"Point Light",
-			"Pos":	[0, 26.757976531982422, 3.87756609916687],
-			"Rot":	[0, 0, 0],
+			"Name":	"Plane2",
+			"Pos":	[186.37844848632812, -16.082927703857422, 0],
+			"Rot":	[0, -0, -90],
 			"Scale":	[1, 1, 1],
-			"Flags":	["5"],
-			"Components":	[{
-					"Type":	"Light",
-					"PrefabComponentID":	0,
-					"LightType":	"Point",
-					"Color":	[0.79901957511901855, 0.05875144898891449, 0.05875144898891449, 1],
-					"Atten":	[90, 0, 0.090000003576278687]
-				}]
-		}, {
-			"Name":	"Ground1",
-			"Pos":	[0, 6.0175027847290039, -41.679672241210937],
-			"Rot":	[0, 0, 0],
-			"Scale":	[18.958995819091797, 1, 17.315441131591797],
 			"Flags":	[],
 			"Components":	[{
 					"Type":	"3D Collision Object",
 					"PrefabComponentID":	0,
 					"Mass":	0,
-					"Primitive":	"Cube",
-					"Scale":	[2.2000000476837158, 1, 1]
+					"Primitive":	"Static Plane",
+					"Scale":	[1, 1, 1]
 				}, {
-					"Type":	"Mesh-OBJ",
+					"Type":	"Mesh-Primitive",
 					"PrefabComponentID":	0,
 					"PrimitiveType":	"Triangles",
 					"PointSize":	1,
-					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
-					"OBJFilename":	"Cube.obj",
-					"Material":	"Lighting2",
+					"MPType":	4,
+					"PlaneSize":	[10, 10],
+					"PlaneVertCountx":	10,
+					"PlaneVertCounty":	10,
+					"UVs per Quad":	0,
+					"PlaneUVStart":	[0, 0],
+					"PlaneUVRange":	[1, 1],
+					"SphereRadius":	1,
+					"OtherMeshPrimitive":	{
+						"GOID":	6,
+						"ComponentID":	14
+					},
+					"Material":	"Lighting",
 					"Texture":	"Data/Textures/Megaman.png",
 					"Shader":	"Shader_Texture",
 					"Color":	[255, 255, 255, 255]
 				}]
 		}, {
-			"Name":	"Point Light1",
-			"Pos":	[0, 31.943647384643555, -44.261367797851562],
-			"Rot":	[0, 0, 0],
+			"Name":	"Plane3",
+			"Pos":	[0, -16.082927703857422, 43.597412109375],
+			"Rot":	[90, -0, -0],
 			"Scale":	[1, 1, 1],
-			"Flags":	["5"],
-			"Components":	[{
-					"Type":	"Light",
-					"PrefabComponentID":	0,
-					"LightType":	"Point",
-					"Color":	[0.029400825500488281, 0, 1, 1],
-					"Atten":	[90, 0, 0.090000003576278687]
-				}]
-		}, {
-			"Name":	"SavePoint",
-			"Pos":	[0, 12.973968505859375, -52.023056030273437],
-			"Rot":	[0, 0, 0],
-			"Scale":	[1, 1, 1],
-			"Flags":	["6"],
-			"Components":	[{
-					"Type":	"3D Collision Object",
-					"PrefabComponentID":	0,
-					"Mass":	0,
-					"Primitive":	"Cube",
-					"Scale":	[2.2000000476837158, 1, 1]
-				}, {
-					"Type":	"Mesh-OBJ",
-					"PrefabComponentID":	0,
-					"PrimitiveType":	"Triangles",
-					"PointSize":	1,
-					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
-					"OBJFilename":	"Cube.obj",
-					"Material":	"SavePoint",
-					"Texture":	"Data/Textures/Dice.png",
-					"Shader":	"Shader_Texture",
-					"Color":	[255, 255, 255, 255]
-				}]
-		}, {
-			"Name":	"Player1",
-			"Pos":	[6.5377764701843262, 7.3977575302124023, -45.562061309814453],
-			"Rot":	[0, 0, 0],
-			"Scale":	[1.597150444984436, 1.597150444984436, 1.597150444984436],
-			"Flags":	["Enemy"],
-			"Components":	[{
-					"Type":	"3D Collision Object",
-					"PrefabComponentID":	0,
-					"Mass":	1,
-					"Primitive":	"Convex Hull",
-					"Scale":	[1, 1, 1],
-					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
-					"OBJFilename":	"Boshy.obj"
-				}, {
-					"Type":	"Mesh-OBJ",
-					"PrefabComponentID":	0,
-					"PrimitiveType":	"Triangles",
-					"PointSize":	1,
-					"OBJ":	"Data/Meshes/Boshy.obj.mymesh",
-					"OBJFilename":	"Boshy.obj",
-					"Material":	"Spikes",
-					"Texture":	"Data/Textures/Spike.png",
-					"Shader":	"Shader_Texture",
-					"Color":	[255, 255, 255, 255]
-				}]
-		}, {
-			"Name":	"Ground2",
-			"Pos":	[44.759880065917969, 6.0175027847290039, -41.679672241210937],
-			"Rot":	[0, 0, 0],
-			"Scale":	[18.958995819091797, 1, 17.315441131591797],
 			"Flags":	[],
 			"Components":	[{
 					"Type":	"3D Collision Object",
 					"PrefabComponentID":	0,
 					"Mass":	0,
-					"Primitive":	"Cube",
-					"Scale":	[2.2000000476837158, 1, 1]
+					"Primitive":	"Static Plane",
+					"Scale":	[1, 1, 1]
 				}, {
-					"Type":	"Mesh-OBJ",
+					"Type":	"Mesh-Primitive",
 					"PrefabComponentID":	0,
 					"PrimitiveType":	"Triangles",
 					"PointSize":	1,
-					"OBJ":	"Data/Meshes/Cube.obj.mymesh",
-					"OBJFilename":	"Cube.obj",
-					"Material":	"Lighting2",
+					"MPType":	4,
+					"PlaneSize":	[10, 10],
+					"PlaneVertCountx":	10,
+					"PlaneVertCounty":	10,
+					"UVs per Quad":	0,
+					"PlaneUVStart":	[0, 0],
+					"PlaneUVRange":	[1, 1],
+					"SphereRadius":	1,
+					"OtherMeshPrimitive":	{
+						"GOID":	6,
+						"ComponentID":	14
+					},
+					"Material":	"Lighting",
 					"Texture":	"Data/Textures/Megaman.png",
 					"Shader":	"Shader_Texture",
 					"Color":	[255, 255, 255, 255]
 				}]
 		}, {
-			"Name":	"Point Light2",
-			"Pos":	[45.300708770751953, 31.943647384643555, -44.261367797851562],
-			"Rot":	[0, 0, 0],
+			"Name":	"Plane4",
+			"Pos":	[0, -16.082927703857422, -396.49636840820312],
+			"Rot":	[-90, -0, -0],
 			"Scale":	[1, 1, 1],
-			"Flags":	["5"],
+			"Flags":	[],
 			"Components":	[{
-					"Type":	"Light",
+					"Type":	"3D Collision Object",
 					"PrefabComponentID":	0,
-					"LightType":	"Point",
-					"Color":	[0.072231858968734741, 0.81862747669219971, 0.26980701088905334, 1],
-					"Atten":	[90, 0, 0.090000003576278687]
+					"Mass":	0,
+					"Primitive":	"Static Plane",
+					"Scale":	[1, 1, 1]
+				}, {
+					"Type":	"Mesh-Primitive",
+					"PrefabComponentID":	0,
+					"PrimitiveType":	"Triangles",
+					"PointSize":	1,
+					"MPType":	4,
+					"PlaneSize":	[10, 10],
+					"PlaneVertCountx":	10,
+					"PlaneVertCounty":	10,
+					"UVs per Quad":	0,
+					"PlaneUVStart":	[0, 0],
+					"PlaneUVRange":	[1, 1],
+					"SphereRadius":	1,
+					"OtherMeshPrimitive":	{
+						"GOID":	6,
+						"ComponentID":	14
+					},
+					"Material":	"Lighting",
+					"Texture":	"Data/Textures/Megaman.png",
+					"Shader":	"Shader_Texture",
+					"Color":	[255, 255, 255, 255]
 				}]
 		}, {
-			"Name":	"Objective",
-			"Pos":	[52.870868682861328, 10.462478637695312, -52.023056030273437],
+			"Name":	"Objective1",
+			"Pos":	[0.024637222290039063, 35.415676116943359, -358.668212890625],
 			"Rot":	[0, 0, 0],
 			"Scale":	[1, 2.3518533706665039, 1],
 			"Flags":	["7"],
 			"Components":	[{
 					"Type":	"3D Collision Object",
 					"PrefabComponentID":	0,
-					"Mass":	500000,
+					"Mass":	0,
 					"Primitive":	"Cube",
 					"Scale":	[2.2000000476837158, 1, 1]
 				}, {

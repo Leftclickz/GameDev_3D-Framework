@@ -88,7 +88,10 @@ void GameObject3D::Draw(Camera* cam)
 
 			BulletScene* scene = dynamic_cast<BulletScene*>(m_pScene);
 			if (scene)
-				m_pMesh->SetupUniforms(matrix, WorldRotMat, cam, m_pMaterial, scene->GetLightVector());
+			{
+				std::vector<LightObject*> relativelights = scene->GetClosestLights(m_Position);
+				m_pMesh->SetupUniforms(matrix, WorldRotMat, cam, m_pMaterial, &relativelights);
+			}
 			else 
 				m_pMesh->SetupUniforms(matrix, WorldRotMat, cam, m_pMaterial);
 
@@ -101,19 +104,22 @@ void GameObject3D::Reset()
 {
 	if (m_WasLoadedFromJSON)
 	{
-		SetRotation(cJSONrot);
-		SetPosition(cJSONpos);
-
 		//fully resets the body to its initial loaded state
 		if (m_Body)
 		{
-			m_Body->activate(true);
+			if (m_Body->getInvMass() != 0)
+			{
+				m_Body->activate(true);
 
-			btTransform transform = m_Body->getWorldTransform();
-			transform.setOrigin(btVector3(cJSONpos.x, cJSONpos.y, cJSONpos.z));
-			transform.setRotation(btQuaternion(cJSONrot.y, cJSONrot.x, cJSONrot.z));
-			m_Body->setLinearVelocity(btVector3(0, 0, 0));
-			m_Body->setWorldTransform(transform);
+				SetRotation(cJSONrot);
+				SetPosition(cJSONpos);
+
+				btTransform transform = m_Body->getWorldTransform();
+				transform.setOrigin(btVector3(cJSONpos.x, cJSONpos.y, cJSONpos.z));
+				transform.setRotation(btQuaternion(cJSONrot.y, cJSONrot.x, cJSONrot.z));
+				m_Body->setLinearVelocity(btVector3(0, 0, 0));
+				m_Body->setWorldTransform(transform);
+			}
 		}
 	}
 

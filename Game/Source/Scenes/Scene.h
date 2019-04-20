@@ -75,6 +75,7 @@ public:
 	LightObject* GetLightObjectByName(std::string name);
 
 	virtual std::vector<LightObject*>* GetLightVector() { return &m_pLights; }
+	virtual std::vector<LightObject*> GetClosestLights(vec3 pos);
 
 	void Add3DBody(btRigidBody* pObject);
 	bool Remove3DBody(btRigidBody* pObject);

@@ -258,6 +258,49 @@ LightObject * Scene::GetLightObjectByName(std::string name)
 	return nullptr;
 }
 
+std::vector<LightObject*> Scene::GetClosestLights(vec3 pos)
+{
+	if (m_pLights.size() <= 5)
+	{
+		return m_pLights;
+	}
+
+	struct Lights
+	{
+		float Dist;
+		LightObject* Light;
+		Lights(float dist, LightObject* light) { Dist = dist, Light = light; }
+	};
+
+	struct less_than_key
+	{
+		inline bool operator() (const Lights& struct1, const Lights& struct2)
+		{
+			return (struct1.Dist < struct2.Dist);
+		}
+	};
+
+	std::vector<LightObject*> closeLights;
+	std::vector<Lights> allLights;
+
+	//fill it with every light and their matching distance
+	for (auto i : m_pLights)
+	{
+		vec3 diff = pos - i->GetPosition();
+		float length = diff.LengthSquared();
+
+		allLights.push_back(Lights(length, i));
+	}
+
+	std::sort(allLights.begin(), allLights.end(), less_than_key());
+
+	for (unsigned int i = 0; i < 5; i++)
+	{
+		closeLights.push_back(allLights.at(i).Light);
+	}
+	return closeLights;
+}
+
 void Scene::Add3DBody(btRigidBody* pObject)
 {
 	m_pBodies3D.push_back(pObject);

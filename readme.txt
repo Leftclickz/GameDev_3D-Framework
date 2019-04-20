@@ -19,6 +19,7 @@ NEW:
 - Game Objects are now properly synced with movement as well as forced location changes due to overwriting position or forces.
 - removed the FBO invalidation which existed because I didn't actually want to use it at the time but didn't want to comment out 40 lines
 - Now the FBO object doies exist in the world and draws the world onto a cube so you can see it works
+- By default the FBO object is off because the effect is stupidly heavy and crushes FPS but it is located almost at 0,0,0 (initial spawn)
 
 
 

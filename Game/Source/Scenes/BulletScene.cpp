@@ -38,7 +38,7 @@ BulletScene::BulletScene(Game* pGame, ResourceManager* pResources) :
 	RemoveGameObject(cam);
 
 	//create the proper chase-cam
-	m_Camera = new ChaseCameraObject(this, "ChaseCamera", Transform(vec3(0.0f, 10.0f, -15.0f)));
+	m_Camera = new ChaseCameraObject(this, "ChaseCamera", Transform(vec3(0.0f, 10.0f, -15.0f), vec3(0,180,0)));
 	AddGameObject(m_Camera);
 
 	m_BulletManager = new BulletManager();
@@ -200,7 +200,7 @@ void BulletScene::Update(float deltatime)
 
 void BulletScene::Draw()
 {
-	if (m_FBO->IsFullyLoaded())
+	if (m_FBO->IsFullyLoaded() && m_DisplayPostEffect)
 	{
 		m_FBO->Bind();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -314,6 +314,10 @@ void BulletScene::ImGuiDisplayDebugData()
 {
 	Scene::ImGuiDisplayDebugData();
 	m_BulletManager->ImGuiDisplayDebugData();
+	
+	ImGui::Begin("PostEffet");
+	ImGui::Checkbox("Draw PostEffet Cube: ", &m_DisplayPostEffect);
+	ImGui::End();
 }
 
 void BulletScene::Reset()

@@ -28,18 +28,25 @@ void HUD_Scene::LoadContent()
 	float aspect = (float)m_pGame->GetFramework()->GetWindowWidth() / (float)m_pGame->GetFramework()->GetWindowHeight();
 
 	//score HUD object
-	HUD_TextObject* ScoreDisplay = new HUD_TextObject(this, "ScoreDisplay", Transform(), new TextMesh(), m_pResources->GetMaterial("Text"));
-	ScoreDisplay->SetString("SCORE : 0");
-	ScoreDisplay->SetPosition(vec3(0.4f * aspect, 9.5f * aspect, 0.0f));
-	ScoreDisplay->SetScale(vec3(0.1f, 0.1f, 0.1f));
-	AddGameObject(ScoreDisplay);
+// 	HUD_TextObject* ScoreDisplay = new HUD_TextObject(this, "ScoreDisplay", Transform(), new TextMesh(), m_pResources->GetMaterial("Text"));
+// 	ScoreDisplay->SetString("SCORE : 0");
+// 	ScoreDisplay->SetPosition(vec3(0.4f * aspect, 9.5f * aspect, 0.0f));
+// 	ScoreDisplay->SetScale(vec3(0.1f, 0.1f, 0.1f));
+// 	AddGameObject(ScoreDisplay);
 
+	////Lives HUD object
+	//HUD_TextObject* LifeDisplay = new HUD_TextObject(this, "LifeDisplay", Transform(), new TextMesh(), m_pResources->GetMaterial("Text"));
+	//LifeDisplay->SetString("LIVES : 2");
+	//LifeDisplay->SetPosition(vec3(0.4f * aspect, 8.5f * aspect, 0.0f));
+	//LifeDisplay->SetScale(vec3(0.1f, 0.1f, 0.1f));
+	//AddGameObject(LifeDisplay);
+	 
 	//Lives HUD object
-	HUD_TextObject* LifeDisplay = new HUD_TextObject(this, "LifeDisplay", Transform(), new TextMesh(), m_pResources->GetMaterial("Text"));
-	LifeDisplay->SetString("LIVES : 2");
-	LifeDisplay->SetPosition(vec3(0.4f * aspect, 8.5f * aspect, 0.0f));
-	LifeDisplay->SetScale(vec3(0.1f, 0.1f, 0.1f));
-	AddGameObject(LifeDisplay);
+	HUD_TextObject* SavesDisplay = new HUD_TextObject(this, "SavesDisplay", Transform(), new TextMesh(), m_pResources->GetMaterial("Text"));
+	SavesDisplay->SetString("SAVES : 0");
+	SavesDisplay->SetPosition(vec3(0.4f * aspect, 8.5f * aspect, 0.0f));
+	SavesDisplay->SetScale(vec3(0.1f, 0.1f, 0.1f));
+	AddGameObject(SavesDisplay);
 
 	//VICTORY HUD object
 	HUD_TextObject* VictoryDisplay = new HUD_TextObject(this, "VictoryDisplay", Transform(), new TextMesh(), m_pResources->GetMaterial("Text"));
@@ -86,6 +93,10 @@ void HUD_Scene::OnEvent(Event* pEvent)
 		case Value_Life:
 			HUD = (HUD_TextObject*)GetGameObjectByName("LifeDisplay");
 			HUD->SetString("LIVES : " + std::to_string(ev->GetValue()));
+			break;
+		case Value_Saves:
+			HUD = (HUD_TextObject*)GetGameObjectByName("SavesDisplay");
+			HUD->SetString("SAVES : " + std::to_string(ev->GetValue()));
 			break;
 		default:
 			break;

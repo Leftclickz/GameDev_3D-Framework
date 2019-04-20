@@ -5,7 +5,7 @@
 class Camera : public GameObject
 {
 public:
-	Camera(Scene* pScene, std::string name, Transform transform, vec3 lookat = vec3(0.0f, 0.0f, 0.0f), float range = 100.0f);
+	Camera(Scene* pScene, std::string name, Transform transform, vec3 lookat = vec3(0.0f, 0.0f, 0.0f), float range = 500.0f);
 	~Camera();
 
 	void CreateViewMatrix(vec3 up = vec3(0,1,0));
