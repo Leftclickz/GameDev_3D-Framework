@@ -44,7 +44,7 @@ BulletScene::BulletScene(Game* pGame, ResourceManager* pResources) :
 	m_BulletManager = new BulletManager();
 
 	m_FBO = new FBODefinition(512, 512, GL_LINEAR, GL_LINEAR, false);
-	m_FBO->Invalidate(true);
+	//m_FBO->Invalidate(true);
 }
 
 BulletScene::~BulletScene()
@@ -121,7 +121,7 @@ void BulletScene::LoadContent()
 
 		m_pResources->AddMaterial("FBO", new Material(m_pResources->GetShader("TextureShader"), m_pResources->GetTexture("FBO")));
 
-		m_FBOobject = new GameObject3D(this, "TV", Transform(vec3(0), vec3(90, 0, 0)), m_pResources->GetMesh("Cube"), m_pResources->GetMaterial("FBO"));
+		m_FBOobject = new GameObject3D(this, "TV", Transform(vec3(5, 5, 0), vec3(90, 0, 0)), m_pResources->GetMesh("Cube"), m_pResources->GetMaterial("FBO"));
 	}
 
 	//File Loading Time
@@ -187,7 +187,6 @@ void BulletScene::OnEvent(Event* pEvent)
 			break;
 		default:
 			break;
-
 		}
 	}
 }
@@ -208,19 +207,17 @@ void BulletScene::Draw()
 		glViewport(0, 0, 512, 512);
 
 		Scene::Draw();
+
+		glViewport(0, 0, m_pGame->GetFramework()->GetWindowWidth(), m_pGame->GetFramework()->GetWindowHeight());
 		m_FBO->Unbind();
 
-		
-		glViewport(0, 0, m_pGame->GetFramework()->GetWindowWidth(), m_pGame->GetFramework()->GetWindowHeight());
-
+		Scene::Draw();
 		m_BulletManager->Draw(m_Camera, m_pResources->GetMaterial("Debug3D"));
-
 		m_FBOobject->Draw(m_Camera);
 	}
 	else
 	{
 		Scene::Draw();
-
 		m_BulletManager->Draw(m_Camera, m_pResources->GetMaterial("Debug3D"));
 	}
 }

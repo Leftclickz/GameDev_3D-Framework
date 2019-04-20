@@ -10,6 +10,7 @@ PauseScreen::PauseScreen(Game* pGame, ResourceManager* pResources)
 {
 	m_IsTransparent = true;
 	m_DoesPause = true;
+	m_DoesStopEvents = true;
 
 	m_Name = "PauseScreen";
 }
@@ -42,7 +43,7 @@ void PauseScreen::OnEvent(Event* pEvent)
 	{
 		InputEvent* pInput = (InputEvent*)pEvent;
 
-		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 'H')//TAB
+		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 9 && pInput->GetInputState() == InputState_Pressed)//TAB
 		{
 			m_pSceneManager->Pop();
 		}
