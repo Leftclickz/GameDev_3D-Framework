@@ -1,19 +1,24 @@
 Arrows/WASD to move
 Z to jump
-C to interact (doors/elevators)
-X to shoot
+F to interact (doors/save points)
+X or LMB to shoot
+F9 to enable/disable IMGUI
+C to enable/disable mouselock
+Mouse is used to angle camera during mouselock
+R to reset scene
+P to go back to the title screen
 
-ELEVATORS ARE THE GREY BRICK THINGS
+Pools are used for the Bullets.
 
-Pools are used for the Bullets
-The Objective is a sensor
-We use revolute and prismatic joints
-Everything aside from bullets is loaded from scene files
-The teapot is from 3dsmax and uses the normal shader (can also be viewed in better detail on scene '4')
+NEW:
 
-The biggest number I tested for score was 429496729 but I think the limitation is in the int, not the scoreboard
-HUDCam is in HUD_Scene and uses Ortho
+- Raytracing support added as another Bullet3D feature.
+- Tweening can now be tested with a subclass called TweenedImGuiEnemy. It's inside Imgui/GameObjects/TweenTestSubject during runtime.
+- There's Weighted Random Audio Cues (used by player) and a ShuffleAudioList (used by the scene)
+- Game Objects are now properly synced with movement as well as forced location changes due to overwriting position or forces.
 
-All debug draw is done and functional. To access it go under the debug checkbox. It will show the options.
-Box2D even has pair commented out so I have the checkbox off.
-Our center of mass debug is also off as I have no idea what that actually needs to look like
+
+
+
+
+
