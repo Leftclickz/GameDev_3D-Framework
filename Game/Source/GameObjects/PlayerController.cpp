@@ -31,6 +31,7 @@ void PlayerController::OnEvent(Event* pEvent)
 				if (keyID == 'C' && !isOther) { m_Directions |= DIR_OTHER; isOther = true; }
 				if (keyID == ' ' && !isJumping) { m_Directions |= DIR_JUMP; isJumping = true; }
 				if (keyID == 'X' && !isShooting) { m_Directions |= DIR_SHOOT; isShooting = true; }
+				if (keyID == 'F' && !isInteracting) { m_Directions |= DIR_INTERACT; isInteracting = true; }
             }
 
             if( pInput->GetInputState() == InputState_Released )
@@ -51,6 +52,7 @@ void PlayerController::OnEvent(Event* pEvent)
 				if (keyID == 'C') { m_Directions &= ~DIR_OTHER; isOther = false; }
 				if (keyID == ' ') { m_Directions &= ~DIR_JUMP; isJumping = false; }
 				if (keyID == 'X') { m_Directions &= ~DIR_SHOOT; isShooting = false; }
+				if (keyID == 'F') { m_Directions &= ~DIR_INTERACT; isInteracting = false; }
             }
         }
 		if (pInput->GetInputDeviceType() == InputDeviceType_Mouse)

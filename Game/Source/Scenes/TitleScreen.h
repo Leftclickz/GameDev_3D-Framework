@@ -24,4 +24,7 @@ public:
 
 protected:
 
+	float m_Timer;
+	bool m_isGrowing;
+
 };

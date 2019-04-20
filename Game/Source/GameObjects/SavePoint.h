@@ -16,4 +16,6 @@ public:
 
 	virtual void ContactStarted(GameObject3D* pOtherObj, vec3 normal) override;
 	virtual void ContactEnded(GameObject3D* pOtherObj) override;
+
+	virtual void SetRespawnValues();
 };

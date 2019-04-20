@@ -18,10 +18,10 @@ Objective::~Objective()
 
 void Objective::ContactStarted(GameObject3D * pOtherObj, vec3 normal)
 {
-	if (pOtherObj->GetName() == "Player")
-	{
-		m_pScene->GetGame()->GetEventManager()->QueueEvent(new GameStateEvent(WinState));
-	}
+	//if (pOtherObj->GetName() == "Player")
+	//{
+	//	m_pScene->GetGame()->GetEventManager()->QueueEvent(new GameStateEvent(WinState));
+	//}
 }
 
 void Objective::ContactEnded(GameObject3D * pOtherObj)

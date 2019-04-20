@@ -62,10 +62,6 @@ void Scene::LoadContent()
 
 void Scene::OnEvent(Event* pEvent)
 {
-	if (pEvent->GetEventType() == EventType_Input)
-	{
-		InputEvent* pInput = (InputEvent*)pEvent;
-	}
 }
 
 void Scene::Update(float deltatime)
@@ -328,4 +324,13 @@ void Scene::Reset()
 	}
 
 	m_Camera->Reset();
+}
+
+void Scene::ImGuiDisplayDebugData()
+{
+	for (unsigned int i = 0; i < m_pGameObjects.size(); i++)
+		m_pGameObjects[i]->ImGuiDisplayDebugInfo();
+
+	for (unsigned int i = 0; i < m_pLights.size(); i++)
+		m_pLights[i]->ImGuiDisplayDebugInfo();
 }

@@ -32,9 +32,10 @@ public:
 
 	virtual void Reset() override;
 
+	virtual void ImGuiDisplayDebugInfo() override;
+
 protected:
 
-	virtual void DisplayImguiDebugInfo() override;
 	StandardLight m_Light;
 
 private:

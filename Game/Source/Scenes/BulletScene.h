@@ -23,6 +23,8 @@ public:
 	virtual void HasEnteredFocus() override;
 	virtual void HasLeftFocus() override;
 
+	virtual void ImGuiDisplayDebugData() override;
+
 	virtual void Reset() override;
 
 protected:

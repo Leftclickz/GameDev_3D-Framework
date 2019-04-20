@@ -20,6 +20,7 @@ protected:
 	ResourceManager* m_pResourceManager;
 	ImGuiManager* m_pImGuiManager;
 	SceneManager* m_pSceneManager;
+	bool m_DisplayDebugData = false;
 
 public:
     Game(Framework* pFramework);

@@ -44,10 +44,11 @@ public:
 	virtual void Die() {}
 
 	virtual vec3 GetDirection();
+	virtual void ImGuiDisplayDebugInfo() override;
 
 protected:
 	virtual void CreateBody(btCollisionShape* shape, float mass);
-	virtual void DisplayImguiDebugInfo();
+
 
 	BulletMotionState* m_MotionState;
 	btRigidBody* m_Body;

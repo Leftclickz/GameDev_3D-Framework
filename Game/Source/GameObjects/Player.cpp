@@ -10,6 +10,8 @@
 #include "Physics/BulletMotionState.h"
 #include "FollowLight.h"
 #include "Gun.h"
+#include "Game/BulletManager.h"
+#include "SavePoint.h"
 
 Player::Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh, Material* pMaterial)
 	: GameObject3D(pScene, name, transform, pMesh, pMaterial)
@@ -27,13 +29,13 @@ Player::Player(Scene* pScene, std::string name, Transform transform, Mesh* pMesh
 
 	ResourceManager* resources = pScene->GetResourceManager();
 
-	AudioList* deathAudio = resources->AddAudioList("Death Sounds", new WeightedRandomAudioList());
+	AudioList* deathAudio = resources->AddAudioList("Death Sounds", new WeightedRandomAudioList(resources->GetAudio("Player Death 1")->GetWaveFormat()));
 	deathAudio->AddAudio(resources->GetAudio("Player Death 1"));
 	deathAudio->AddAudio(resources->GetAudio("Player Death 2"));
 	deathAudio->AddAudio(resources->GetAudio("Player Death 3"));
 	m_PlayerSounds["Death"] = deathAudio;
 
-	AudioList* spawnAudio = resources->AddAudioList("Spawn Sounds", new WeightedRandomAudioList());
+	AudioList* spawnAudio = resources->AddAudioList("Spawn Sounds", new WeightedRandomAudioList(resources->GetAudio("Player Spawn 1")->GetWaveFormat()));
 	spawnAudio->AddAudio(resources->GetAudio("Player Spawn 1"));
 	spawnAudio->AddAudio(resources->GetAudio("Player Spawn 2"));
 	spawnAudio->AddAudio(resources->GetAudio("Player Spawn 3"));
@@ -91,6 +93,12 @@ void Player::Update(float deltatime)
         {
 			dir.setX(1);
         }
+
+		if (m_pPlayerController->IsPressed_Interact())
+		{
+			Interact();
+			m_pPlayerController->RemoveInteractInput();
+		}
 
 		GameObject* cam = m_pScene->GetGameObjectByName("ChaseCamera");
 		if (cam)
@@ -166,6 +174,30 @@ void Player::Jump()
 	}
 }
 
+void Player::Interact()
+{
+	//vec3 forward = GetDirection();
+	vec3 offset = vec3(0, 1.5f, 0);
+
+	//get forward vector
+	vec3 forward = GetDirection();
+
+	//raycast out to see if we interact with anything
+	btCollisionWorld::ClosestRayResultCallback raycast = m_pScene->GetBulletManager()->PerformRaycast(GetPosition() + offset, GetPosition() + offset + forward * 10.0f);
+
+	if (raycast.hasHit())
+	{
+		GameObject* obj = (GameObject*)raycast.m_collisionObject->getUserPointer();
+
+		if (strstr(obj->GetName().c_str(), "SavePoint"))
+		{
+			((SavePoint*)obj)->SetRespawnValues();
+		}
+		if (obj->GetName().find("Objective") != std::string::npos)
+			m_pScene->GetGame()->GetEventManager()->QueueEvent(new GameStateEvent(WinState));
+	}
+}
+
 void Player::ContactStarted(GameObject3D* pOtherObj, vec3 normal)
 {
 	GameObject3D::ContactStarted(pOtherObj, normal);
@@ -183,7 +215,7 @@ void Player::ContactEnded(GameObject3D* pOtherObj)
 	GameObject3D::ContactEnded(pOtherObj);
 }
 
-void Player::DisplayImguiDebugInfo()
+void Player::ImGuiDisplayDebugInfo()
 {
 	if (isEnabled)
 	{
@@ -195,6 +227,10 @@ void Player::DisplayImguiDebugInfo()
 			ImGui::Text("PositionY: %.3f", m_Position.y);
 			ImGui::Text("PositionZ: %.3f", m_Position.z);
 			ImGui::SliderFloat("Speed", &m_Speed, 0.0f, 20.0f);
+
+			ImGui::Text("RotationX: %.3f", m_Rotation.x);
+			ImGui::Text("RotationY: %.3f", m_Rotation.y);
+			ImGui::Text("RotationZ: %.3f", m_Rotation.z);
 		}
 		ImGui::PopID();
 		ImGui::End();
@@ -215,6 +251,8 @@ void Player::TakeDamage(float amount)
 void Player::Die()
 {
 	m_pScene->GetGame()->GetEventManager()->QueueEvent(new GameStateEvent(LoseState));
+	m_PlayerSounds["Spawn"]->StopAudio();
+	m_PlayerSounds["Death"]->PlayAudio();
 }
 
 void Player::Reset()
@@ -223,6 +261,8 @@ void Player::Reset()
 	m_Gun->Reset();
 
 	m_pScene->GetGame()->GetEventManager()->QueueEvent(new GameStateEvent(PlayState));
+	m_PlayerSounds["Spawn"]->PlayAudio();
+	m_PlayerSounds["Death"]->StopAudio();
 
 	m_Health = PLAYER_HEALTH;
 	m_Speed = PLAYER_SPEED;
@@ -236,8 +276,14 @@ void Player::Reset()
 		//respawn at the actual respawnpoint
 		btTransform transform;
 		m_MotionState->getWorldTransform(transform);
-		transform.setOrigin(btVector3(m_RespawnPoint.x, m_RespawnPoint.y, m_RespawnPoint.z));
-		transform.setRotation(btQuaternion(m_RespawnRot.y, m_RespawnRot.x, m_RespawnRot.z));
 		m_Body->setWorldTransform(transform);
 	}
+}
+
+vec3 Player::GetDirection()
+{
+	mat4 rotationMatrix;
+	rotationMatrix.CreateRotation(m_Rotation);
+
+	return rotationMatrix.GetAt();
 }

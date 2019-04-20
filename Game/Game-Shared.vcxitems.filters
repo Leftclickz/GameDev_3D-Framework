@@ -188,6 +188,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Objective.cpp">
       <Filter>Game Objects\Game Object 3D</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\TweenedImGuiEnemy.cpp">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GamePCH.h" />
@@ -381,6 +384,9 @@
       <Filter>Game Objects\Game Object 3D</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Objective.h">
+      <Filter>Game Objects\Game Object 3D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\TweenedImGuiEnemy.h">
       <Filter>Game Objects\Game Object 3D</Filter>
     </ClInclude>
   </ItemGroup>

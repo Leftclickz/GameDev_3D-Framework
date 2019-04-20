@@ -23,6 +23,7 @@ class PlayerController
 		DIR_AIMDOWN	= 0x0400,
 		DIR_AIMLEFT	= 0x0800,
 		DIR_AIMRIGHT= 0x1000,
+		DIR_INTERACT= 0x2000,
     };
 
 protected:
@@ -30,6 +31,7 @@ protected:
 	bool isJumping = false;
 	bool isShooting = false;
 	bool isOther = false;
+	bool isInteracting = false;
 
 public:
     void OnEvent(Event* pEvent);
@@ -51,9 +53,12 @@ public:
 
     bool IsPressed_Other() { return m_Directions & DIR_OTHER; }
 
+	bool IsPressed_Interact() { return m_Directions & DIR_INTERACT; }
+
 	void RemoveJumpInput() { m_Directions &= ~DIR_JUMP; }
 	void RemoveShootInput() { m_Directions &= ~DIR_SHOOT; }
 	void RemoveOtherInput() { m_Directions &= ~DIR_OTHER; }
+	void RemoveInteractInput() { m_Directions &= ~DIR_INTERACT; }
 };
 
 #endif //__PlayerController_H__

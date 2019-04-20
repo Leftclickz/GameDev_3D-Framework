@@ -42,19 +42,23 @@ public:
     void SetPlayerController(PlayerController* controller) { m_pPlayerController = controller; }
     void SetSpeed(float speed) { m_Speed = speed; }
 
-	void SetRespawnData(vec3 pos, vec3 rot) { m_RespawnPoint = pos; m_RespawnRot = rot; }
+	void SetRespawnData(vec3 pos, vec3 rot) { m_RespawnPoint = pos; m_RespawnRot = rot;}
 
 	void Jump();
+	void Interact();
 
 	virtual void ContactStarted(GameObject3D* pOtherObj, vec3 normal) override;
 	virtual void ContactEnded(GameObject3D* pOtherObj) override;
 
-	virtual void DisplayImguiDebugInfo() override;
+	virtual void ImGuiDisplayDebugInfo() override;
 
 	virtual void TakeDamage(float amount);
 
 	virtual void Die();
 	virtual void Reset() override;
+
+	// override for direction vector here becuz we wipe x and z from the player so we convert the Y into x,z radians.
+	virtual vec3 GetDirection() override;
 };
 
 #endif //__Player_H__

@@ -21,6 +21,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Gun.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\Objective.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\SavePoint.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\TweenedImGuiEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\GameObjects\TweenObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Game\TweenFuncs.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source\Scenes\OptionsScene.h" />
@@ -88,6 +89,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Gun.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\Objective.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\SavePoint.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\GameObjects\TweenedImGuiEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Game\TweenFuncs.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\OptionsScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source\Scenes\PauseScreen.cpp" />

@@ -145,11 +145,14 @@ void Game::LoadContent()
 
 void Game::OnEvent(Event* pEvent)
 {
-	m_pControllers[0]->OnEvent(pEvent);
+	if (pEvent != nullptr)
+	{
+		m_pControllers[0]->OnEvent(pEvent);
 
-	m_pImGuiManager->OnEvent(pEvent);
+		m_pImGuiManager->OnEvent(pEvent);
 
-	m_pSceneManager->OnEvent(pEvent);
+		m_pSceneManager->OnEvent(pEvent);
+	}
 
 #if WIN32
 	// Enable/Disable V-Sync with F1 and F2.
@@ -168,6 +171,12 @@ void Game::OnEvent(Event* pEvent)
 		//reset everything
 		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 'P')
 			Reset();
+
+		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetInputState() == InputState_Pressed && pInput->GetID() == VK_F9)
+			if (m_DisplayDebugData == true)
+				m_DisplayDebugData = false;
+			else
+				m_DisplayDebugData = true;
 	}
 #endif //WIN32
 }
@@ -179,12 +188,19 @@ void Game::Update(float deltatime)
 	{
 		deltatime = 0.1f;
 	}
-	m_pImGuiManager->StartFrame((float)m_pFramework->GetWindowWidth(), (float)m_pFramework->GetWindowHeight(), deltatime);
-	
-	AudioManager::GetEngine()->ImGuiDisplayChannels();
-	m_pResourceManager->ImGuiDisplayAudioLists();
 
 	m_pSceneManager->Update(deltatime);
+
+	if (m_DisplayDebugData)
+	{
+		m_pImGuiManager->StartFrame((float)m_pFramework->GetWindowWidth(), (float)m_pFramework->GetWindowHeight(), deltatime);
+
+		AudioManager::GetEngine()->ImGuiDisplayChannels();
+		m_pResourceManager->ImGuiDisplayAudioLists();
+		m_pSceneManager->ImGuiDisplayDebugData();
+	}
+
+	
 }
 
 void Game::Draw()
@@ -198,7 +214,8 @@ void Game::Draw()
 
 	m_pSceneManager->Draw();
 
-	m_pImGuiManager->EndFrame();
+	if (m_DisplayDebugData)
+		m_pImGuiManager->EndFrame();
 
     CheckForGLErrors();
 }

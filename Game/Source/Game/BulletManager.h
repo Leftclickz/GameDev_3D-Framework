@@ -22,6 +22,10 @@ public:
 	static void ContactStartedCallback(btPersistentManifold* const& manifold);
 	static void ContactEndedCallback(btPersistentManifold* const& manifold);
 
+	virtual void ImGuiDisplayDebugData();
+
+	struct btCollisionWorld::ClosestRayResultCallback PerformRaycast(vec3 start, vec3 end);
+
 private:
 	bool WireFrame = false;
 	bool Constraints = false;

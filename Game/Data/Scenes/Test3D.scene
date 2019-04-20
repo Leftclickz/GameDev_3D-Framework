@@ -101,7 +101,7 @@
 			}
 		}, {
 			"ID":	18,
-			"Name":	"SavePoint1",
+			"Name":	"Objective",
 			"Properties":	{
 				"Flags":	["7"]
 			}

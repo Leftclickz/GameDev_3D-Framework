@@ -33,6 +33,8 @@ public:
 
 	const std::vector<Scene*> GetActiveScenes() { return m_ActiveScenes; }
 
+	virtual void ImGuiDisplayDebugData();
+
 protected:
 	std::vector<Scene*> m_ActiveScenes;
 	std::map<std::string, Scene*> m_pScenes;

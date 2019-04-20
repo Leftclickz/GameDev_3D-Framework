@@ -35,18 +35,6 @@ void SceneManager::Update(float delta)
 				break;
 		}
 	}
-
-	if (m_ActiveScenes.size() > 0)
-	{
-		ImGui::Begin("SceneManager");
-		ImGui::PushID(this);
-		for (int i = m_ActiveScenes.size() - 1; i >= 0; i--)
-		{
-			ImGui::CollapsingHeader(m_ActiveScenes[i]->GetName().c_str());
-		}
-		ImGui::PopID();
-		ImGui::End();
-	}
 }
 
 //only draw active scenes starting with the topmost non-transparent scene
@@ -184,4 +172,22 @@ void SceneManager::Reset()
 	}
 
 	PopAllScenes();
+}
+
+void SceneManager::ImGuiDisplayDebugData()
+{
+	if (m_ActiveScenes.size() > 0)
+	{
+		ImGui::Begin("SceneManager");
+		ImGui::PushID(this);
+		for (int i = m_ActiveScenes.size() - 1; i >= 0; i--)
+		{
+			ImGui::CollapsingHeader(m_ActiveScenes[i]->GetName().c_str());
+		}
+		ImGui::PopID();
+		ImGui::End();
+	}
+
+	for (unsigned int i = 0; i < m_ActiveScenes.size(); i++)
+		m_ActiveScenes[i]->ImGuiDisplayDebugData();
 }

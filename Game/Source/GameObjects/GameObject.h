@@ -68,6 +68,9 @@ public:
 	virtual void OnTweenEnded(TweenObject* obj);
 
 	virtual void Reset();
+
+	//Display debug info. Default empty.
+	virtual void ImGuiDisplayDebugInfo() {}
 };
 
 

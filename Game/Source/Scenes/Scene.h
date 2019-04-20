@@ -106,6 +106,9 @@ public:
 	//event-driven function for when this scene is now the current scene for the game
 	virtual void HasEnteredFocus() {}
 
+	//Detailed info of IMGUI data for this scene.
+	virtual void ImGuiDisplayDebugData();
+
 };
 
 #endif //__Scene_H__

@@ -18,7 +18,7 @@ StandardLight FollowLight::GetLight()
 	return LightObject::GetLight();
 }
 
-void FollowLight::DisplayImguiDebugInfo()
+void FollowLight::ImGuiDisplayDebugInfo()
 {
 	ImGui::Begin("Lights");
 	ImGui::PushID(this);

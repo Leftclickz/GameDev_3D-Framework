@@ -14,6 +14,8 @@ TitleScreen::TitleScreen(Game* pGame, ResourceManager* pResources)
 	m_DoesPause = true;
 
 	m_Name = "TitleScreen";
+	m_Timer = 3.0f;
+	m_isGrowing = true;
 }
 
 TitleScreen::~TitleScreen()
@@ -74,6 +76,26 @@ void TitleScreen::OnEvent(Event* pEvent)
 void TitleScreen::Update(float deltatime)
 {
 	Scene::Update(deltatime);
+
+	m_Timer += deltatime;
+
+	if (m_Timer >= 3.0f)
+	{
+		m_Timer -= 3.0f;
+
+		if (m_isGrowing)
+		{
+			GetGameObjectByName("TitleDisplay")->AddTween(TweenType_Scale, vec3(-0.1f), 3.0f, TweenFunc_Linear);
+			m_isGrowing = false;
+		}
+		else
+		{
+			GetGameObjectByName("TitleDisplay")->AddTween(TweenType_Scale, vec3(0.1f), 3.0f, TweenFunc_Linear);
+			m_isGrowing = true;
+		}
+
+	}
+
 }
 
 void TitleScreen::Draw()

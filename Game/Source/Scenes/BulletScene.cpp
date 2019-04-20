@@ -24,6 +24,7 @@
 
 #include "HUD_Scene.h"
 #include "PauseScreen.h"
+#include "GameObjects/TweenedImGuiEnemy.h"
 
 
 BulletScene::BulletScene(Game* pGame, ResourceManager* pResources) :
@@ -130,6 +131,10 @@ void BulletScene::LoadContent()
 	Player * player = (Player*)GetGameObjectByName("Player");
 	player->GetBody()->setAngularFactor(btVector3(0, 0, 0));
 
+	//a really bad tween test.
+	TweenedImGuiEnemy* testEnemy = new TweenedImGuiEnemy(this, "TweenTestSubject", Transform(vec3(10,10,10), vec3(90, 0, 0)), m_pResources->GetMesh("Cube"), m_pResources->GetMaterial("Spikes"));
+	AddGameObject(testEnemy);
+
 	//Scenes
 	m_pSceneManager->AddScene("HUDScene", new HUD_Scene(m_pGame, m_pResources));
 	m_pSceneManager->AddScene("PauseScene", new PauseScreen(m_pGame, m_pResources));
@@ -158,6 +163,31 @@ void BulletScene::OnEvent(Event* pEvent)
 		if (pInput->GetInputDeviceType() == InputDeviceType_Keyboard && pInput->GetID() == 'R' && pInput->GetInputState() == InputState_Pressed)//Reset
 		{
 			Reset();
+		}
+	}
+
+	if (pEvent->GetEventType() == EventType_GameState)
+	{
+		GameStateEvent* gse = (GameStateEvent*)pEvent;
+
+		switch (gse->GetGameState())
+		{
+		case TitleState:
+			break;
+		case PlayState:
+			m_BackgroundChannel->PlayAudio();
+			break;
+		case PauseState:
+			break;
+		case WinState:
+			m_BackgroundChannel->StopAudio();
+			break;
+		case LoseState:
+			m_BackgroundChannel->StopAudio();
+			break;
+		default:
+			break;
+
 		}
 	}
 }
@@ -268,10 +298,10 @@ void BulletScene::LoadFromSceneFile(std::string filename)
 
 void BulletScene::HasEnteredFocus()
 {
-	//if (m_BackgroundChannel != nullptr)
-	//{
-	//	m_BackgroundChannel->PlayAudio(0);
-	//}
+	if (m_BackgroundChannel != nullptr)
+	{
+		m_BackgroundChannel->PlayAudio();
+	}
 	m_pSceneManager->PushScene("HUDScene");
 }
 
@@ -281,6 +311,12 @@ void BulletScene::HasLeftFocus()
 	{
 		m_BackgroundChannel->StopAudio();
 	}
+}
+
+void BulletScene::ImGuiDisplayDebugData()
+{
+	Scene::ImGuiDisplayDebugData();
+	m_BulletManager->ImGuiDisplayDebugData();
 }
 
 void BulletScene::Reset()

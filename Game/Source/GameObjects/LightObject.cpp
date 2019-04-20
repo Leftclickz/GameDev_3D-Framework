@@ -60,7 +60,7 @@ void LightObject::Reset()
 	}
 }
 
-void LightObject::DisplayImguiDebugInfo()
+void LightObject::ImGuiDisplayDebugInfo()
 {
 
 	ImGui::Begin("Lights");

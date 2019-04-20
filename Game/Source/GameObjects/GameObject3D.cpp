@@ -43,6 +43,15 @@ void GameObject3D::OnEvent(Event* pEvent)
 
 void GameObject3D::Update(float deltatime)
 {
+	//keep body awake
+	if (m_Body)
+	{
+		if (m_Body->getActivationState() != 1)
+		{
+			m_Body->setActivationState(1);
+		}
+	}
+
 	//sync motionstate to body
 	if (m_Body)
 	{
@@ -60,8 +69,6 @@ void GameObject3D::Update(float deltatime)
 
 		m_Body->setWorldTransform(transformTwo);
 	}
-
-	DisplayImguiDebugInfo();
 }
 
 void GameObject3D::Draw(Camera* cam)
@@ -150,7 +157,7 @@ void GameObject3D::CreateBody(btCollisionShape* shape, float mass)
 	m_pScene->Add3DBody(m_Body);
 }
 
-void GameObject3D::DisplayImguiDebugInfo()
+void GameObject3D::ImGuiDisplayDebugInfo()
 {
 	if (isEnabled)
 	{
@@ -347,7 +354,7 @@ vec3 GameObject3D::GetDirection()
 {
 	vec3 dir = m_Rotation;
 	//dir = vec3(m_Rotation.x, 0, 0);
-
+	
 	//TODO Make this function lol
 
 	return dir;

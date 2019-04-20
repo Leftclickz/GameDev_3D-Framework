@@ -21,6 +21,7 @@ Enemy::~Enemy()
 
 void Enemy::Update(float deltatime)
 {
+	GameObject3D::Update(deltatime); 
 }
 
 void Enemy::ContactStarted(GameObject3D * pOtherObj, vec3 normal)

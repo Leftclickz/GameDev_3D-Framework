@@ -74,15 +74,6 @@ void BulletManager::Draw(Camera* cam, Material* mat)
 	//set flags here
 	int debugmode = DebugDraw3D::DBG_NoDebug;
 
-	ImGui::Begin("Debug Drawing");
-	ImGui::Checkbox("Debug Draw Everything", &Everything);
-	ImGui::Checkbox("Debug Draw Wireframe", &WireFrame);
-	ImGui::Checkbox("Debug Draw ContactPoints", &ContactPoints);
-	ImGui::Checkbox("Debug Draw AABB", &AABB);
-	ImGui::Checkbox("Debug Draw Constraints", &Constraints);
-	ImGui::Checkbox("Debug Draw Normals", &Normals);
-	ImGui::End();
-
 	if (WireFrame)
 		debugmode |= DebugDraw3D::DBG_DrawWireframe;
 
@@ -163,4 +154,28 @@ void BulletManager::ContactEndedCallback(btPersistentManifold* const& manifold)
 
 	pObjA->ContactEnded(pObjB);
 	pObjB->ContactEnded(pObjA);
+}
+
+void BulletManager::ImGuiDisplayDebugData()
+{
+	ImGui::Begin("Debug Drawing");
+	ImGui::Checkbox("Debug Draw Everything", &Everything);
+	ImGui::Checkbox("Debug Draw Wireframe", &WireFrame);
+	ImGui::Checkbox("Debug Draw ContactPoints", &ContactPoints);
+	ImGui::Checkbox("Debug Draw AABB", &AABB);
+	ImGui::Checkbox("Debug Draw Constraints", &Constraints);
+	ImGui::Checkbox("Debug Draw Normals", &Normals);
+	ImGui::End();
+}
+
+btCollisionWorld::ClosestRayResultCallback BulletManager::PerformRaycast(vec3 start, vec3 end)
+{
+	btVector3 StartVec = btVector3(start.x, start.y, start.z);
+	btVector3 EndVec = btVector3(end.x, end.y, end.z);
+
+	btCollisionWorld::ClosestRayResultCallback RayCast(StartVec, EndVec);
+
+	dynamicsWorld->rayTest(StartVec, EndVec, RayCast);
+
+	return RayCast;
 }
